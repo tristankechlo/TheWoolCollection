@@ -1,0 +1,32 @@
+{
+    "schemaVersion": 1,
+    "id": "more_wool_blocks",
+    "version": "1.19.3-1.0",
+    "name": "More Wool Blocks",
+    "description": "Adds more wool blocks to the game!",
+    "authors": [
+        "Buecher_wurm"
+    ],
+    "contact": {
+        "sources": "https://github.com/tristankechlo/MoreWoolBlocks",
+        "issues": "https://github.com/tristankechlo/MoreWoolBlocks/issues"
+    },
+    "license": "CC BY-NC-ND 4.0",
+    "icon": "assets/more_wool_blocks/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.tristankechlo.more_wool_blocks.FabricMoreWoolBlocks"
+        ]
+    },
+    "mixins": [
+        "more_wool_blocks.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.14",
+        "fabric": "*",
+        "minecraft": "1.19.3",
+        "java": ">=17"
+    }
+}
+  
