@@ -5,10 +5,11 @@ Adds more wool blocks to the game!
 ## Content
 
 - added new wool variants
-  - 16 new wool fences
-  - 16 new wool fences gates
- - right clicking with shears will drop them instantly
- - right clicking with a dye will change the color of the block
+    - 16 new wool fences
+    - 16 new wool fences gates
+    - 16 new wool stairs
+- right clicking with shears will drop them instantly
+- right clicking with a dye will change the color of the block
 
 ### Project setup
 
@@ -18,7 +19,6 @@ jaredlll08
 ### TODO
 
 - add more blocks
-    - wool stairs
     - wool slabs
     - wool walls
     - wool buttons

@@ -3,6 +3,7 @@ package com.tristankechlo.more_wool_blocks.init;
 import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
 import com.tristankechlo.more_wool_blocks.blocks.WoolFenceBlock;
 import com.tristankechlo.more_wool_blocks.blocks.WoolFenceGateBlock;
+import com.tristankechlo.more_wool_blocks.blocks.WoolStairsBlock;
 import com.tristankechlo.more_wool_blocks.registration.RegistrationProvider;
 import com.tristankechlo.more_wool_blocks.registration.RegistryObject;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,6 +22,7 @@ public final class ModBlocks {
     public static final List<RegistryObject<BlockItem>> ALL_ITEMS = new ArrayList<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> FENCES = new HashMap<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> FENCE_GATES = new HashMap<>();
+    public static final Map<DyeColor, RegistryObject<BlockItem>> STAIRS = new HashMap<>();
 
     public static void loadClass() {
         List<DyeColor> colors = Arrays.stream(DyeColor.values()).toList();
@@ -31,6 +33,7 @@ public final class ModBlocks {
             }
             registerFence(color.getName() + "_wool_fence", color);
             registerFenceGate(color.getName() + "_wool_fence_gate", color);
+            registerStairs(color.getName() + "_wool_stairs", color);
         }
     }
 
@@ -46,6 +49,13 @@ public final class ModBlocks {
         RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
         ALL_ITEMS.add(item);
         FENCE_GATES.put(color, item);
+    }
+
+    private static void registerStairs(String id, DyeColor color) {
+        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolStairsBlock(color));
+        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
+        ALL_ITEMS.add(item);
+        STAIRS.put(color, item);
     }
 
 }

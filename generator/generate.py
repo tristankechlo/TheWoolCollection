@@ -5,6 +5,7 @@ from translation import Translation
 from os.path import dirname, realpath
 from block_types.fence import WoolFence
 from block_types.fence_gate import WoolFenceGate
+from block_types.stairs import WoolStairs
 
 
 colors = ["white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"]
@@ -12,17 +13,18 @@ types = ["fence", "fence_gate", "stairs", "slab", "wall"]
 translation = Translation()
 
 
-parent_dir = dirname(dirname(dirname(realpath(__file__))))
+parent_dir = dirname(dirname(realpath(__file__)))
 common_dir = parent_dir + "/Common/src/generated/resources/"
 forge_dir = parent_dir + "/Forge/src/generated/resources/"
 fabric_dir = parent_dir + "/Fabric/src/generated/resources/"
+# print(common_dir)
+# print(forge_dir)
+# print(fabric_dir)
 
 tags = {
     "fences": {"values": []},
     "fence_gates": {"values": []},
-    # "walls": {"values": []},
-    # "slabs": {"values": []},
-    # "stairs": {"values": []}
+    "stairs": {"values": []}
 }
 
 
@@ -40,6 +42,13 @@ def createFenceGate(color: str):
     fence_gate.save()
 
 
+def createStairs(color: str):
+    stairs = WoolStairs(color)
+    tags["stairs"]["values"].append(stairs.getFullId())
+    translation.add(stairs)
+    stairs.save()
+
+
 if __name__ == "__main__":
     # clear folders before generating
     if os.path.exists(common_dir):
@@ -53,9 +62,7 @@ if __name__ == "__main__":
     for color in colors:
         createFence(color)
         createFenceGate(color)
-        # createWall(color)
-        # createSlab(color)
-        # createStair(color)
+        createStairs(color)
 
     # create lang file
     path_lang = common_dir + "/assets/more_wool_blocks/lang/en_us.json"

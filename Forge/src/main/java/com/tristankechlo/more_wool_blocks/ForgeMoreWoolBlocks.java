@@ -25,6 +25,7 @@ public class ForgeMoreWoolBlocks {
         if (event.getTab() == CreativeModeTabs.COLORED_BLOCKS) {
             ModBlocks.FENCES.forEach((color, item) -> event.accept(item.get()));
             ModBlocks.FENCE_GATES.forEach((color, item) -> event.accept(item.get()));
+            ModBlocks.STAIRS.forEach((color, item) -> event.accept(item.get()));
         }
     }
 

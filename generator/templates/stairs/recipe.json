@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "#": {
+            "item": "minecraft:%color%_wool"
+        }
+    },
+    "pattern": [
+        "#  ",
+        "## ",
+        "###"
+    ],
+    "group": "wool_stairs",
+    "result": {
+        "count": 4,
+        "item": "more_wool_blocks:%color%_wool_stairs"
+    }
+}
