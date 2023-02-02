@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "%group%",
+    "ingredients": [
+        {
+            "item": "minecraft:%color%_dye"
+        },
+        {
+            "item": "more_wool_blocks:white_wool_%type%"
+        }
+    ],
+    "result": {
+        "item": "%block_id%"
+    }
+}
