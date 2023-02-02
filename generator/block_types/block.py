@@ -5,7 +5,7 @@ from util import saveAsJson
 
 class WoolBlock:
 
-    parent_dir = dirname(dirname(realpath(__file__)))
+    parent_dir = dirname(dirname(dirname(realpath(__file__))))
     path_blockstates = parent_dir + "/Common/src/generated/resources/assets/more_wool_blocks/blockstates/"
     path_block_models = parent_dir + "/Common/src/generated/resources/assets/more_wool_blocks/models/block/"
     path_item_models = parent_dir + "/Common/src/generated/resources/assets/more_wool_blocks/models/item/"

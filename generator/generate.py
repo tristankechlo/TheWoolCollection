@@ -3,8 +3,8 @@ import os
 from util import saveAsJson
 from translation import Translation
 from os.path import dirname, realpath
-from fence import WoolFence
-from fence_gate import WoolFenceGate
+from block_types.fence import WoolFence
+from block_types.fence_gate import WoolFenceGate
 
 
 colors = ["white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"]
@@ -12,7 +12,7 @@ types = ["fence", "fence_gate", "stairs", "slab", "wall"]
 translation = Translation()
 
 
-parent_dir = dirname(dirname(realpath(__file__)))
+parent_dir = dirname(dirname(dirname(realpath(__file__))))
 common_dir = parent_dir + "/Common/src/generated/resources/"
 forge_dir = parent_dir + "/Forge/src/generated/resources/"
 fabric_dir = parent_dir + "/Fabric/src/generated/resources/"

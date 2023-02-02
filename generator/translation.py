@@ -1,4 +1,4 @@
-from block import WoolBlock
+from block_types.block import WoolBlock
 
 class Translation:
 

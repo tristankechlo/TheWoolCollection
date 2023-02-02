@@ -1,9 +1,8 @@
-import json
-from block import WoolBlock
-from util import loadAsStr, saveAsJson
+from block_types.block import WoolBlock
+from util import loadAsStr
 from os.path import dirname, realpath
 
-current_path = dirname(realpath(__file__))
+current_path = dirname(dirname(realpath(__file__)))
 template_path = current_path + "/templates"
 
 template_blockstate = loadAsStr(template_path + "/fence/blockstate.json")
