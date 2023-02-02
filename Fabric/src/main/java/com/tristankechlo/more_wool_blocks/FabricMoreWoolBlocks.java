@@ -14,8 +14,8 @@ public class FabricMoreWoolBlocks implements ModInitializer {
 
         // add all blocks to creative tab
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COLORED_BLOCKS).register((content) -> {
-            ModBlocks.FENCES.forEach(item -> content.accept(item.get()));
-            ModBlocks.FENCE_GATES.forEach(item -> content.accept(item.get()));
+            ModBlocks.FENCES.forEach((color, item) -> content.accept(item.get()));
+            ModBlocks.FENCE_GATES.forEach((color, item) -> content.accept(item.get()));
         });
 
         // make all blocks flammable
