@@ -9,7 +9,7 @@
             "item": "minecraft:white_wool"
         },
         "S": {
-            "item": "c:wood_sticks"
+            "tag": "c:wood_sticks"
         }
     },
     "result": {
