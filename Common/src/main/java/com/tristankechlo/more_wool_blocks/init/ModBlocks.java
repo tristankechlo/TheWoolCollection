@@ -24,6 +24,8 @@ public final class ModBlocks {
     public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(BuiltInRegistries.BLOCK, MoreWoolBlocks.MOD_ID);
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(BuiltInRegistries.ITEM, MoreWoolBlocks.MOD_ID);
     public static final List<RegistryObject<BlockItem>> ALL_ITEMS = new ArrayList<>();
+    public static final List<RegistryObject<BlockItem>> FENCES = new ArrayList<>();
+    public static final List<RegistryObject<BlockItem>> FENCE_GATES = new ArrayList<>();
 
     public static void loadClass() {
         List<DyeColor> colors = Arrays.stream(DyeColor.values()).toList();
@@ -44,12 +46,14 @@ public final class ModBlocks {
         RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolFenceBlock(color));
         RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
         ALL_ITEMS.add(item);
+        FENCES.add(item);
     }
 
     private static void registerFenceGate(String id, MaterialColor color) {
         RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolFenceGateBlock(color));
         RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
         ALL_ITEMS.add(item);
+        FENCE_GATES.add(item);
     }
 
 }
