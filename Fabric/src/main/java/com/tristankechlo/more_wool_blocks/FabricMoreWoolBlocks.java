@@ -12,8 +12,7 @@ public class FabricMoreWoolBlocks implements ModInitializer {
         MoreWoolBlocks.init();
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COLORED_BLOCKS).register((content) -> {
-            ModBlocks.FENCES.forEach(item -> content.accept(item.get()));
-            ModBlocks.FENCE_GATES.forEach(item -> content.accept(item.get()));
+            ModBlocks.ALL_ITEMS.forEach(item -> content.accept(item.get()));
         });
     }
 
