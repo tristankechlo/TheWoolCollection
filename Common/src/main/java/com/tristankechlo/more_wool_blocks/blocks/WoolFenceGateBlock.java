@@ -45,10 +45,10 @@ public class WoolFenceGateBlock extends FenceGateBlock implements CustomWoolBloc
 
     @Override
     public BlockState copyBlockState(BlockState newState, BlockState oldState) {
-        return newState.setValue(FenceGateBlock.OPEN, oldState.getValue(FenceGateBlock.OPEN))
-                .setValue(FenceGateBlock.POWERED, oldState.getValue(FenceGateBlock.POWERED))
-                .setValue(FenceGateBlock.IN_WALL, oldState.getValue(FenceGateBlock.IN_WALL))
-                .setValue(FenceGateBlock.FACING, oldState.getValue(FenceGateBlock.FACING));
+        return newState.setValue(OPEN, oldState.getValue(OPEN))
+                .setValue(POWERED, oldState.getValue(POWERED))
+                .setValue(IN_WALL, oldState.getValue(IN_WALL))
+                .setValue(FACING, oldState.getValue(FACING));
     }
 
 }

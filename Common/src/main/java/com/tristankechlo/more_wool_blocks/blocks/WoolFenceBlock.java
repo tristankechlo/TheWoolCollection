@@ -45,11 +45,11 @@ public class WoolFenceBlock extends FenceBlock implements CustomWoolBlock {
 
     @Override
     public BlockState copyBlockState(BlockState newState, BlockState oldState) {
-        return newState.setValue(CrossCollisionBlock.NORTH, oldState.getValue(CrossCollisionBlock.NORTH))
-                .setValue(CrossCollisionBlock.EAST, oldState.getValue(CrossCollisionBlock.EAST))
-                .setValue(CrossCollisionBlock.SOUTH, oldState.getValue(CrossCollisionBlock.SOUTH))
-                .setValue(CrossCollisionBlock.WEST, oldState.getValue(CrossCollisionBlock.WEST))
-                .setValue(CrossCollisionBlock.WATERLOGGED, oldState.getValue(CrossCollisionBlock.WATERLOGGED));
+        return newState.setValue(NORTH, oldState.getValue(NORTH))
+                .setValue(EAST, oldState.getValue(EAST))
+                .setValue(SOUTH, oldState.getValue(SOUTH))
+                .setValue(WEST, oldState.getValue(WEST))
+                .setValue(WATERLOGGED, oldState.getValue(WATERLOGGED));
     }
 
 }
