@@ -4,7 +4,7 @@ Adds more wool blocks to the game!
 
 ## Content
 
-- added new block variants from wool
+- added new wool variants
   - 16 new wool fences
   - 16 new wool fences gates
  - right clicking with shears will drop them instantly
