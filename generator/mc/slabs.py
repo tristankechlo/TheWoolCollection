@@ -2,7 +2,20 @@ from mc.block import WoolBlock
 from mc.advancement import Advancement
 from mc.loottable import LootTable
 from mc.template import Template, StoneCuttingTemplate
-from mc.globals import Globals
+
+
+"""
+=> Recipe
+can be crafted from white wool, similar to the other slabs
+can be crafted from stonecutting
+
+=> Advancement
+each color has its own advancement, triggered by crafting the corresponding colored wool
+both recipe types (crafting, stonecutter) are triggered
+
+=> Loot table
+drops like normal slabs, one slab per block, or two slabs per double slab
+"""
 
 
 class WoolSlabs (WoolBlock):
@@ -18,11 +31,11 @@ class WoolSlabs (WoolBlock):
         self.recipe = Template(self, ["slabs", "recipe.json"])
         self.recipe_stonecutting = StoneCuttingTemplate(self, 2)
 
-    def createTemplates(self):
+    def createSpecialTemplates(self):
         self.model = Template(self, ["slabs", "block_model.json"])
         self.model_top = Template(self, ["slabs", "block_model.json"])
 
-    def setup(self):
+    def setupSpecialTemplates(self):
         self.model.replace("%parent%", "minecraft:block/slab")
         self.model_top.replace("%parent%", "minecraft:block/slab_top")
 

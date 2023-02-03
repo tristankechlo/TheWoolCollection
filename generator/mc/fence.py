@@ -4,6 +4,19 @@ from mc.loottable import LootTable
 from mc.template import Template
 from mc.globals import Globals
 
+"""
+=> Recipe
+white fence can be crafted from white wool, similar to normal fences,
+but the other colors can only be crafted from white fences and a dye
+
+=> Advancement
+white fence has a separate advancement, triggerd by crafting white wool
+the other colors have a shared advancement, triggerd by crafting a white fence
+
+=> Loot table
+drops itself
+"""
+
 
 class WoolFence (WoolBlock):
 
@@ -16,12 +29,12 @@ class WoolFence (WoolBlock):
         self.item_model = Template(self, ["fence", "item_model.json"])
         self.recipe = Template(self, ["recipe.json"])
 
-    def createTemplates(self):
+    def createSpecialTemplates(self):
         self.model_post = Template(self, ["fence", "block_model.json"])
         self.model_side = Template(self, ["fence", "block_model.json"])
         self.model_inventory = Template(self, ["fence", "block_model.json"])
 
-    def setup(self):
+    def setupSpecialTemplates(self):
         self.model_post.replace("%parent%", "minecraft:block/fence_post")
         self.model_side.replace("%parent%", "minecraft:block/fence_side")
         self.model_inventory.replace("%parent%", "minecraft:block/fence_inventory")

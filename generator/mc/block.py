@@ -21,13 +21,13 @@ class WoolBlock:
         self.full_id = Globals.modid + ":" + self.name
         self.translation_key = "block." + Globals.modid + "." + self.name
         self.translation = color.replace("_", " ").title() + " Wool " + type.replace("_", " ").title()
-        self.createTemplates()
-        self.setup()
+        self.createSpecialTemplates()
+        self.setupSpecialTemplates()
 
-    def createTemplates(self):
+    def createSpecialTemplates(self):
         pass
 
-    def setup(self):
+    def setupSpecialTemplates(self):
         pass
 
     def getColor(self):

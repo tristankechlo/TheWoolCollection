@@ -5,6 +5,20 @@ from mc.template import Template
 from mc.globals import Globals
 
 
+"""
+=> Recipe
+white fence gate can be crafted from white wool, similar to normal fence gates,
+but the other colors can only be crafted from white fence gate and a dye
+
+=> Advancement
+white fence has a separate advancement, triggerd by crafting white wool
+the other colors have a shared advancement, triggerd by crafting a white fence gate
+
+=> Loot table
+drops itself
+"""
+
+
 class WoolFenceGate (WoolBlock):
 
     def __init__(self, color: str):
@@ -16,13 +30,13 @@ class WoolFenceGate (WoolBlock):
         self.item_model = Template(self, ["fence_gate", "item_model.json"])
         self.recipe = Template(self, ["recipe.json"])
 
-    def createTemplates(self):
+    def createSpecialTemplates(self):
         self.model = Template(self, ["fence_gate", "block_model.json"])
         self.model_open = Template(self, ["fence_gate", "block_model.json"])
         self.model_wall = Template(self, ["fence_gate", "block_model.json"])
         self.model_wall_open = Template(self, ["fence_gate", "block_model.json"])
 
-    def setup(self):
+    def setupSpecialTemplates(self):
         self.model.replace("%parent%", "minecraft:block/template_fence_gate")
         self.model_open.replace("%parent%", "minecraft:block/template_fence_gate_open")
         self.model_wall.replace("%parent%", "minecraft:block/template_fence_gate_wall")

@@ -2,7 +2,20 @@ from mc.block import WoolBlock
 from mc.advancement import Advancement
 from mc.loottable import LootTable
 from mc.template import Template, StoneCuttingTemplate
-from mc.globals import Globals
+
+
+"""
+=> Recipe
+can be crafted from white wool, similar to the other walls
+can be crafted from stonecutting
+
+=> Advancement
+each color has its own advancement, triggered by crafting the corresponding colored wool
+both recipe types (crafting, stonecutter) are triggered
+
+=> Loot table
+drops itself
+"""
 
 
 class WoolWalls (WoolBlock):
@@ -18,13 +31,13 @@ class WoolWalls (WoolBlock):
         self.recipe = Template(self, ["walls", "recipe.json"])
         self.stonecutting = StoneCuttingTemplate(self, 1)
 
-    def createTemplates(self):
+    def createSpecialTemplates(self):
         self.model_post = Template(self, ["walls", "block_model.json"])
         self.model_side = Template(self, ["walls", "block_model.json"])
         self.model_side_tall = Template(self, ["walls", "block_model.json"])
         self.model_inventory = Template(self, ["walls", "block_model.json"])
 
-    def setup(self):
+    def setupSpecialTemplates(self):
         self.model_post.replace("%parent%", "minecraft:block/template_wall_post")
         self.model_side.replace("%parent%", "minecraft:block/template_wall_side")
         self.model_side_tall.replace("%parent%", "minecraft:block/template_wall_side_tall")

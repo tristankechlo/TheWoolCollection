@@ -4,6 +4,20 @@ from mc.loottable import LootTable
 from mc.template import Template, StoneCuttingTemplate
 
 
+"""
+=> Recipe
+can be crafted from white wool, similar to the other stairs
+can be crafted from stonecutting
+
+=> Advancement
+each color has its own advancement, triggered by crafting the corresponding colored wool
+both recipe types (crafting, stonecutter) are triggered
+
+=> Loot table
+drops itself
+"""
+
+
 class WoolStairs (WoolBlock):
 
     def __init__(self, color: str):
@@ -17,12 +31,12 @@ class WoolStairs (WoolBlock):
         self.recipe = Template(self, ["stairs", "recipe.json"])
         self.recipe_stonecutting = StoneCuttingTemplate(self, 1)
 
-    def createTemplates(self):
+    def createSpecialTemplates(self):
         self.model = Template(self, ["stairs", "block_model.json"])
         self.model_inner = Template(self, ["stairs", "block_model.json"])
         self.model_outer = Template(self, ["stairs", "block_model.json"])
 
-    def setup(self):
+    def setupSpecialTemplates(self):
         self.model.replace("%parent%", "minecraft:block/stairs")
         self.model_inner.replace("%parent%", "minecraft:block/inner_stairs")
         self.model_outer.replace("%parent%", "minecraft:block/outer_stairs")
