@@ -5,10 +5,10 @@ from mc.fence_gate import WoolFenceGate
 from mc.stairs import WoolStairs
 from mc.slabs import WoolSlabs
 from mc.walls import WoolWalls
+from mc.buttons import WoolButtons
 from mc.globals import Globals
 
 
-types = ["fence", "fence_gate", "stairs", "slab", "wall"]
 translation = Translation()
 
 
@@ -17,7 +17,8 @@ tags = {
     "fence_gates": {"values": []},
     "stairs": {"values": []},
     "slabs": {"values": []},
-    "walls": {"values": []}
+    "walls": {"values": []},
+    "buttons": {"values": []}
 }
 
 
@@ -41,17 +42,26 @@ def createStairs(color: str):
     translation.add(stairs)
     stairs.save()
 
+
 def createSlabs(color: str):
     slabs = WoolSlabs(color)
     tags["slabs"]["values"].append(slabs.getFullId())
     translation.add(slabs)
     slabs.save()
 
+
 def createWalls(color: str):
     walls = WoolWalls(color)
     tags["walls"]["values"].append(walls.getFullId())
     translation.add(walls)
     walls.save()
+
+
+def createButtons(color: str):
+    buttons = WoolButtons(color)
+    tags["buttons"]["values"].append(buttons.getFullId())
+    translation.add(buttons)
+    buttons.save()
 
 
 if __name__ == "__main__":
@@ -65,7 +75,8 @@ if __name__ == "__main__":
         createStairs(color)
         createSlabs(color)
         createWalls(color)
-        print (f'generated {len(tags.keys())} blocks for color "{color}"')
+        createButtons(color)
+        print(f'generated {len(tags.keys())} blocks for color "{color}"')
 
     # create lang file
     path_lang = Globals.common_dir + "/assets/more_wool_blocks/lang/en_us.json"

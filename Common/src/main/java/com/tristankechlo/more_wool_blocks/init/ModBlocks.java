@@ -26,6 +26,7 @@ public final class ModBlocks {
     public static final Map<DyeColor, RegistryObject<BlockItem>> STAIRS = new HashMap<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> SLABS = new HashMap<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> WALLS = new HashMap<>();
+    public static final Map<DyeColor, RegistryObject<BlockItem>> BUTTONS = new HashMap<>();
 
     public static void loadClass() {
         final int colorCount = DyeColor.values().length;
@@ -40,6 +41,7 @@ public final class ModBlocks {
             registerStairs(color.getName() + "_wool_stairs", color);
             registerSlab(color.getName() + "_wool_slab", color);
             registerWall(color.getName() + "_wool_wall", color);
+            registerButton(color.getName() + "_wool_button", color);
         }
     }
 
@@ -76,6 +78,13 @@ public final class ModBlocks {
         RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
         ALL_ITEMS.add(item);
         WALLS.put(color, item);
+    }
+
+    private static void registerButton(String id, DyeColor color) {
+        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolButtonBlock(color));
+        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
+        ALL_ITEMS.add(item);
+        BUTTONS.put(color, item);
     }
 
 }
