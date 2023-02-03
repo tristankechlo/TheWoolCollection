@@ -1,5 +1,6 @@
 package com.tristankechlo.more_wool_blocks.blocks;
 
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
@@ -8,11 +9,23 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
 
 public interface CustomWoolBlock {
+
+    ImmutableMap<DyeColor, Block> WOOL_MAP = ImmutableMap.<DyeColor, Block>builder()
+            .put(DyeColor.WHITE, Blocks.WHITE_WOOL).put(DyeColor.ORANGE, Blocks.ORANGE_WOOL)
+            .put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL).put(DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL)
+            .put(DyeColor.YELLOW, Blocks.YELLOW_WOOL).put(DyeColor.LIME, Blocks.LIME_WOOL)
+            .put(DyeColor.PINK, Blocks.PINK_WOOL).put(DyeColor.GRAY, Blocks.GRAY_WOOL)
+            .put(DyeColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL).put(DyeColor.CYAN, Blocks.CYAN_WOOL)
+            .put(DyeColor.PURPLE, Blocks.PURPLE_WOOL).put(DyeColor.BLUE, Blocks.BLUE_WOOL)
+            .put(DyeColor.BROWN, Blocks.BROWN_WOOL).put(DyeColor.GREEN, Blocks.GREEN_WOOL)
+            .put(DyeColor.RED, Blocks.RED_WOOL).put(DyeColor.BLACK, Blocks.BLACK_WOOL)
+            .build();
 
     default Optional<InteractionResult> use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
