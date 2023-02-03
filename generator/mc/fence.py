@@ -35,8 +35,8 @@ class WoolFence (WoolBlock):
         self.loot_table.save()
 
     def saveForWhiteVariant(self):
-        self.advancement_white.save()
+        self.advancement_white.save("decorations")
 
     def saveForNonWhiteVariants(self):
         self.recipe.save(WoolBlock.path_recipes, self.name + ".json")
-        self.advancement.save()
+        self.advancement.save("decorations")

@@ -8,7 +8,7 @@ else:
 
 class Advancement():
 
-    path = join(Globals.common_dir, "data", Globals.modid, "advancements", "recipes", "building_blocks")
+    path = join(Globals.common_dir, "data", Globals.modid, "advancements", "recipes")
 
     def __init__(self, recipe_id: str, trigger_item: str, filename: str):
         self.recipe_id = recipe_id
@@ -16,15 +16,16 @@ class Advancement():
         self.filename = filename
         self.template = Globals.loadAsStr(join(Globals.generator_dir, "templates",  "advancement.json"))
 
-    def save(self):
+    def save(self, category: str = "building_blocks"):
         import json
         import os
-        if not os.path.exists(Advancement.path):
-            os.makedirs(Advancement.path)
+        path = join(Advancement.path, category)
+        if not os.path.exists(path):
+            os.makedirs(path)
         temp = self.template.replace("%trigger_item%", self.trigger_item)
         temp = temp.replace("%recipe_id%", self.recipe_id)
         temp = json.loads(temp)
-        Globals.saveAsJson(join(Advancement.path, self.filename), temp)
+        Globals.saveAsJson(join(path, self.filename), temp)
 
 
 if __name__ == "__main__":
