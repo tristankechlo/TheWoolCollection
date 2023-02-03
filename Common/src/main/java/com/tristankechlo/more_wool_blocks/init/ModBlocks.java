@@ -1,10 +1,7 @@
 package com.tristankechlo.more_wool_blocks.init;
 
 import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
-import com.tristankechlo.more_wool_blocks.blocks.WoolFenceBlock;
-import com.tristankechlo.more_wool_blocks.blocks.WoolFenceGateBlock;
-import com.tristankechlo.more_wool_blocks.blocks.WoolSlabBlock;
-import com.tristankechlo.more_wool_blocks.blocks.WoolStairsBlock;
+import com.tristankechlo.more_wool_blocks.blocks.*;
 import com.tristankechlo.more_wool_blocks.registration.RegistrationProvider;
 import com.tristankechlo.more_wool_blocks.registration.RegistryObject;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -28,6 +25,7 @@ public final class ModBlocks {
     public static final Map<DyeColor, RegistryObject<BlockItem>> FENCE_GATES = new HashMap<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> STAIRS = new HashMap<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> SLABS = new HashMap<>();
+    public static final Map<DyeColor, RegistryObject<BlockItem>> WALLS = new HashMap<>();
 
     public static void loadClass() {
         final int colorCount = DyeColor.values().length;
@@ -41,6 +39,7 @@ public final class ModBlocks {
             registerFenceGate(color.getName() + "_wool_fence_gate", color);
             registerStairs(color.getName() + "_wool_stairs", color);
             registerSlab(color.getName() + "_wool_slab", color);
+            registerWall(color.getName() + "_wool_wall", color);
         }
     }
 
@@ -70,6 +69,13 @@ public final class ModBlocks {
         RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
         ALL_ITEMS.add(item);
         SLABS.put(color, item);
+    }
+
+    private static void registerWall(String id, DyeColor color) {
+        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolWallBlock(color));
+        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
+        ALL_ITEMS.add(item);
+        WALLS.put(color, item);
     }
 
 }

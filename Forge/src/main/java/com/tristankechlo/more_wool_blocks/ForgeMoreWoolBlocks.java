@@ -27,6 +27,7 @@ public class ForgeMoreWoolBlocks {
             ModBlocks.FENCE_GATES.forEach((color, item) -> event.accept(item.get()));
             ModBlocks.STAIRS.forEach((color, item) -> event.accept(item.get()));
             ModBlocks.SLABS.forEach((color, item) -> event.accept(item.get()));
+            ModBlocks.WALLS.forEach((color, item) -> event.accept(item.get()));
         }
     }
 

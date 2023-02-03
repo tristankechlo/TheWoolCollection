@@ -9,6 +9,7 @@ Adds more wool blocks to the game!
     - 16 new wool fences gates
     - 16 new wool stairs
     - 16 new wool slabs
+    - 16 new wool walls
 - right clicking with shears will drop them instantly
 - right clicking with a dye will change the color of the block
 
@@ -20,7 +21,6 @@ jaredlll08
 ### TODO
 
 - add more blocks
-    - wool walls
     - wool buttons
     - wool pressure plates
     - wool trapdoors ?

@@ -1,0 +1,6 @@
+{
+    "parent": "%parent%",
+    "textures": {
+        "wall": "minecraft:block/%color%_wool"
+    }
+}
