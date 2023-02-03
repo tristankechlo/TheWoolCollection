@@ -13,7 +13,10 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class ModBlocks {
 
@@ -27,8 +30,9 @@ public final class ModBlocks {
     public static final Map<DyeColor, RegistryObject<BlockItem>> SLABS = new HashMap<>();
 
     public static void loadClass() {
-        List<DyeColor> colors = Arrays.stream(DyeColor.values()).toList();
-        for (DyeColor color : colors) {
+        final int colorCount = DyeColor.values().length;
+        for (int index = 0; index < colorCount; index++) {
+            DyeColor color = DyeColor.byId(index);
             if (color.getId() >= 16) {
                 MoreWoolBlocks.LOGGER.warn("Skipping color " + color.getName() + " because it's not supported by this mod");
                 continue;
