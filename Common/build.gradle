@@ -40,7 +40,13 @@ processResources {
 task generateRessources(type: Exec) {
     outputs.upToDateWhen { false }
     workingDir = file("../generator")
-    commandLine = ["C:/Program Files/Python311/python.exe", "generate.py"]
+    commandLine = ["python.exe", "generate.py"]
 }
+
+configure (generateRessources) {
+    group = "build"
+    description = "generate all wool variants"
+}
+
 // add custom ressource generation task to build task
 tasks.build.dependsOn(generateRessources)
