@@ -1,7 +1,7 @@
 from mc.block import WoolBlock
 from mc.advancement import Advancement
 from mc.loottable import LootTable
-from mc.template import Template
+from mc.template import Template, StoneCuttingTemplate
 
 
 class WoolStairs (WoolBlock):
@@ -15,7 +15,7 @@ class WoolStairs (WoolBlock):
         self.blockstate = Template(self, ["stairs", "blockstate.json"])
         self.item_model = Template(self, ["stairs", "item_model.json"])
         self.recipe = Template(self, ["stairs", "recipe.json"])
-        self.recipe_stonecutting = Template(self, ["stairs", "recipe_stonecutting.json"])
+        self.recipe_stonecutting = StoneCuttingTemplate(self, 1)
 
     def createTemplates(self):
         self.model = Template(self, ["stairs", "block_model.json"])

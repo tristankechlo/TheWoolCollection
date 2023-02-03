@@ -35,3 +35,17 @@ class Template():
         if not os.path.exists(path):
             os.makedirs(path)
         Globals.saveAsJson(join(path, filename), temp)
+
+
+class StoneCuttingTemplate(Template):
+
+    def __init__(self, block: WoolBlock, count: int = 1):
+        super().__init__(block, ["stonecutting.json"])
+        self.replace("%output%", self.block.full_id)
+        self.replace("%count%", str(count))
+
+    def setCount(self, count: int):
+        self.replace("%count%", str(count))
+
+    def setOutput(self, output: str):
+        self.replace("%output%", output)
