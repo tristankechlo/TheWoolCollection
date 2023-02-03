@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "count": 2,
+    "ingredient": {
+        "item": "minecraft:%color%_wool"
+    },
+    "result": "more_wool_blocks:%color%_wool_slab"
+}

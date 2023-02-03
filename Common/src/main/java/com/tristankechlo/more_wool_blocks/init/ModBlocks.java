@@ -3,6 +3,7 @@ package com.tristankechlo.more_wool_blocks.init;
 import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
 import com.tristankechlo.more_wool_blocks.blocks.WoolFenceBlock;
 import com.tristankechlo.more_wool_blocks.blocks.WoolFenceGateBlock;
+import com.tristankechlo.more_wool_blocks.blocks.WoolSlabBlock;
 import com.tristankechlo.more_wool_blocks.blocks.WoolStairsBlock;
 import com.tristankechlo.more_wool_blocks.registration.RegistrationProvider;
 import com.tristankechlo.more_wool_blocks.registration.RegistryObject;
@@ -23,6 +24,7 @@ public final class ModBlocks {
     public static final Map<DyeColor, RegistryObject<BlockItem>> FENCES = new HashMap<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> FENCE_GATES = new HashMap<>();
     public static final Map<DyeColor, RegistryObject<BlockItem>> STAIRS = new HashMap<>();
+    public static final Map<DyeColor, RegistryObject<BlockItem>> SLABS = new HashMap<>();
 
     public static void loadClass() {
         List<DyeColor> colors = Arrays.stream(DyeColor.values()).toList();
@@ -34,6 +36,7 @@ public final class ModBlocks {
             registerFence(color.getName() + "_wool_fence", color);
             registerFenceGate(color.getName() + "_wool_fence_gate", color);
             registerStairs(color.getName() + "_wool_stairs", color);
+            registerSlab(color.getName() + "_wool_slab", color);
         }
     }
 
@@ -56,6 +59,13 @@ public final class ModBlocks {
         RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
         ALL_ITEMS.add(item);
         STAIRS.put(color, item);
+    }
+
+    private static void registerSlab(String id, DyeColor color) {
+        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolSlabBlock(color));
+        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
+        ALL_ITEMS.add(item);
+        SLABS.put(color, item);
     }
 
 }

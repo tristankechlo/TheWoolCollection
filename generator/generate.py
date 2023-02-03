@@ -3,6 +3,7 @@ from translation import Translation
 from mc.fence import WoolFence
 from mc.fence_gate import WoolFenceGate
 from mc.stairs import WoolStairs
+from mc.slabs import WoolSlabs
 from mc.globals import Globals
 
 
@@ -13,7 +14,8 @@ translation = Translation()
 tags = {
     "fences": {"values": []},
     "fence_gates": {"values": []},
-    "stairs": {"values": []}
+    "stairs": {"values": []},
+    "slabs": {"values": []}
 }
 
 
@@ -37,6 +39,12 @@ def createStairs(color: str):
     translation.add(stairs)
     stairs.save()
 
+def createSlabs(color: str):
+    slabs = WoolSlabs(color)
+    tags["slabs"]["values"].append(slabs.getFullId())
+    translation.add(slabs)
+    slabs.save()
+
 
 if __name__ == "__main__":
     # clear folders before generating
@@ -47,6 +55,7 @@ if __name__ == "__main__":
         createFence(color)
         createFenceGate(color)
         createStairs(color)
+        createSlabs(color)
         print ("generated %s variants" % color)
 
     # create lang file
