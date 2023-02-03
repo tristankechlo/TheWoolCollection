@@ -65,7 +65,7 @@ if __name__ == "__main__":
         createStairs(color)
         createSlabs(color)
         createWalls(color)
-        print ("generated %s variants" % color)
+        print (f'generated {len(tags.keys())} blocks for color "{color}"')
 
     # create lang file
     path_lang = Globals.common_dir + "/assets/more_wool_blocks/lang/en_us.json"
