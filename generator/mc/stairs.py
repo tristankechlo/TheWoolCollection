@@ -26,9 +26,6 @@ class WoolStairs (WoolBlock):
         self.model.replace("%parent%", "minecraft:block/stairs")
         self.model_inner.replace("%parent%", "minecraft:block/inner_stairs")
         self.model_outer.replace("%parent%", "minecraft:block/outer_stairs")
-        self.model.replace("%texture%", "minecraft:block/" + self.color + "_wool")
-        self.model_inner.replace("%texture%", "minecraft:block/" + self.color + "_wool")
-        self.model_outer.replace("%texture%", "minecraft:block/" + self.color + "_wool")
 
     def saveForAllVariants(self):
         self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")

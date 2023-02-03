@@ -25,9 +25,6 @@ class WoolFence (WoolBlock):
         self.model_post.replace("%parent%", "minecraft:block/fence_post")
         self.model_side.replace("%parent%", "minecraft:block/fence_side")
         self.model_inventory.replace("%parent%", "minecraft:block/fence_inventory")
-        self.model_post.replace("%texture%", "minecraft:block/" + self.color + "_wool")
-        self.model_side.replace("%texture%", "minecraft:block/" + self.color + "_wool")
-        self.model_inventory.replace("%texture%", "minecraft:block/" + self.color + "_wool")
 
     def saveForAllVariants(self):
         self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")

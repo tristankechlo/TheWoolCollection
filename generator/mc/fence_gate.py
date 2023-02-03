@@ -27,10 +27,6 @@ class WoolFenceGate (WoolBlock):
         self.model_open.replace("%parent%", "minecraft:block/template_fence_gate_open")
         self.model_wall.replace("%parent%", "minecraft:block/template_fence_gate_wall")
         self.model_wall_open.replace("%parent%", "minecraft:block/template_fence_gate_wall_open")
-        self.model.replace("%texture%", "minecraft:block/" + self.color + "_wool")
-        self.model_open.replace("%texture%", "minecraft:block/" + self.color + "_wool")
-        self.model_wall.replace("%texture%", "minecraft:block/" + self.color + "_wool")
-        self.model_wall_open.replace("%texture%", "minecraft:block/" + self.color + "_wool")
 
     def saveForAllVariants(self):
         self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")

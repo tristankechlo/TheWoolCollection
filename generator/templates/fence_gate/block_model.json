@@ -1,6 +1,6 @@
 {
     "parent": "%parent%",
     "textures": {
-        "texture": "%texture%"
+        "texture": "minecraft:block/%color%_wool"
     }
 }
