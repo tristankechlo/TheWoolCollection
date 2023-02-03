@@ -3,7 +3,7 @@
     "criteria": {
         "has_the_recipe": {
             "conditions": {
-                "recipe": "more_wool_blocks:%name%"
+                "recipe": "%recipe_id%"
             },
             "trigger": "minecraft:recipe_unlocked"
         },
@@ -28,7 +28,7 @@
     ],
     "rewards": {
         "recipes": [
-            "more_wool_blocks:%name%"
+            "%recipe_id%"
         ]
     }
 }

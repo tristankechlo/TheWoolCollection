@@ -1,25 +1,14 @@
-import shutil
-import os
 from util import saveAsJson
 from translation import Translation
-from os.path import dirname, realpath
-from block_types.fence import WoolFence
-from block_types.fence_gate import WoolFenceGate
-from block_types.stairs import WoolStairs
+from mc.fence import WoolFence
+from mc.fence_gate import WoolFenceGate
+from mc.stairs import WoolStairs
+from mc.globals import Globals
 
 
-colors = ["white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"]
 types = ["fence", "fence_gate", "stairs", "slab", "wall"]
 translation = Translation()
 
-
-parent_dir = dirname(dirname(realpath(__file__)))
-common_dir = parent_dir + "/Common/src/generated/resources/"
-forge_dir = parent_dir + "/Forge/src/generated/resources/"
-fabric_dir = parent_dir + "/Fabric/src/generated/resources/"
-# print(common_dir)
-# print(forge_dir)
-# print(fabric_dir)
 
 tags = {
     "fences": {"values": []},
@@ -51,53 +40,48 @@ def createStairs(color: str):
 
 if __name__ == "__main__":
     # clear folders before generating
-    if os.path.exists(common_dir):
-        shutil.rmtree(common_dir)
-    if os.path.exists(forge_dir):
-        shutil.rmtree(forge_dir)
-    if os.path.exists(fabric_dir):
-        shutil.rmtree(fabric_dir)
+    Globals.clearAllDirs()
 
     # generate content
-    for color in colors:
+    for color in Globals.colors:
         createFence(color)
         createFenceGate(color)
         createStairs(color)
 
     # create lang file
-    path_lang = common_dir + "/assets/more_wool_blocks/lang/en_us.json"
+    path_lang = Globals.common_dir + "/assets/more_wool_blocks/lang/en_us.json"
     saveAsJson(path_lang, translation.content, indent=4, sort_keys=True)
     print("Created %d translations" % len(translation.content))
 
     # create tags
     for tag in tags:
         # save minecraft tags
-        path = common_dir + "/data/minecraft/tags/%/" + tag + ".json"
+        path = Globals.common_dir + "/data/minecraft/tags/%/" + tag + ".json"
         ref = {"replace": False, "values": ["#more_wool_blocks:" + tag]}
         saveAsJson(path.replace("%", "blocks"), ref)  # minecraft:fences => reference #more_wool_blocks:fences
         saveAsJson(path.replace("%", "items"), ref)  # minecraft:fences => reference #more_wool_blocks:fences
 
         # save custom tags
-        path = common_dir + "/data/more_wool_blocks/tags/%/" + tag + ".json"
+        path = Globals.common_dir + "/data/more_wool_blocks/tags/%/" + tag + ".json"
         ref = {"replace": False, "values": ["#more_wool_blocks:" + tag + "/wool"]}
         saveAsJson(path.replace("%", "blocks"), ref)  # more_wool_blocks:fences => reference #more_wool_blocks:fences/wool
         saveAsJson(path.replace("%", "items"), ref)  # more_wool_blocks:fences => reference #more_wool_blocks:fences/wool
-        path = common_dir + "/data/more_wool_blocks/tags/%/" + tag + "/wool.json"
+        path = Globals.common_dir + "/data/more_wool_blocks/tags/%/" + tag + "/wool.json"
         saveAsJson(path.replace("%", "blocks"), tags[tag])  # more_wool_blocks:fences/wool ====> all custom wool fences
         saveAsJson(path.replace("%", "items"), tags[tag])  # more_wool_blocks:fences/wool ====> all custom wool fences
 
         # save forge tags
-        path = forge_dir + "/data/forge/tags/%/" + tag + ".json"
+        path = Globals.forge_dir + "/data/forge/tags/%/" + tag + ".json"
         ref = {"replace": False, "values": ["#forge:" + tag + "/wool"]}
         saveAsJson(path.replace("%", "blocks"), ref)  # forge:fences => reference #forge:fences/wool
         saveAsJson(path.replace("%", "items"), ref)  # forge:fences => reference #forge:fences/wool
-        path = forge_dir + "/data/forge/tags/%/" + tag + "/wool.json"
+        path = Globals.forge_dir + "/data/forge/tags/%/" + tag + "/wool.json"
         ref = {"replace": False, "values": ["#more_wool_blocks:" + tag + "/wool"]}
         saveAsJson(path.replace("%", "blocks"), ref)  # forge:fences/wool => reference #more_wool_blocks:fences/wool
         saveAsJson(path.replace("%", "items"), ref)  # forge:fences/wool => reference #more_wool_blocks:fences/wool
 
         # save fabric tags
-        path = fabric_dir + "/data/c/tags/%/" + tag + ".json"
+        path = Globals.fabric_dir + "/data/c/tags/%/" + tag + ".json"
         ref = {"replace": False, "values": ["#more_wool_blocks:" + tag]}
         saveAsJson(path.replace("%", "blocks"), ref)  # c:fences => reference #more_wool_blocks:fences
         saveAsJson(path.replace("%", "items"), ref)  # c:fences => reference #more_wool_blocks:fences

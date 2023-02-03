@@ -1,4 +1,5 @@
-from block_types.block import WoolBlock
+from mc.block import WoolBlock
+
 
 class Translation:
 

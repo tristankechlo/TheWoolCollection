@@ -1,0 +1,34 @@
+from mc.block import WoolBlock
+from mc.advancement import Advancement
+from mc.loottable import LootTable
+from mc.template import Template
+
+
+class WoolFence (WoolBlock):
+
+    def __init__(self, color: str):
+        super().__init__(color, "fence")
+        self.advancement_white = Advancement(self.full_id, "minecraft:white_wool", self.name + ".json")
+        self.advancement = Advancement(self.full_id, "more_wool_blocks:white_wool_fence", self.name + ".json")
+        self.loot_table = LootTable(self.full_id, self.name + ".json")
+        self.blockstate = Template(self, ["fence", "blockstate.json"])
+        self.model_post = Template(self, ["fence", "block_model_post.json"])
+        self.model_side = Template(self, ["fence", "block_model_side.json"])
+        self.model_inventory = Template(self, ["fence", "block_model_inventory.json"])
+        self.item_model = Template(self, ["fence", "item_model.json"])
+        self.recipe = Template(self, ["recipe.json"])
+
+    def saveForAllVariants(self):
+        self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")
+        self.model_post.save(WoolBlock.path_block_models, self.name + "_post.json")
+        self.model_side.save(WoolBlock.path_block_models, self.name + "_side.json")
+        self.model_inventory.save(WoolBlock.path_block_models, self.name + "_inventory.json")
+        self.item_model.save(WoolBlock.path_item_models, self.name + ".json")
+        self.loot_table.save()
+
+    def saveForWhiteVariant(self):
+        self.advancement_white.save()
+
+    def saveForNonWhiteVariants(self):
+        self.recipe.save(WoolBlock.path_recipes, self.name + ".json")
+        self.advancement.save()
