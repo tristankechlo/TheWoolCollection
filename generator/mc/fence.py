@@ -2,6 +2,7 @@ from mc.block import WoolBlock
 from mc.advancement import Advancement
 from mc.loottable import LootTable
 from mc.template import Template
+from mc.globals import Globals
 
 
 class WoolFence (WoolBlock):
@@ -9,14 +10,24 @@ class WoolFence (WoolBlock):
     def __init__(self, color: str):
         super().__init__(color, "fence")
         self.advancement_white = Advancement(self.full_id, "minecraft:white_wool", self.name + ".json")
-        self.advancement = Advancement(self.full_id, "more_wool_blocks:white_wool_fence", self.name + ".json")
+        self.advancement = Advancement(self.full_id, Globals.modid + ":white_wool_fence", self.name + ".json")
         self.loot_table = LootTable(self.full_id, self.name + ".json")
         self.blockstate = Template(self, ["fence", "blockstate.json"])
-        self.model_post = Template(self, ["fence", "block_model_post.json"])
-        self.model_side = Template(self, ["fence", "block_model_side.json"])
-        self.model_inventory = Template(self, ["fence", "block_model_inventory.json"])
         self.item_model = Template(self, ["fence", "item_model.json"])
         self.recipe = Template(self, ["recipe.json"])
+
+    def createTemplates(self):
+        self.model_post = Template(self, ["fence", "block_model.json"])
+        self.model_side = Template(self, ["fence", "block_model.json"])
+        self.model_inventory = Template(self, ["fence", "block_model.json"])
+
+    def setup(self):
+        self.model_post.replace("%parent%", "minecraft:block/fence_post")
+        self.model_side.replace("%parent%", "minecraft:block/fence_side")
+        self.model_inventory.replace("%parent%", "minecraft:block/fence_inventory")
+        self.model_post.replace("%texture%", "minecraft:block/" + self.color + "_wool")
+        self.model_side.replace("%texture%", "minecraft:block/" + self.color + "_wool")
+        self.model_inventory.replace("%texture%", "minecraft:block/" + self.color + "_wool")
 
     def saveForAllVariants(self):
         self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")

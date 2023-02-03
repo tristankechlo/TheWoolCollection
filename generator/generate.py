@@ -47,11 +47,12 @@ if __name__ == "__main__":
         createFence(color)
         createFenceGate(color)
         createStairs(color)
+        print ("generated %s variants" % color)
 
     # create lang file
     path_lang = Globals.common_dir + "/assets/more_wool_blocks/lang/en_us.json"
     saveAsJson(path_lang, translation.content, indent=4, sort_keys=True)
-    print("Created %d translations" % len(translation.content))
+    print("created %d translations" % len(translation.content))
 
     # create tags
     for tag in tags:

@@ -2,6 +2,7 @@ from mc.block import WoolBlock
 from mc.advancement import Advancement
 from mc.loottable import LootTable
 from mc.template import Template
+from mc.globals import Globals
 
 
 class WoolFenceGate (WoolBlock):
@@ -9,15 +10,27 @@ class WoolFenceGate (WoolBlock):
     def __init__(self, color: str):
         super().__init__(color, "fence_gate")
         self.advancement_white = Advancement(self.full_id, "minecraft:white_wool", self.name + ".json")
-        self.advancement = Advancement(self.full_id, "more_wool_blocks:white_wool_fence_gate", self.name + ".json")
+        self.advancement = Advancement(self.full_id, Globals.modid + ":white_wool_fence_gate", self.name + ".json")
         self.loot_table = LootTable(self.full_id, self.name + ".json")
         self.blockstate = Template(self, ["fence_gate", "blockstate.json"])
-        self.model = Template(self, ["fence_gate", "block_model.json"])
-        self.model_open = Template(self, ["fence_gate", "block_model_open.json"])
-        self.model_wall = Template(self, ["fence_gate", "block_model_wall.json"])
-        self.model_wall_open = Template(self, ["fence_gate", "block_model_wall_open.json"])
         self.item_model = Template(self, ["fence_gate", "item_model.json"])
         self.recipe = Template(self, ["recipe.json"])
+
+    def createTemplates(self):
+        self.model = Template(self, ["fence_gate", "block_model.json"])
+        self.model_open = Template(self, ["fence_gate", "block_model.json"])
+        self.model_wall = Template(self, ["fence_gate", "block_model.json"])
+        self.model_wall_open = Template(self, ["fence_gate", "block_model.json"])
+
+    def setup(self):
+        self.model.replace("%parent%", "minecraft:block/template_fence_gate")
+        self.model_open.replace("%parent%", "minecraft:block/template_fence_gate_open")
+        self.model_wall.replace("%parent%", "minecraft:block/template_fence_gate_wall")
+        self.model_wall_open.replace("%parent%", "minecraft:block/template_fence_gate_wall_open")
+        self.model.replace("%texture%", "minecraft:block/" + self.color + "_wool")
+        self.model_open.replace("%texture%", "minecraft:block/" + self.color + "_wool")
+        self.model_wall.replace("%texture%", "minecraft:block/" + self.color + "_wool")
+        self.model_wall_open.replace("%texture%", "minecraft:block/" + self.color + "_wool")
 
     def saveForAllVariants(self):
         self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")

@@ -4,6 +4,7 @@ import os
 
 class Globals():
 
+    modid = "more_wool_blocks"
     modbase_dir = dirname(dirname(dirname(realpath(__file__))))
     generator_dir = join(modbase_dir, "generator")
     common_dir = join(modbase_dir, "Common", "src", "generated", "resources")

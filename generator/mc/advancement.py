@@ -8,7 +8,7 @@ else:
 
 class Advancement():
 
-    path = join(Globals.common_dir, "data", "more_wool_blocks", "advancements", "recipes", "building_blocks")
+    path = join(Globals.common_dir, "data", Globals.modid, "advancements", "recipes", "building_blocks")
 
     def __init__(self, recipe_id: str, trigger_item: str, filename: str):
         self.recipe_id = recipe_id

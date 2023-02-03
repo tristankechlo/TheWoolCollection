@@ -1,6 +1,5 @@
 import os
-import json
-from os.path import dirname, join
+from os.path import join
 
 if __name__ == "__main__":
     from globals import Globals
@@ -10,18 +9,26 @@ else:
 
 class WoolBlock:
 
-    path_blockstates = join(Globals.common_dir, "assets", "more_wool_blocks", "blockstates") + os.sep
-    path_block_models = join(Globals.common_dir, "assets", "more_wool_blocks", "models", "block") + os.sep
-    path_item_models = join(Globals.common_dir, "assets", "more_wool_blocks", "models", "item") + os.sep
-    path_recipes = join(Globals.common_dir, "data", "more_wool_blocks", "recipes") + os.sep
+    path_blockstates = join(Globals.common_dir, "assets", Globals.modid, "blockstates") + os.sep
+    path_block_models = join(Globals.common_dir, "assets", Globals.modid, "models", "block") + os.sep
+    path_item_models = join(Globals.common_dir, "assets", Globals.modid, "models", "item") + os.sep
+    path_recipes = join(Globals.common_dir, "data", Globals.modid, "recipes") + os.sep
 
     def __init__(self, color: str, type: str):
         self.color = color
         self.type = type
         self.name = color + "_wool_" + type
-        self.full_id = "more_wool_blocks:" + self.name
-        self.translation_key = "block.more_wool_blocks." + self.name
+        self.full_id = Globals.modid + ":" + self.name
+        self.translation_key = "block." + Globals.modid + "." + self.name
         self.translation = color.replace("_", " ").title() + " Wool " + type.replace("_", " ").title()
+        self.createTemplates()
+        self.setup()
+
+    def createTemplates(self):
+        pass
+
+    def setup(self):
+        pass
 
     def getColor(self):
         return self.color
@@ -55,17 +62,6 @@ class WoolBlock:
 
         # save all files relevant for non-white variants
         self.saveForNonWhiteVariants()
-
-    def saveFromTemplate(self, template: str, save_path: str):
-        template = template.replace("%color%", self.color)
-        template = template.replace("%name%", self.name)
-        template = template.replace("%block_id%", self.full_id)
-        template = template.replace("%group%", "wool_" + self.type)
-        template = template.replace("%type%", self.type)
-        template = json.loads(template)
-        if not os.path.exists(dirname(save_path)):
-            os.makedirs(dirname(save_path))
-        Globals.saveAsJson(save_path, template)
 
 
 if __name__ == "__main__":

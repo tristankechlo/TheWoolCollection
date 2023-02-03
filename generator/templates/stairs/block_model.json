@@ -1,8 +1,8 @@
 {
-    "parent": "minecraft:block/stairs",
+    "parent": "%parent%",
     "textures": {
-        "bottom": "minecraft:block/%color%_wool",
-        "side": "minecraft:block/%color%_wool",
-        "top": "minecraft:block/%color%_wool"
+        "bottom": "%texture%",
+        "side": "%texture%",
+        "top": "%texture%"
     }
 }

@@ -13,12 +13,22 @@ class WoolStairs (WoolBlock):
         self.advancement_stonecutting = Advancement(self.full_id + "_from_stonecutting", trigger, self.name + "_from_stonecutting.json")
         self.loot_table = LootTable(self.full_id, self.name + ".json")
         self.blockstate = Template(self, ["stairs", "blockstate.json"])
-        self.model = Template(self, ["stairs", "block_model.json"])
-        self.model_inner = Template(self, ["stairs", "block_model_inner.json"])
-        self.model_outer = Template(self, ["stairs", "block_model_outer.json"])
         self.item_model = Template(self, ["stairs", "item_model.json"])
         self.recipe = Template(self, ["stairs", "recipe.json"])
         self.recipe_stonecutting = Template(self, ["stairs", "recipe_stonecutting.json"])
+
+    def createTemplates(self):
+        self.model = Template(self, ["stairs", "block_model.json"])
+        self.model_inner = Template(self, ["stairs", "block_model.json"])
+        self.model_outer = Template(self, ["stairs", "block_model.json"])
+
+    def setup(self):
+        self.model.replace("%parent%", "minecraft:block/stairs")
+        self.model_inner.replace("%parent%", "minecraft:block/inner_stairs")
+        self.model_outer.replace("%parent%", "minecraft:block/outer_stairs")
+        self.model.replace("%texture%", "minecraft:block/" + self.color + "_wool")
+        self.model_inner.replace("%texture%", "minecraft:block/" + self.color + "_wool")
+        self.model_outer.replace("%texture%", "minecraft:block/" + self.color + "_wool")
 
     def saveForAllVariants(self):
         self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")
