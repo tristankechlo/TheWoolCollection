@@ -28,6 +28,8 @@ public class ForgeMoreWoolBlocks {
             ModBlocks.STAIRS.forEach((color, item) -> event.accept(item.get()));
             ModBlocks.SLABS.forEach((color, item) -> event.accept(item.get()));
             ModBlocks.WALLS.forEach((color, item) -> event.accept(item.get()));
+        }
+        if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS) {
             ModBlocks.BUTTONS.forEach((color, item) -> event.accept(item.get()));
         }
     }

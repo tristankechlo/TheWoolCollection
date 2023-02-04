@@ -16,7 +16,7 @@ Adds more wool blocks to the game!
 
 ### Project setup
 
-This project is developed using the [MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template) from
+The project structure is based on the [MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template) from
 jaredlll08
 
 ### TODO
