@@ -1,10 +1,9 @@
 plugins {
     id 'fabric-loom' version '1.0-SNAPSHOT'
-    //id 'maven-publish'
-    id 'idea'
 }
 
-archivesBaseName = "${mod_id}-fabric-${minecraft_version}"
+version = "${minecraft_version}-${mod_version}"
+archivesBaseName = "${mod_id}-fabric"
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
@@ -33,14 +32,8 @@ loom {
     }
 }
 
-
 processResources {
     from project(":Common").sourceSets.main.resources
-    inputs.property "version", project.version
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
 }
 
 tasks.withType(JavaCompile) {
