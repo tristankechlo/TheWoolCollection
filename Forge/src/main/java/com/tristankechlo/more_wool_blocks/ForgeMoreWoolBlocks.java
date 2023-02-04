@@ -43,6 +43,7 @@ public class ForgeMoreWoolBlocks {
         }
         if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS) {
             MoreWoolBlocks.sortedListByColor(ModBlocks.BUTTONS).forEach(event::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(event::accept);
         }
     }
 

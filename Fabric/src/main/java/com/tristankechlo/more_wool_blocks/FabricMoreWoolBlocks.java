@@ -34,6 +34,7 @@ public class FabricMoreWoolBlocks implements ModInitializer {
         // add all buttons to redstone creative tab
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register((content) -> {
             MoreWoolBlocks.sortedListByColor(ModBlocks.BUTTONS).forEach(content::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(content::accept);
         });
     }
 

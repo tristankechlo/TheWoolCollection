@@ -39,7 +39,7 @@ public interface CustomWoolBlock {
         if (stack.is(Items.SHEARS)) {
             return Optional.of(this.onSheared(state, level, pos));
         } else if (item instanceof DyeItem) {
-            return Optional.of(this.onDyed(state, level, pos, stack, (DyeItem) item, player));
+            return Optional.ofNullable(this.onDyed(state, level, pos, stack, (DyeItem) item, player));
         }
         return Optional.empty();
     }
@@ -67,8 +67,9 @@ public interface CustomWoolBlock {
             if (!player.isCreative()) {
                 stack.shrink(1);
             }
+            return InteractionResult.SUCCESS;
         }
-        return InteractionResult.SUCCESS;
+        return null;
     }
 
     Optional<Block> getNewBlock(DyeColor color);

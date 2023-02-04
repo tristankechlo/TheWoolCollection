@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "powered=false": {
+            "model": "more_wool_blocks:block/%color%_wool_pressure_plate"
+        },
+        "powered=true": {
+            "model": "more_wool_blocks:block/%color%_wool_pressure_plate_down"
+        }
+    }
+}

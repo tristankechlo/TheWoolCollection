@@ -24,6 +24,7 @@ public final class ModBlocks {
     public static final Map<DyeColor, BlockItem> SLABS = new HashMap<>();
     public static final Map<DyeColor, BlockItem> WALLS = new HashMap<>();
     public static final Map<DyeColor, BlockItem> BUTTONS = new HashMap<>();
+    public static final Map<DyeColor, BlockItem> PRESSURE_PLATES = new HashMap<>();
 
     static {
         final int colorCount = DyeColor.values().length;
@@ -39,6 +40,7 @@ public final class ModBlocks {
             register(color.getName() + "_wool_slab", color, WoolSlabBlock::new, SLABS);
             register(color.getName() + "_wool_wall", color, WoolWallBlock::new, WALLS);
             register(color.getName() + "_wool_button", color, WoolButtonBlock::new, BUTTONS);
+            register(color.getName() + "_wool_pressure_plate", color, WoolPressurePlateBlock::new, PRESSURE_PLATES);
         }
     }
 

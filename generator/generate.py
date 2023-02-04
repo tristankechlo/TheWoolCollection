@@ -6,6 +6,7 @@ from mc.stairs import WoolStairs
 from mc.slabs import WoolSlabs
 from mc.walls import WoolWalls
 from mc.buttons import WoolButtons
+from mc.pressure_plate import WoolPressurePlate
 from mc.globals import Globals
 
 
@@ -18,7 +19,8 @@ tags = {
     "stairs": {"values": []},
     "slabs": {"values": []},
     "walls": {"values": []},
-    "buttons": {"values": []}
+    "buttons": {"values": []},
+    "pressure_plates": {"values": []}
 }
 
 
@@ -64,6 +66,13 @@ def createButtons(color: str):
     buttons.save()
 
 
+def createPressurePlates(color: str):
+    pressure_plate = WoolPressurePlate(color)
+    tags["pressure_plates"]["values"].append(pressure_plate.getFullId())
+    translation.add(pressure_plate)
+    pressure_plate.save()
+
+
 if __name__ == "__main__":
     # clear folders before generating
     Globals.clearAllDirs()
@@ -76,6 +85,7 @@ if __name__ == "__main__":
         createSlabs(color)
         createWalls(color)
         createButtons(color)
+        createPressurePlates(color)
         print(f'generated {len(tags.keys())} blocks for color "{color}"')
 
     # create lang file
