@@ -25,15 +25,15 @@ public class FabricMoreWoolBlocks implements ModInitializer {
 
         // add all items to creative tab for colored blocks
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COLORED_BLOCKS).register((content) -> {
-            ModBlocks.FENCES.forEach((color, item) -> content.accept(item));
-            ModBlocks.FENCE_GATES.forEach((color, item) -> content.accept(item));
-            ModBlocks.STAIRS.forEach((color, item) -> content.accept(item));
-            ModBlocks.SLABS.forEach((color, item) -> content.accept(item));
-            ModBlocks.WALLS.forEach((color, item) -> content.accept(item));
+            MoreWoolBlocks.sortedListByColor(ModBlocks.FENCES).forEach(content::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.FENCE_GATES).forEach(content::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.STAIRS).forEach(content::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.SLABS).forEach(content::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.WALLS).forEach(content::accept);
         });
         // add all buttons to redstone creative tab
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register((content) -> {
-            ModBlocks.BUTTONS.forEach((color, item) -> content.accept(item));
+            MoreWoolBlocks.sortedListByColor(ModBlocks.BUTTONS).forEach(content::accept);
         });
     }
 

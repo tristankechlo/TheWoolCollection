@@ -35,14 +35,14 @@ public class ForgeMoreWoolBlocks {
     /* add items to their creative tab */
     private void onCreativeModeTabRegister(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == CreativeModeTabs.COLORED_BLOCKS) {
-            ModBlocks.FENCES.forEach((color, item) -> event.accept(item));
-            ModBlocks.FENCE_GATES.forEach((color, item) -> event.accept(item));
-            ModBlocks.STAIRS.forEach((color, item) -> event.accept(item));
-            ModBlocks.SLABS.forEach((color, item) -> event.accept(item));
-            ModBlocks.WALLS.forEach((color, item) -> event.accept(item));
+            MoreWoolBlocks.sortedListByColor(ModBlocks.FENCES).forEach(event::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.FENCE_GATES).forEach(event::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.STAIRS).forEach(event::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.SLABS).forEach(event::accept);
+            MoreWoolBlocks.sortedListByColor(ModBlocks.WALLS).forEach(event::accept);
         }
         if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            ModBlocks.BUTTONS.forEach((color, item) -> event.accept(item));
+            MoreWoolBlocks.sortedListByColor(ModBlocks.BUTTONS).forEach(event::accept);
         }
     }
 
