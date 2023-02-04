@@ -39,7 +39,7 @@ public interface CustomWoolBlock {
         if (stack.is(Items.SHEARS)) {
             return Optional.of(this.onSheared(state, level, pos));
         } else if (item instanceof DyeItem) {
-            return Optional.of(this.onDyed(state, level, pos, (DyeItem) item, player));
+            return Optional.of(this.onDyed(state, level, pos, stack, (DyeItem) item, player));
         }
         return Optional.empty();
     }
@@ -50,7 +50,7 @@ public interface CustomWoolBlock {
         return (InteractionResult.SUCCESS);
     }
 
-    default InteractionResult onDyed(BlockState state, Level level, BlockPos pos, DyeItem item, Player player) {
+    default InteractionResult onDyed(BlockState state, Level level, BlockPos pos, ItemStack stack, DyeItem item, Player player) {
         Block block = state.getBlock();
         String blockName = BuiltInRegistries.BLOCK.getKey(block).getPath();
         DyeColor color = item.getDyeColor();
@@ -63,8 +63,8 @@ public interface CustomWoolBlock {
             }
             BlockState newState = copyBlockState(optional.get().defaultBlockState(), state);
             level.setBlockAndUpdate(pos, newState);
-            if (!player.isCreative()) { //use up dye
-                ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
+            level.scheduleTick(pos, newState.getBlock(), 5); //prevent buttons and pressure plates from being stuck in the down position
+            if (!player.isCreative()) {
                 stack.shrink(1);
             }
         }

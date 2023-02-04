@@ -44,7 +44,7 @@ public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
 
     @Override
     public BlockState copyBlockState(BlockState newState, BlockState oldState) {
-        return newState.setValue(POWERED, Boolean.FALSE) // reset powered state, because the active timer can't be copied
+        return newState.setValue(POWERED, oldState.getValue(POWERED))
                 .setValue(FACE, oldState.getValue(FACE))
                 .setValue(FACING, oldState.getValue(FACING));
     }
