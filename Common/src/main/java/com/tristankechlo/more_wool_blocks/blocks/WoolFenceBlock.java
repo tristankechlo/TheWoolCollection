@@ -40,7 +40,7 @@ public class WoolFenceBlock extends FenceBlock implements CustomWoolBlock {
             MoreWoolBlocks.LOGGER.warn("Invalid color for WoolFenceBlock: " + color.getName());
             return null;
         }
-        return ModBlocks.FENCES.get(color).get().getBlock();
+        return ModBlocks.FENCES.get(color).getBlock();
     }
 
     @Override

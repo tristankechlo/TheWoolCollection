@@ -38,7 +38,7 @@ public class WoolWallBlock extends WallBlock implements CustomWoolBlock {
             MoreWoolBlocks.LOGGER.warn("Invalid color for WoolWallBlock: " + color.getName());
             return null;
         }
-        return ModBlocks.WALLS.get(color).get().getBlock();
+        return ModBlocks.WALLS.get(color).getBlock();
     }
 
     @Override

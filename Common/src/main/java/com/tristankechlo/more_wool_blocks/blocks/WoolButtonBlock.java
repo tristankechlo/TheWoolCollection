@@ -42,7 +42,7 @@ public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
             MoreWoolBlocks.LOGGER.warn("Invalid color for WoolFenceBlock: " + color.getName());
             return null;
         }
-        return ModBlocks.BUTTONS.get(color).get().getBlock();
+        return ModBlocks.BUTTONS.get(color).getBlock();
     }
 
     @Override

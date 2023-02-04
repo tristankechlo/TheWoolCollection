@@ -36,7 +36,7 @@ public class WoolStairsBlock extends StairBlock implements CustomWoolBlock {
             MoreWoolBlocks.LOGGER.warn("Invalid color for WoolStairsBlock: " + color.getName());
             return null;
         }
-        return ModBlocks.STAIRS.get(color).get().getBlock();
+        return ModBlocks.STAIRS.get(color).getBlock();
     }
 
     @Override

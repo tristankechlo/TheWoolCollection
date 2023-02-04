@@ -2,9 +2,7 @@ package com.tristankechlo.more_wool_blocks.init;
 
 import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
 import com.tristankechlo.more_wool_blocks.blocks.*;
-import com.tristankechlo.more_wool_blocks.registration.RegistrationProvider;
-import com.tristankechlo.more_wool_blocks.registration.RegistryObject;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -18,17 +16,16 @@ import java.util.Map;
 public final class ModBlocks {
 
     private static final Item.Properties ITEM_PROPERTIES = new Item.Properties();
-    public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(BuiltInRegistries.BLOCK, MoreWoolBlocks.MOD_ID);
-    public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(BuiltInRegistries.ITEM, MoreWoolBlocks.MOD_ID);
-    public static final List<RegistryObject<BlockItem>> ALL_ITEMS = new ArrayList<>();
-    public static final Map<DyeColor, RegistryObject<BlockItem>> FENCES = new HashMap<>();
-    public static final Map<DyeColor, RegistryObject<BlockItem>> FENCE_GATES = new HashMap<>();
-    public static final Map<DyeColor, RegistryObject<BlockItem>> STAIRS = new HashMap<>();
-    public static final Map<DyeColor, RegistryObject<BlockItem>> SLABS = new HashMap<>();
-    public static final Map<DyeColor, RegistryObject<BlockItem>> WALLS = new HashMap<>();
-    public static final Map<DyeColor, RegistryObject<BlockItem>> BUTTONS = new HashMap<>();
+    public static final Map<ResourceLocation, Block> ALL_BLOCKS = new HashMap<>();
+    public static final Map<ResourceLocation, BlockItem> ALL_ITEMS = new HashMap<>();
+    public static final Map<DyeColor, BlockItem> FENCES = new HashMap<>();
+    public static final Map<DyeColor, BlockItem> FENCE_GATES = new HashMap<>();
+    public static final Map<DyeColor, BlockItem> STAIRS = new HashMap<>();
+    public static final Map<DyeColor, BlockItem> SLABS = new HashMap<>();
+    public static final Map<DyeColor, BlockItem> WALLS = new HashMap<>();
+    public static final Map<DyeColor, BlockItem> BUTTONS = new HashMap<>();
 
-    public static void loadClass() {
+    static {
         final int colorCount = DyeColor.values().length;
         for (int index = 0; index < colorCount; index++) {
             DyeColor color = DyeColor.byId(index);
@@ -36,55 +33,27 @@ public final class ModBlocks {
                 MoreWoolBlocks.LOGGER.warn("Skipping color " + color.getName() + " because it's not supported by this mod");
                 continue;
             }
-            registerFence(color.getName() + "_wool_fence", color);
-            registerFenceGate(color.getName() + "_wool_fence_gate", color);
-            registerStairs(color.getName() + "_wool_stairs", color);
-            registerSlab(color.getName() + "_wool_slab", color);
-            registerWall(color.getName() + "_wool_wall", color);
-            registerButton(color.getName() + "_wool_button", color);
+            register(color.getName() + "_wool_fence", color, WoolFenceBlock::new, FENCES);
+            register(color.getName() + "_wool_fence_gate", color, WoolFenceGateBlock::new, FENCE_GATES);
+            register(color.getName() + "_wool_stairs", color, WoolStairsBlock::new, STAIRS);
+            register(color.getName() + "_wool_slab", color, WoolSlabBlock::new, SLABS);
+            register(color.getName() + "_wool_wall", color, WoolWallBlock::new, WALLS);
+            register(color.getName() + "_wool_button", color, WoolButtonBlock::new, BUTTONS);
         }
     }
 
-    private static void registerFence(String id, DyeColor color) {
-        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolFenceBlock(color));
-        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
-        ALL_ITEMS.add(item);
-        FENCES.put(color, item);
+    private static void register(String id, DyeColor color, BlockSupplier bs, Map<DyeColor, BlockItem> category) {
+        ResourceLocation rl = new ResourceLocation(MoreWoolBlocks.MOD_ID, id);
+        Block block = bs.create(color);
+        BlockItem item = new BlockItem(block, ITEM_PROPERTIES);
+        ALL_ITEMS.put(rl, item);
+        ALL_BLOCKS.put(rl, block);
+        category.put(color, item);
     }
 
-    private static void registerFenceGate(String id, DyeColor color) {
-        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolFenceGateBlock(color));
-        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
-        ALL_ITEMS.add(item);
-        FENCE_GATES.put(color, item);
-    }
-
-    private static void registerStairs(String id, DyeColor color) {
-        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolStairsBlock(color));
-        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
-        ALL_ITEMS.add(item);
-        STAIRS.put(color, item);
-    }
-
-    private static void registerSlab(String id, DyeColor color) {
-        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolSlabBlock(color));
-        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
-        ALL_ITEMS.add(item);
-        SLABS.put(color, item);
-    }
-
-    private static void registerWall(String id, DyeColor color) {
-        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolWallBlock(color));
-        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
-        ALL_ITEMS.add(item);
-        WALLS.put(color, item);
-    }
-
-    private static void registerButton(String id, DyeColor color) {
-        RegistryObject<Block> block = BLOCKS.register(id, () -> new WoolButtonBlock(color));
-        RegistryObject<BlockItem> item = ITEMS.register(id, () -> new BlockItem(block.get(), ITEM_PROPERTIES));
-        ALL_ITEMS.add(item);
-        BUTTONS.put(color, item);
+    @FunctionalInterface
+    private interface BlockSupplier {
+        Block create(DyeColor color);
     }
 
 }

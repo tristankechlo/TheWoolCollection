@@ -39,7 +39,7 @@ public class WoolSlabBlock extends SlabBlock implements CustomWoolBlock {
             MoreWoolBlocks.LOGGER.warn("Invalid color for WoolSlabBlock: " + color.getName());
             return null;
         }
-        return ModBlocks.SLABS.get(color).get().getBlock();
+        return ModBlocks.SLABS.get(color).getBlock();
     }
 
     @Override
