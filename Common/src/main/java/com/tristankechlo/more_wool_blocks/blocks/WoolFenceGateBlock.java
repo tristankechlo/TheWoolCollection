@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -35,12 +36,9 @@ public class WoolFenceGateBlock extends FenceGateBlock implements CustomWoolBloc
     }
 
     @Override
-    public Block getNewBlock(DyeColor color) {
-        if (color.getId() >= 16) {
-            MoreWoolBlocks.LOGGER.warn("Invalid color for WoolFenceGateBlock: " + color.getName());
-            return null;
-        }
-        return ModBlocks.FENCE_GATES.get(color).getBlock();
+    public Optional<Block> getNewBlock(DyeColor color) {
+        BlockItem item = ModBlocks.FENCE_GATES.get(color);
+        return (item == null) ? Optional.empty() : Optional.of(item.getBlock());
     }
 
     @Override

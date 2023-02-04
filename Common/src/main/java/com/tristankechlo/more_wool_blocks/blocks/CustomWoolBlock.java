@@ -1,6 +1,7 @@
 package com.tristankechlo.more_wool_blocks.blocks;
 
 import com.google.common.collect.ImmutableMap;
+import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
@@ -51,14 +52,16 @@ public interface CustomWoolBlock {
 
     default InteractionResult onDyed(BlockState state, Level level, BlockPos pos, DyeItem item, Player player) {
         Block block = state.getBlock();
-        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String blockName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        DyeColor color = item.getDyeColor();
 
-        if (!name.contains(item.getDyeColor().getName())) {
-            Block newBlock = getNewBlock(item.getDyeColor());
-            if (newBlock == null) {
+        if (!blockName.contains(color.getName())) {
+            Optional<Block> optional = getNewBlock(color);
+            if (optional.isEmpty()) {
+                MoreWoolBlocks.LOGGER.error("Tried to repaint {} to the unsupported color {}!", blockName, color.getName());
                 return InteractionResult.FAIL;
             }
-            BlockState newState = copyBlockState(newBlock.defaultBlockState(), state);
+            BlockState newState = copyBlockState(optional.get().defaultBlockState(), state);
             level.setBlockAndUpdate(pos, newState);
             if (!player.isCreative()) { //use up dye
                 ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
@@ -68,7 +71,7 @@ public interface CustomWoolBlock {
         return InteractionResult.SUCCESS;
     }
 
-    Block getNewBlock(DyeColor color);
+    Optional<Block> getNewBlock(DyeColor color);
 
     BlockState copyBlockState(BlockState newState, BlockState oldState);
 

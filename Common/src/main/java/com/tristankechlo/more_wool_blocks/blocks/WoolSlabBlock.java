@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -34,12 +35,9 @@ public class WoolSlabBlock extends SlabBlock implements CustomWoolBlock {
     }
 
     @Override
-    public Block getNewBlock(DyeColor color) {
-        if (color.getId() >= 16) {
-            MoreWoolBlocks.LOGGER.warn("Invalid color for WoolSlabBlock: " + color.getName());
-            return null;
-        }
-        return ModBlocks.SLABS.get(color).getBlock();
+    public Optional<Block> getNewBlock(DyeColor color) {
+        BlockItem item = ModBlocks.SLABS.get(color);
+        return (item == null) ? Optional.empty() : Optional.of(item.getBlock());
     }
 
     @Override
