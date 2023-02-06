@@ -52,10 +52,11 @@ public interface CustomWoolBlock {
 
     default InteractionResult onDyed(BlockState state, Level level, BlockPos pos, ItemStack stack, DyeItem item, Player player) {
         Block block = state.getBlock();
-        String blockName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        String blockName = BuiltInRegistries.BLOCK.getKey(block).getPath(); //name of the block without the modid
+        String blockColor = blockName.split("_wool_")[0];
         DyeColor color = item.getDyeColor();
 
-        if (!blockName.contains(color.getName())) {
+        if (!blockColor.equals(color.getName())) {
             Optional<Block> optional = getNewBlock(color);
             if (optional.isEmpty()) {
                 MoreWoolBlocks.LOGGER.error("Tried to repaint {} to the unsupported color {}!", blockName, color.getName());

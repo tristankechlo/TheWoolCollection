@@ -37,7 +37,7 @@ jaredlll08
 ## TODO
 
 - custom sounds
-  - for buttons
-  - for pressure plates
-  - for fence gates
+    - for buttons
+    - for pressure plates
+    - for fence gates
 - make fences connect to wooden fences
