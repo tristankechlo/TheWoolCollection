@@ -1,4 +1,4 @@
-# More Wool Blocks
+# The Wool Collection
 
 Adds more wool blocks to the game!
 

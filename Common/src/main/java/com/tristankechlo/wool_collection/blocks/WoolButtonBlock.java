@@ -1,6 +1,6 @@
-package com.tristankechlo.more_wool_blocks.blocks;
+package com.tristankechlo.wool_collection.blocks;
 
-import com.tristankechlo.more_wool_blocks.init.ModBlocks;
+import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -18,10 +18,13 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Optional;
 
-public class WoolPressurePlateBlock extends PressurePlateBlock implements CustomWoolBlock {
+public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
 
-    public WoolPressurePlateBlock(DyeColor color) {
-        super(Sensitivity.EVERYTHING, Properties.of(Material.WOOD, color).noCollission().strength(0.5F).sound(SoundType.WOOL), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON);
+    private static final boolean ARROW_TRIGGERED = true;
+    private static final int POWER_TIME = 30;
+
+    public WoolButtonBlock(DyeColor color) {
+        super(get(color), POWER_TIME, ARROW_TRIGGERED, SoundEvents.WOODEN_BUTTON_CLICK_OFF, SoundEvents.WOODEN_BUTTON_CLICK_ON);
     }
 
     @Override
@@ -35,13 +38,19 @@ public class WoolPressurePlateBlock extends PressurePlateBlock implements Custom
 
     @Override
     public Optional<Block> getNewBlock(DyeColor color) {
-        BlockItem item = ModBlocks.PRESSURE_PLATES.get(color);
+        BlockItem item = ModBlocks.BUTTONS.get(color);
         return (item == null) ? Optional.empty() : Optional.of(item.getBlock());
     }
 
     @Override
     public BlockState copyBlockState(BlockState newState, BlockState oldState) {
-        return newState.setValue(POWERED, oldState.getValue(POWERED));
+        return newState.setValue(POWERED, oldState.getValue(POWERED))
+                .setValue(FACE, oldState.getValue(FACE))
+                .setValue(FACING, oldState.getValue(FACING));
+    }
+
+    private static Properties get(DyeColor color) {
+        return Properties.of(Material.DECORATION, color).noCollission().strength(0.5F).sound(SoundType.WOOL);
     }
 
 }

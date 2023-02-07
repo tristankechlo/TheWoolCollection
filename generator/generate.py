@@ -89,7 +89,7 @@ if __name__ == "__main__":
         print(f'generated {len(tags.keys())} blocks for color "{color}"')
 
     # create lang file
-    path_lang = Globals.common_dir + "/assets/more_wool_blocks/lang/en_us.json"
+    path_lang = Globals.common_dir + "/assets/wool_collection/lang/en_us.json"
     saveAsJson(path_lang, translation.content, indent=4, sort_keys=True)
     print("created %d translations" % len(translation.content))
 
@@ -97,18 +97,18 @@ if __name__ == "__main__":
     for tag in tags:
         # save minecraft tags
         path = Globals.common_dir + "/data/minecraft/tags/%/" + tag + ".json"
-        ref = {"replace": False, "values": ["#more_wool_blocks:" + tag]}
-        saveAsJson(path.replace("%", "blocks"), ref)  # minecraft:fences => reference #more_wool_blocks:fences
-        saveAsJson(path.replace("%", "items"), ref)  # minecraft:fences => reference #more_wool_blocks:fences
+        ref = {"replace": False, "values": ["#wool_collection:" + tag]}
+        saveAsJson(path.replace("%", "blocks"), ref)  # minecraft:fences => reference #wool_collection:fences
+        saveAsJson(path.replace("%", "items"), ref)  # minecraft:fences => reference #wool_collection:fences
 
         # save custom tags
-        path = Globals.common_dir + "/data/more_wool_blocks/tags/%/" + tag + ".json"
-        ref = {"replace": False, "values": ["#more_wool_blocks:" + tag + "/wool"]}
-        saveAsJson(path.replace("%", "blocks"), ref)  # more_wool_blocks:fences => reference #more_wool_blocks:fences/wool
-        saveAsJson(path.replace("%", "items"), ref)  # more_wool_blocks:fences => reference #more_wool_blocks:fences/wool
-        path = Globals.common_dir + "/data/more_wool_blocks/tags/%/" + tag + "/wool.json"
-        saveAsJson(path.replace("%", "blocks"), tags[tag])  # more_wool_blocks:fences/wool ====> all custom wool fences
-        saveAsJson(path.replace("%", "items"), tags[tag])  # more_wool_blocks:fences/wool ====> all custom wool fences
+        path = Globals.common_dir + "/data/wool_collection/tags/%/" + tag + ".json"
+        ref = {"replace": False, "values": ["#wool_collection:" + tag + "/wool"]}
+        saveAsJson(path.replace("%", "blocks"), ref)  # wool_collection:fences => reference #wool_collection:fences/wool
+        saveAsJson(path.replace("%", "items"), ref)  # wool_collection:fences => reference #wool_collection:fences/wool
+        path = Globals.common_dir + "/data/wool_collection/tags/%/" + tag + "/wool.json"
+        saveAsJson(path.replace("%", "blocks"), tags[tag])  # wool_collection:fences/wool ====> all custom wool fences
+        saveAsJson(path.replace("%", "items"), tags[tag])  # wool_collection:fences/wool ====> all custom wool fences
 
         # save forge tags
         path = Globals.forge_dir + "/data/forge/tags/%/" + tag + ".json"
@@ -116,12 +116,12 @@ if __name__ == "__main__":
         saveAsJson(path.replace("%", "blocks"), ref)  # forge:fences => reference #forge:fences/wool
         saveAsJson(path.replace("%", "items"), ref)  # forge:fences => reference #forge:fences/wool
         path = Globals.forge_dir + "/data/forge/tags/%/" + tag + "/wool.json"
-        ref = {"replace": False, "values": ["#more_wool_blocks:" + tag + "/wool"]}
-        saveAsJson(path.replace("%", "blocks"), ref)  # forge:fences/wool => reference #more_wool_blocks:fences/wool
-        saveAsJson(path.replace("%", "items"), ref)  # forge:fences/wool => reference #more_wool_blocks:fences/wool
+        ref = {"replace": False, "values": ["#wool_collection:" + tag + "/wool"]}
+        saveAsJson(path.replace("%", "blocks"), ref)  # forge:fences/wool => reference #wool_collection:fences/wool
+        saveAsJson(path.replace("%", "items"), ref)  # forge:fences/wool => reference #wool_collection:fences/wool
 
         # save fabric tags
         path = Globals.fabric_dir + "/data/c/tags/%/" + tag + ".json"
-        ref = {"replace": False, "values": ["#more_wool_blocks:" + tag]}
-        saveAsJson(path.replace("%", "blocks"), ref)  # c:fences => reference #more_wool_blocks:fences
-        saveAsJson(path.replace("%", "items"), ref)  # c:fences => reference #more_wool_blocks:fences
+        ref = {"replace": False, "values": ["#wool_collection:" + tag]}
+        saveAsJson(path.replace("%", "blocks"), ref)  # c:fences => reference #wool_collection:fences
+        saveAsJson(path.replace("%", "items"), ref)  # c:fences => reference #wool_collection:fences

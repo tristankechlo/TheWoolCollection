@@ -1,6 +1,6 @@
-package com.tristankechlo.more_wool_blocks.platform;
+package com.tristankechlo.wool_collection.platform;
 
-import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
+import com.tristankechlo.wool_collection.TheWoolCollection;
 
 import java.util.ServiceLoader;
 
@@ -12,7 +12,7 @@ public class Services {
         final T loadedService = ServiceLoader.load(clazz)
                 .findFirst()
                 .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
-        MoreWoolBlocks.LOGGER.debug("Loaded {} for service {}", loadedService, clazz);
+        TheWoolCollection.LOGGER.debug("Loaded {} for service {}", loadedService, clazz);
         return loadedService;
     }
 }

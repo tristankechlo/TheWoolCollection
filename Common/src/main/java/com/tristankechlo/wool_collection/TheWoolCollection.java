@@ -1,4 +1,4 @@
-package com.tristankechlo.more_wool_blocks;
+package com.tristankechlo.wool_collection;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
@@ -9,10 +9,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public final class MoreWoolBlocks {
+public final class TheWoolCollection {
 
-    public static final String MOD_ID = "more_wool_blocks";
-    public static final String MOD_NAME = "More Wool Blocks";
+    public static final String MOD_ID = "wool_collection";
+    public static final String MOD_NAME = "The Wool Collection";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
     public static List<BlockItem> sortedListByColor(Map<DyeColor, BlockItem> map) {

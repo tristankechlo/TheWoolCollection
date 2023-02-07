@@ -6,7 +6,7 @@
             "item": "minecraft:%color%_dye"
         },
         {
-            "item": "more_wool_blocks:white_wool_%type%"
+            "item": "wool_collection:white_wool_%type%"
         }
     ],
     "result": {

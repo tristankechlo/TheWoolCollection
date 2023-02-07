@@ -13,6 +13,6 @@
     "group": "wool_stairs",
     "result": {
         "count": 4,
-        "item": "more_wool_blocks:%color%_wool_stairs"
+        "item": "wool_collection:%color%_wool_stairs"
     }
 }

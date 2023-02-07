@@ -12,6 +12,6 @@
     ],
     "result": {
         "count": 6,
-        "item": "more_wool_blocks:%color%_wool_wall"
+        "item": "wool_collection:%color%_wool_wall"
     }
 }

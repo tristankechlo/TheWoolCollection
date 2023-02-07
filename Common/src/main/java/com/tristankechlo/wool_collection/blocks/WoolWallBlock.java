@@ -1,7 +1,6 @@
-package com.tristankechlo.more_wool_blocks.blocks;
+package com.tristankechlo.wool_collection.blocks;
 
-import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
-import com.tristankechlo.more_wool_blocks.init.ModBlocks;
+import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;

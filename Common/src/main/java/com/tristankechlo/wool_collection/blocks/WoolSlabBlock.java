@@ -1,6 +1,6 @@
-package com.tristankechlo.more_wool_blocks.blocks;
+package com.tristankechlo.wool_collection.blocks;
 
-import com.tristankechlo.more_wool_blocks.init.ModBlocks;
+import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -9,19 +9,18 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Optional;
 
-public class WoolFenceBlock extends FenceBlock implements CustomWoolBlock {
+public class WoolSlabBlock extends SlabBlock implements CustomWoolBlock {
 
-    public WoolFenceBlock(DyeColor color) {
-        super(BlockBehaviour.Properties.of(Material.WOOL, color).strength(0.8F).sound(SoundType.WOOL));
+    public WoolSlabBlock(DyeColor color) {
+        super(Properties.of(Material.WOOL, color).strength(0.8F).sound(SoundType.WOOL));
     }
 
     @Override
@@ -35,16 +34,13 @@ public class WoolFenceBlock extends FenceBlock implements CustomWoolBlock {
 
     @Override
     public Optional<Block> getNewBlock(DyeColor color) {
-        BlockItem item = ModBlocks.FENCES.get(color);
+        BlockItem item = ModBlocks.SLABS.get(color);
         return (item == null) ? Optional.empty() : Optional.of(item.getBlock());
     }
 
     @Override
     public BlockState copyBlockState(BlockState newState, BlockState oldState) {
-        return newState.setValue(NORTH, oldState.getValue(NORTH))
-                .setValue(EAST, oldState.getValue(EAST))
-                .setValue(SOUTH, oldState.getValue(SOUTH))
-                .setValue(WEST, oldState.getValue(WEST))
+        return newState.setValue(TYPE, oldState.getValue(TYPE))
                 .setValue(WATERLOGGED, oldState.getValue(WATERLOGGED));
     }
 

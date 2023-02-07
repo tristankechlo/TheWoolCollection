@@ -1,4 +1,4 @@
-package com.tristankechlo.more_wool_blocks.platform;
+package com.tristankechlo.wool_collection.platform;
 
 import java.nio.file.Path;
 

@@ -4,23 +4,23 @@ license="CC BY-NC-ND 4.0"
 showAsResourcePack=false
 
 [[mods]]
-modId="more_wool_blocks"
+modId="wool_collection"
 version="1.19.3-1.0"
-displayName="More Wool Blocks"
+displayName="The Wool Collection
 displayURL="https://www.curseforge.com/minecraft/mc-mods/more-wool-blocks"
 #logoFile="examplemod.png"
 #credits=""
 authors="Buecher_wurm"
 description='''Adds more wool blocks to the game!'''
 
-[[dependencies.more_wool_blocks]]
+[[dependencies.wool_collection]]
 modId="forge"
 mandatory=true
 versionRange="[44.1.0,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.more_wool_blocks]]
+[[dependencies.wool_collection]]
 modId="minecraft"
 mandatory=true
 versionRange="[1.19.3,1.20)"

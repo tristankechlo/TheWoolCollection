@@ -1,6 +1,6 @@
-package com.tristankechlo.more_wool_blocks;
+package com.tristankechlo.wool_collection;
 
-import com.tristankechlo.more_wool_blocks.platform.IPlatformHelper;
+import com.tristankechlo.wool_collection.platform.IPlatformHelper;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;

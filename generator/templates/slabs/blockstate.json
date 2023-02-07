@@ -1,13 +1,13 @@
 {
     "variants": {
         "type=bottom": {
-            "model": "more_wool_blocks:block/%color%_wool_slab"
+            "model": "wool_collection:block/%color%_wool_slab"
         },
         "type=double": {
             "model": "minecraft:block/%color%_wool"
         },
         "type=top": {
-            "model": "more_wool_blocks:block/%color%_wool_slab_top"
+            "model": "wool_collection:block/%color%_wool_slab_top"
         }
     }
 }

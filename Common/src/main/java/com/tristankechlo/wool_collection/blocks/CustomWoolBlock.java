@@ -1,7 +1,7 @@
-package com.tristankechlo.more_wool_blocks.blocks;
+package com.tristankechlo.wool_collection.blocks;
 
 import com.google.common.collect.ImmutableMap;
-import com.tristankechlo.more_wool_blocks.MoreWoolBlocks;
+import com.tristankechlo.wool_collection.TheWoolCollection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
@@ -59,7 +59,7 @@ public interface CustomWoolBlock {
         if (!blockColor.equals(color.getName())) {
             Optional<Block> optional = getNewBlock(color);
             if (optional.isEmpty()) {
-                MoreWoolBlocks.LOGGER.error("Tried to repaint {} to the unsupported color {}!", blockName, color.getName());
+                TheWoolCollection.LOGGER.error("Tried to repaint {} to the unsupported color {}!", blockName, color.getName());
                 return InteractionResult.FAIL;
             }
             BlockState newState = copyBlockState(optional.get().defaultBlockState(), state);

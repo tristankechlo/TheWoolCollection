@@ -10,6 +10,6 @@
         "##"
     ],
     "result": {
-        "item": "more_wool_blocks:%color%_wool_pressure_plate"
+        "item": "wool_collection:%color%_wool_pressure_plate"
     }
 }

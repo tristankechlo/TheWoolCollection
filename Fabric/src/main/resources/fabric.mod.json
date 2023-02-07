@@ -1,8 +1,8 @@
 {
     "schemaVersion": 1,
-    "id": "more_wool_blocks",
+    "id": "wool_collection",
     "version": "1.19.3-1.0",
-    "name": "More Wool Blocks",
+    "name": "The Wool Collection",
     "description": "Adds more wool blocks to the game!",
     "authors": [
         "Buecher_wurm"
@@ -12,15 +12,15 @@
         "issues": "https://github.com/tristankechlo/MoreWoolBlocks/issues"
     },
     "license": "CC BY-NC-ND 4.0",
-    "icon": "assets/more_wool_blocks/icon.png",
+    "icon": "assets/wool_collection/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.tristankechlo.more_wool_blocks.FabricMoreWoolBlocks"
+            "com.tristankechlo.wool_collection.TheWoolCollectionFabric"
         ]
     },
     "mixins": [
-        "more_wool_blocks.mixins.json"
+        "wool_collection.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=0.14",
