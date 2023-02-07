@@ -4,7 +4,7 @@ import os
 
 def saveAsJson(path: str, data, indent=0, sort_keys=False):
     # create folders if they don't exist
-    folders = path.split("/")
+    folders = path.split("\\")
     folders.pop()  # remove file name
     folder = ""
     for f in folders:

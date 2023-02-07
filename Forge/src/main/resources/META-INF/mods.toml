@@ -6,8 +6,8 @@ showAsResourcePack=false
 [[mods]]
 modId="wool_collection"
 version="1.19.3-1.0"
-displayName="The Wool Collection
-displayURL="https://www.curseforge.com/minecraft/mc-mods/more-wool-blocks"
+displayName="The Wool Collection"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/wool-collection"
 #logoFile="examplemod.png"
 #credits=""
 authors="Buecher_wurm"
