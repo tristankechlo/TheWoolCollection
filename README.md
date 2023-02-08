@@ -33,26 +33,26 @@ Adds more wool blocks to the game!
 
 ### Wool Stairs
 
-<img src="https://i.ibb.co/xGCC59f/stair-recipe.gif" alt="stairs" height="150" />
+<img src="https://i.ibb.co/xGCC59f/stair-recipe.gif" alt="stairs" height="200" width="400" />
 and from the stonecutter
 
 ### Wool Slabs
 
-<img src="https://i.ibb.co/vwchdBD/slab-recipe.gif" alt="slabs" height="150" />
+<img src="https://i.ibb.co/vwchdBD/slab-recipe.gif" alt="slabs" height="200" width="400" />
 and from the stonecutter
 
 ### Wool Walls
 
-<img src="https://i.ibb.co/fk3Fh9R/wall-recipe.gif" alt="walls" height="150" />
+<img src="https://i.ibb.co/fk3Fh9R/wall-recipe.gif" alt="walls" height="200" width="400" />
 and from the stonecutter
 
 ### Wool Buttons
 
-<img src="https://i.ibb.co/85xzRDg/button-recipe.gif" alt="buttons" height="150" />
+<img src="https://i.ibb.co/85xzRDg/button-recipe.gif" alt="buttons" height="200" width="400" />
 
 ### Wool Pressure Plates
 
-<img src="https://i.ibb.co/cQ3rjnm/pressure-plate-recipe.gif" alt="pressure plates" height="150" />
+<img src="https://i.ibb.co/cQ3rjnm/pressure-plate-recipe.gif" alt="pressure plates" height="200" width="400" />
 
 ## Project setup
 
