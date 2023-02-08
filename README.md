@@ -58,11 +58,3 @@ and from the stonecutter
 
 The project structure is based on the [MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template) by
 jaredlll08
-
-## TODO
-
-- custom sounds
-  - for buttons
-  - for pressure plates
-  - for fence gates
-- make fences connect to wooden fences
