@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ public final class TheWoolCollection {
     public static final String MOD_ID = "wool_collection";
     public static final String MOD_NAME = "The Wool Collection";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+    public static final ResourceLocation ICON_LOCATION = new ResourceLocation(MOD_ID, "white_wool_fence");
 
     public static List<BlockItem> sortedListByColor(Map<DyeColor, BlockItem> map) {
         return map.entrySet().stream()

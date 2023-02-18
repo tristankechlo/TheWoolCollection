@@ -1,28 +1,28 @@
 modLoader="javafml"
-loaderVersion="[44,)"
+loaderVersion="[41,)"
 license="CC BY-NC-ND 4.0"
 showAsResourcePack=false
 
 [[mods]]
 modId="wool_collection"
-version="1.19.3-1.0"
+version="1.19-1.0"
 displayName="The Wool Collection"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/wool-collection"
 #logoFile="examplemod.png"
 #credits=""
 authors="Buecher_wurm"
-description='''Adds more wool blocks to the game!'''
+description='''Adds wool variants for various blocks, like fences, stairs, gates, buttons and more!'''
 
 [[dependencies.wool_collection]]
 modId="forge"
 mandatory=true
-versionRange="[44.1.0,)"
+versionRange="[41.1.0,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.wool_collection]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.19.3,1.20)"
+versionRange="[1.19,1.19.3)"
 ordering="NONE"
 side="BOTH"

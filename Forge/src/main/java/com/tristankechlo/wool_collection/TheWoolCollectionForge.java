@@ -1,10 +1,9 @@
 package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.init.ModBlocks;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -15,11 +14,12 @@ import net.minecraftforge.registries.RegisterEvent;
 @Mod(TheWoolCollection.MOD_ID)
 public class TheWoolCollectionForge {
 
+    public static final CreativeModeTab ITEM_GROUP = new ForgeItemGroup();
+
     public TheWoolCollectionForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onRegister);
         modEventBus.addListener(this::onCommonSetup);
-        modEventBus.addListener(this::onCreativeModeTabRegister);
     }
 
     /* register all blocks and items */
@@ -29,21 +29,6 @@ public class TheWoolCollectionForge {
         }
         if (event.getRegistryKey() == ForgeRegistries.Keys.ITEMS) {
             ModBlocks.ALL_ITEMS.forEach((id, item) -> event.register(ForgeRegistries.Keys.ITEMS, id, () -> item));
-        }
-    }
-
-    /* add items to their creative tab */
-    private void onCreativeModeTabRegister(CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab() == CreativeModeTabs.COLORED_BLOCKS) {
-            TheWoolCollection.sortedListByColor(ModBlocks.FENCES).forEach(event::accept);
-            TheWoolCollection.sortedListByColor(ModBlocks.FENCE_GATES).forEach(event::accept);
-            TheWoolCollection.sortedListByColor(ModBlocks.STAIRS).forEach(event::accept);
-            TheWoolCollection.sortedListByColor(ModBlocks.SLABS).forEach(event::accept);
-            TheWoolCollection.sortedListByColor(ModBlocks.WALLS).forEach(event::accept);
-        }
-        if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            TheWoolCollection.sortedListByColor(ModBlocks.BUTTONS).forEach(event::accept);
-            TheWoolCollection.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(event::accept);
         }
     }
 

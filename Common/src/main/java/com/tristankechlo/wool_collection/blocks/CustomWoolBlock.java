@@ -3,7 +3,7 @@ package com.tristankechlo.wool_collection.blocks;
 import com.google.common.collect.ImmutableMap;
 import com.tristankechlo.wool_collection.TheWoolCollection;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -52,7 +52,7 @@ public interface CustomWoolBlock {
 
     default InteractionResult onDyed(BlockState state, Level level, BlockPos pos, ItemStack stack, DyeItem item, Player player) {
         Block block = state.getBlock();
-        String blockName = BuiltInRegistries.BLOCK.getKey(block).getPath(); //name of the block without the modid
+        String blockName = Registry.BLOCK.getKey(block).getPath(); //name of the block without the modid
         String blockColor = blockName.split("_wool_")[0];
         DyeColor color = item.getDyeColor();
 

@@ -2,6 +2,7 @@ package com.tristankechlo.wool_collection.blocks;
 
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -21,10 +22,9 @@ import java.util.Optional;
 public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
 
     private static final boolean ARROW_TRIGGERED = true;
-    private static final int POWER_TIME = 30;
 
     public WoolButtonBlock(DyeColor color) {
-        super(get(color), POWER_TIME, ARROW_TRIGGERED, SoundEvents.WOODEN_BUTTON_CLICK_OFF, SoundEvents.WOODEN_BUTTON_CLICK_ON);
+        super(ARROW_TRIGGERED, get(color));
     }
 
     @Override
@@ -53,4 +53,8 @@ public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
         return Properties.of(Material.DECORATION, color).noCollission().strength(0.5F).sound(SoundType.WOOL);
     }
 
+    @Override
+    protected SoundEvent getSound(boolean b) {
+        return b ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
+    }
 }

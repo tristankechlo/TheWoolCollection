@@ -12,6 +12,7 @@ from mc.globals import Globals
 
 
 translation = Translation()
+translation.addRaw("itemGroup.wool_collection.general", "The Wool Collection")
 
 
 tags = {

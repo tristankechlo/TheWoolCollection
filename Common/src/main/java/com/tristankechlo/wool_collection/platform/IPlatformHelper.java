@@ -11,7 +11,6 @@ public interface IPlatformHelper {
     boolean isDevelopmentEnvironment();
 
     default String getEnvironmentName() {
-
         return isDevelopmentEnvironment() ? "development" : "production";
     }
 

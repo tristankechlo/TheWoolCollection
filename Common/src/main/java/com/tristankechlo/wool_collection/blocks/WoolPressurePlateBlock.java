@@ -21,7 +21,7 @@ import java.util.Optional;
 public class WoolPressurePlateBlock extends PressurePlateBlock implements CustomWoolBlock {
 
     public WoolPressurePlateBlock(DyeColor color) {
-        super(Sensitivity.EVERYTHING, Properties.of(Material.WOOD, color).noCollission().strength(0.5F).sound(SoundType.WOOL), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON);
+        super(Sensitivity.EVERYTHING, Properties.of(Material.WOOD, color).noCollission().strength(0.5F).sound(SoundType.WOOL));
     }
 
     @Override

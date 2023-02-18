@@ -1,6 +1,7 @@
 package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.platform.IPlatformHelper;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;

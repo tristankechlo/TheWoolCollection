@@ -1,9 +1,9 @@
 {
     "schemaVersion": 1,
     "id": "wool_collection",
-    "version": "1.19.3-1.0",
+    "version": "1.19-1.0",
     "name": "The Wool Collection",
-    "description": "Adds more wool blocks to the game!",
+    "description": "Adds wool variants for various blocks, like fences, stairs, gates, buttons and more!",
     "authors": [
         "Buecher_wurm"
     ],
@@ -25,7 +25,11 @@
     "depends": {
         "fabricloader": ">=0.14",
         "fabric": "*",
-        "minecraft": "1.19.3",
+        "minecraft": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
         "java": ">=17"
     }
 }

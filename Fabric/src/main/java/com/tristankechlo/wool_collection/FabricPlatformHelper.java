@@ -2,6 +2,7 @@ package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.platform.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.world.item.CreativeModeTab;
 
 import java.nio.file.Path;
 
