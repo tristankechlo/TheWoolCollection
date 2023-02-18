@@ -4,6 +4,7 @@ import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.blocks.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public final class ModBlocks {
 
-    private static final Item.Properties ITEM_PROPERTIES = new Item.Properties();
+    private static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(CreativeModeTab.TAB_SEARCH);
     public static final Map<ResourceLocation, Block> ALL_BLOCKS = new HashMap<>();
     public static final Map<ResourceLocation, BlockItem> ALL_ITEMS = new HashMap<>();
     public static final Map<DyeColor, BlockItem> FENCES = new HashMap<>();
