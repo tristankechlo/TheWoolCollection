@@ -13,19 +13,19 @@ public final class FabricItemGroup {
         FabricItemGroupBuilder.create(new ResourceLocation(TheWoolCollection.MOD_ID, "general"))
                 .icon(() -> new ItemStack(ModBlocks.ALL_ITEMS.get(TheWoolCollection.ICON_LOCATION)))
                 .appendItems(stacks -> {
-                    ModBlocks.FENCES.values().forEach(stack -> stacks.add(new ItemStack(stack)));
+                    TheWoolCollection.sortedListByColor(ModBlocks.FENCES).forEach(stack -> stacks.add(new ItemStack(stack)));
                     addEmptyStacks(stacks);
-                    ModBlocks.FENCE_GATES.values().forEach(stack -> stacks.add(new ItemStack(stack)));
+                    TheWoolCollection.sortedListByColor(ModBlocks.FENCE_GATES).forEach(stack -> stacks.add(new ItemStack(stack)));
                     addEmptyStacks(stacks);
-                    ModBlocks.STAIRS.values().forEach(stack -> stacks.add(new ItemStack(stack)));
+                    TheWoolCollection.sortedListByColor(ModBlocks.STAIRS).forEach(stack -> stacks.add(new ItemStack(stack)));
                     addEmptyStacks(stacks);
-                    ModBlocks.SLABS.values().forEach(stack -> stacks.add(new ItemStack(stack)));
+                    TheWoolCollection.sortedListByColor(ModBlocks.SLABS).forEach(stack -> stacks.add(new ItemStack(stack)));
                     addEmptyStacks(stacks);
-                    ModBlocks.WALLS.values().forEach(stack -> stacks.add(new ItemStack(stack)));
+                    TheWoolCollection.sortedListByColor(ModBlocks.WALLS).forEach(stack -> stacks.add(new ItemStack(stack)));
                     addEmptyStacks(stacks);
-                    ModBlocks.BUTTONS.values().forEach(stack -> stacks.add(new ItemStack(stack)));
+                    TheWoolCollection.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(stack -> stacks.add(new ItemStack(stack)));
                     addEmptyStacks(stacks);
-                    ModBlocks.PRESSURE_PLATES.values().forEach(stack -> stacks.add(new ItemStack(stack)));
+                    TheWoolCollection.sortedListByColor(ModBlocks.BUTTONS).forEach(stack -> stacks.add(new ItemStack(stack)));
                 })
                 .build();
     }
