@@ -2,34 +2,25 @@ package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 
 @Mod(TheWoolCollection.MOD_ID)
 public class TheWoolCollectionForge {
 
-    public static final CreativeModeTab ITEM_GROUP = new ForgeItemGroup();
+    public static CreativeModeTab ITEM_GROUP = new ForgeItemGroup();
 
     public TheWoolCollectionForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::onRegister);
         modEventBus.addListener(this::onCommonSetup);
-    }
-
-    /* register all blocks and items */
-    private void onRegister(final RegisterEvent event) {
-        if (event.getRegistryKey() == ForgeRegistries.Keys.BLOCKS) {
-            ModBlocks.ALL_BLOCKS.forEach((id, block) -> event.register(ForgeRegistries.Keys.BLOCKS, id, () -> block));
-        }
-        if (event.getRegistryKey() == ForgeRegistries.Keys.ITEMS) {
-            ModBlocks.ALL_ITEMS.forEach((id, item) -> event.register(ForgeRegistries.Keys.ITEMS, id, () -> item));
-        }
     }
 
     /* mark all blocks as flammable */
@@ -38,6 +29,23 @@ public class TheWoolCollectionForge {
             FireBlock fireBlock = (FireBlock) Blocks.FIRE;
             fireBlock.setFlammable(block, 30, 60);
         });
+    }
+
+    @Mod.EventBusSubscriber(modid = TheWoolCollection.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class RegistryEvents {
+
+        /* register all blocks */
+        @SubscribeEvent
+        public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+            ModBlocks.ALL_BLOCKS.forEach((id, block) -> event.getRegistry().register(block));
+        }
+
+        /* register all items */
+        @SubscribeEvent
+        public static void registerItems(final RegistryEvent.Register<Item> event) {
+            ModBlocks.ALL_ITEMS.forEach((id, item) -> event.getRegistry().register(item));
+        }
+
     }
 
 }

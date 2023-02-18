@@ -1,6 +1,6 @@
 # Changelog
 
-### Version 1.19 - 1.0
+### Version 1.18.2 - 1.0
 - initial release
 - added new wool variants
     - 16 new wool fences

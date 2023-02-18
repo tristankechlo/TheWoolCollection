@@ -2,6 +2,7 @@ package com.tristankechlo.wool_collection.init;
 
 import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.blocks.*;
+import com.tristankechlo.wool_collection.platform.Services;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
@@ -44,15 +45,15 @@ public final class ModBlocks {
 
     private static void register(String id, DyeColor color, BlockSupplier bs, Map<DyeColor, BlockItem> category) {
         ResourceLocation rl = new ResourceLocation(TheWoolCollection.MOD_ID, id);
-        Block block = bs.create(color);
-        BlockItem item = new BlockItem(block, ITEM_PROPERTIES);
+        Block block = Services.PLATFORM.createBlock(bs, color, rl);
+        BlockItem item = Services.PLATFORM.createBlockItem(block, ITEM_PROPERTIES, rl);
         ALL_ITEMS.put(rl, item);
         ALL_BLOCKS.put(rl, block);
         category.put(color, item);
     }
 
     @FunctionalInterface
-    private interface BlockSupplier {
+    public interface BlockSupplier {
         Block create(DyeColor color);
     }
 
