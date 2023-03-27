@@ -16,6 +16,7 @@ dependencies {
 }
 
 loom {
+    accessWidenerPath = file("src/main/resources/wool_collection.accesswidener")
     runs {
         client {
             client()

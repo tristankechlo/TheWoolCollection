@@ -4,6 +4,8 @@ import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -16,6 +18,9 @@ import net.minecraftforge.registries.RegisterEvent;
 public class TheWoolCollectionForge {
 
     public TheWoolCollectionForge() {
+        BlockSetType.register(TheWoolCollection.BLOCK_SET_TYPE_WOOL);
+        WoodType.register(TheWoolCollection.WOOD_TYPE_WOOL);
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onRegister);
         modEventBus.addListener(this::onCommonSetup);

@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.blocks;
 
+import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -22,7 +23,7 @@ import java.util.Optional;
 public class WoolFenceGateBlock extends FenceGateBlock implements CustomWoolBlock {
 
     public WoolFenceGateBlock(DyeColor color) {
-        super(BlockBehaviour.Properties.of(Material.WOOL, color).strength(0.8F).sound(SoundType.WOOL), SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
+        super(BlockBehaviour.Properties.of(Material.WOOL, color).strength(0.8F).sound(SoundType.WOOL), TheWoolCollection.WOOD_TYPE_WOOL);
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.tristankechlo.wool_collection;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,5 +23,8 @@ public final class TheWoolCollection {
                 .map(Map.Entry::getValue)
                 .toList();
     }
+
+    public static final BlockSetType BLOCK_SET_TYPE_WOOL = new BlockSetType("wool");
+    public static final WoodType WOOD_TYPE_WOOL = new WoodType("wool", BLOCK_SET_TYPE_WOOL);
 
 }

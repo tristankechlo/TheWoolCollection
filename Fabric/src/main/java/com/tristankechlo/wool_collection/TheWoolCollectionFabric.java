@@ -7,11 +7,16 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class TheWoolCollectionFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        BlockSetType.register(TheWoolCollection.BLOCK_SET_TYPE_WOOL);
+        WoodType.register(TheWoolCollection.WOOD_TYPE_WOOL);
+
         //register all blocks and mark as flammable
         ModBlocks.ALL_BLOCKS.forEach((id, block) -> {
             Registry.register(BuiltInRegistries.BLOCK, id, block);

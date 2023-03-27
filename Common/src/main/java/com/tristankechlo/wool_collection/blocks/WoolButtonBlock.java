@@ -1,8 +1,8 @@
 package com.tristankechlo.wool_collection.blocks;
 
+import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +24,7 @@ public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
     private static final int POWER_TIME = 30;
 
     public WoolButtonBlock(DyeColor color) {
-        super(get(color), POWER_TIME, ARROW_TRIGGERED, SoundEvents.WOODEN_BUTTON_CLICK_OFF, SoundEvents.WOODEN_BUTTON_CLICK_ON);
+        super(get(color), TheWoolCollection.BLOCK_SET_TYPE_WOOL, POWER_TIME, ARROW_TRIGGERED);
     }
 
     @Override

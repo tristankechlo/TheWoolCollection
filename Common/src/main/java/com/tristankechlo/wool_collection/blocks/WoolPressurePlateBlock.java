@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.blocks;
 
+import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class WoolPressurePlateBlock extends PressurePlateBlock implements CustomWoolBlock {
 
     public WoolPressurePlateBlock(DyeColor color) {
-        super(Sensitivity.EVERYTHING, Properties.of(Material.WOOD, color).noCollission().strength(0.5F).sound(SoundType.WOOL), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON);
+        super(Sensitivity.EVERYTHING, Properties.of(Material.WOOD, color).noCollission().strength(0.5F).sound(SoundType.WOOL), TheWoolCollection.BLOCK_SET_TYPE_WOOL);
     }
 
     @Override
