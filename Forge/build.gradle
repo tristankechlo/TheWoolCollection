@@ -1,10 +1,12 @@
 plugins {
-    id 'java'
-    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'idea'
+    id 'net.minecraftforge.gradle'
 }
 
-version = "${minecraft_version}-${mod_version}"
-archivesBaseName = "${mod_id}-forge"
+base {
+    version = "${minecraft_version}-${mod_version}"
+    archivesBaseName = "${mod_id}-forge"
+}
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
@@ -48,12 +50,20 @@ dependencies {
     compileOnly project(":Common")
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     source(project(":Common").sourceSets.main.allSource)
+}
+tasks.withType(Javadoc).configureEach {
+    source(project(":Common").sourceSets.main.allJava)
 }
 
 processResources {
     from project(":Common").sourceSets.main.resources
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
 }
 
 jar.finalizedBy('reobfJar')
