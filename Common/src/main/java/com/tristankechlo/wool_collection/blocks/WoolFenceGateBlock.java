@@ -3,7 +3,6 @@ package com.tristankechlo.wool_collection.blocks;
 import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -13,9 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Optional;
@@ -23,7 +20,7 @@ import java.util.Optional;
 public class WoolFenceGateBlock extends FenceGateBlock implements CustomWoolBlock {
 
     public WoolFenceGateBlock(DyeColor color) {
-        super(BlockBehaviour.Properties.of(Material.WOOL, color).strength(0.8F).sound(SoundType.WOOL), TheWoolCollection.WOOD_TYPE_WOOL);
+        super(Properties.of().mapColor(color).forceSolidOn().strength(0.8F).sound(SoundType.WOOL).ignitedByLava(), TheWoolCollection.WOOD_TYPE_WOOL);
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.tristankechlo.wool_collection.blocks;
 import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,7 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Optional;
@@ -22,7 +21,7 @@ import java.util.Optional;
 public class WoolPressurePlateBlock extends PressurePlateBlock implements CustomWoolBlock {
 
     public WoolPressurePlateBlock(DyeColor color) {
-        super(Sensitivity.EVERYTHING, Properties.of(Material.WOOD, color).noCollission().strength(0.5F).sound(SoundType.WOOL), TheWoolCollection.BLOCK_SET_TYPE_WOOL);
+        super(Sensitivity.EVERYTHING, Properties.of().mapColor(color).forceSolidOn().requiresCorrectToolForDrops().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY).sound(SoundType.WOOL), TheWoolCollection.BLOCK_SET_TYPE_WOOL);
     }
 
     @Override
