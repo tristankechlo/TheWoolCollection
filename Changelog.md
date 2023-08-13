@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.20.1 - 1.1
+
+- fix fence_gates and buttons not making sounds sometimes
+
 ### Version 1.20.1 - 1.0
 
 - port to 1.20.1
