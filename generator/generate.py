@@ -103,7 +103,6 @@ if __name__ == "__main__":
         createCarpet(color)
         createBanner(color)
         print(f'generated {len(tags.keys())} blocks for color "{color}"')
-        print(f'generated {Globals.save_counter} files')
 
     # create lang file
     path_lang = join(Globals.common_dir, "assets", "wool_collection", "lang", "en_us.json")
@@ -142,3 +141,5 @@ if __name__ == "__main__":
         ref = {"replace": False, "values": ["#wool_collection:" + tag]}
         saveAsJson(path.replace("%", "blocks"), ref)  # c:fences => reference #wool_collection:fences
         saveAsJson(path.replace("%", "items"), ref)  # c:fences => reference #wool_collection:fences
+
+    print(f'generated {Globals.save_counter} files')
