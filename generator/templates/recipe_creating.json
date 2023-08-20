@@ -1,0 +1,13 @@
+{
+    "type": "wool_collection:wool_processor",
+    "input_top": {
+        "tag": "minecraft:wool"
+    },
+    "input_bottom": {
+        "item": "minecraft:%color%_dye"
+    },
+    "result": {
+        "count": %count%,
+        "item": "%block_id%"
+    }
+}

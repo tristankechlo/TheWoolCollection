@@ -3,6 +3,9 @@
 ### Version 1.20.1 - 1.1
 
 - fix fence_gates and buttons not making sounds sometimes
+- add new block `wool_processor`
+    - can be used to convert wool blocks to other wool blocks
+    - fixes recipe conflicts with some vanilla recipes
 
 ### Version 1.20.1 - 1.0
 

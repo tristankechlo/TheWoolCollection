@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:stonecutting",
-    "count": %count%,
-    "ingredient": {
-        "item": "minecraft:%color%_wool"
-    },
-    "result": "%output%"
-}

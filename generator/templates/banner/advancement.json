@@ -28,8 +28,7 @@
     ],
     "rewards": {
         "recipes": [
-            "%recipe_id%",
-            "%recipe_id%_recoloring"
+            "%recipe_id%"
         ]
     }
 }
