@@ -1,6 +1,7 @@
 package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.init.ModBlocks;
+import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
@@ -20,6 +21,7 @@ public class TheWoolCollectionForge {
     public TheWoolCollectionForge() {
         BlockSetType.register(TheWoolCollection.BLOCK_SET_TYPE_WOOL);
         WoodType.register(TheWoolCollection.WOOD_TYPE_WOOL);
+        ModRegistry.load();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onRegister);

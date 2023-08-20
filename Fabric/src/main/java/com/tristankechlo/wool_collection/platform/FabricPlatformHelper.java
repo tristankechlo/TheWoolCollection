@@ -1,9 +1,12 @@
-package com.tristankechlo.wool_collection;
+package com.tristankechlo.wool_collection.platform;
 
-import com.tristankechlo.wool_collection.platform.IPlatformHelper;
+import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.inventory.MenuType;
 
 import java.nio.file.Path;
+import java.util.function.Supplier;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 
@@ -25,6 +28,11 @@ public class FabricPlatformHelper implements IPlatformHelper {
     @Override
     public Path getConfigDirectory() {
         return FabricLoader.getInstance().getConfigDir();
+    }
+
+    @Override
+    public Supplier<MenuType<WoolProcessorContainer>> buildContainer() {
+        return () -> new MenuType<>(WoolProcessorContainer::new, FeatureFlags.VANILLA_SET);
     }
 
 }

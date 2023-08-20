@@ -1,11 +1,14 @@
-package com.tristankechlo.wool_collection;
+package com.tristankechlo.wool_collection.platform;
 
-import com.tristankechlo.wool_collection.platform.IPlatformHelper;
+import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
+import java.util.function.Supplier;
 
 public class ForgePlatformHelper implements IPlatformHelper {
 
@@ -27,6 +30,11 @@ public class ForgePlatformHelper implements IPlatformHelper {
     @Override
     public Path getConfigDirectory() {
         return FMLPaths.CONFIGDIR.get();
+    }
+
+    @Override
+    public Supplier<MenuType<WoolProcessorContainer>> buildContainer() {
+        return () -> IForgeMenuType.create(WoolProcessorContainer::new);
     }
 
 }
