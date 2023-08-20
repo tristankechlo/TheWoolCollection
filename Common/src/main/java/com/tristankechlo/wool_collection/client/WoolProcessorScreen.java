@@ -50,6 +50,9 @@ public class WoolProcessorScreen extends AbstractContainerScreen<WoolProcessorCo
         this.renderBackground(graphics); // render transparent background
         graphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         //render JEI if loaded
+        if (TheWoolCollection.JEI_LOADED) {
+            graphics.blit(TEXTURE, this.leftPos + this.imageWidth - 3, this.topPos, 176, 0, 18, 22);
+        }
 
         //render scrollbar
         int offset = (int) (39.0F * this.scrollOffs);

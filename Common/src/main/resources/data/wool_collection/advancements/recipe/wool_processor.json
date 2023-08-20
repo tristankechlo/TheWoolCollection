@@ -1,0 +1,34 @@
+{
+    "parent": "minecraft:recipes/root",
+    "criteria": {
+        "has_the_recipe": {
+            "conditions": {
+                "recipe": "wool_collection:wool_processor"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+        },
+        "has_trigger_item": {
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:loom"
+                        ]
+                    }
+                ]
+            },
+            "trigger": "minecraft:inventory_changed"
+        }
+    },
+    "requirements": [
+        [
+            "has_trigger_item",
+            "has_the_recipe"
+        ]
+    ],
+    "rewards": {
+        "recipes": [
+            "wool_collection:wool_processor"
+        ]
+    }
+}

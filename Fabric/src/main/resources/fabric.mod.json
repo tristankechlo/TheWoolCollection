@@ -21,6 +21,9 @@
         ],
         "client": [
             "com.tristankechlo.wool_collection.TheWoolCollectionFabricClient"
+        ],
+        "jei_mod_plugin": [
+            "com.tristankechlo.wool_collection.jei.JustEnoughItemsPlugin"
         ]
     },
     "mixins": [

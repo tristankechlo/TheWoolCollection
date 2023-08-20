@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:loom"
+        }
+    ],
+    "result": {
+        "item": "wool_collection:wool_processor"
+    }
+}
