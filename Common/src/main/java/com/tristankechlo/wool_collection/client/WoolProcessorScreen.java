@@ -35,8 +35,6 @@ public class WoolProcessorScreen extends AbstractContainerScreen<WoolProcessorCo
         this.imageWidth = 176;
         this.imageHeight = 166;
         this.titleLabelY -= 1;
-        this.titleLabelX -= 3;
-        this.inventoryLabelX += 8;
         this.inventoryLabelY += 1;
         menu.setInventoryChangeListener(this::containerChanged);
     }
