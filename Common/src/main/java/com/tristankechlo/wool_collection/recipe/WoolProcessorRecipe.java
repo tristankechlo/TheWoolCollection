@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.recipe;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.core.RegistryAccess;
@@ -29,6 +30,9 @@ public class WoolProcessorRecipe implements Recipe<Container> {
     public boolean matches(Container container, Level level) {
         if (container.getContainerSize() < 2) {
             return false;
+        }
+        if (this.input_bottom.isEmpty() && container.getItem(1).isEmpty()) {
+            return this.input_top.test(container.getItem(0));
         }
         return this.input_top.test(container.getItem(0)) && this.input_bottom.test(container.getItem(1));
     }
@@ -76,15 +80,26 @@ public class WoolProcessorRecipe implements Recipe<Container> {
         @Override
         public WoolProcessorRecipe fromJson(ResourceLocation id, JsonObject json) {
             Ingredient input_top = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_top"), false);
-            Ingredient input_bottom = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_bottom"), false);
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
+
+            Ingredient input_bottom = Ingredient.EMPTY;
+            JsonElement jsonElement = json.get("input_bottom");
+            if (jsonElement != null && !jsonElement.isJsonNull()) {
+                input_bottom = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_bottom"), false);
+            }
+
             return new WoolProcessorRecipe(id, input_top, input_bottom, result);
         }
 
         @Override
         public WoolProcessorRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
             Ingredient input_top = Ingredient.fromNetwork(buffer);
-            Ingredient input_bottom = Ingredient.fromNetwork(buffer);
+
+            Ingredient input_bottom = Ingredient.EMPTY;
+            boolean hasBottom = buffer.readBoolean();
+            if (hasBottom) {
+                input_bottom = Ingredient.fromNetwork(buffer);
+            }
             ItemStack result = buffer.readItem();
             return new WoolProcessorRecipe(id, input_top, input_bottom, result);
         }
@@ -92,7 +107,12 @@ public class WoolProcessorRecipe implements Recipe<Container> {
         @Override
         public void toNetwork(FriendlyByteBuf buffer, WoolProcessorRecipe recipe) {
             recipe.input_top.toNetwork(buffer);
-            recipe.input_bottom.toNetwork(buffer);
+            if (recipe.input_bottom.isEmpty()) {
+                buffer.writeBoolean(false);
+            } else {
+                buffer.writeBoolean(true);
+                recipe.input_bottom.toNetwork(buffer);
+            }
             buffer.writeItem(recipe.result);
         }
 

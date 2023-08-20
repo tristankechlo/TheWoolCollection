@@ -2,9 +2,7 @@ from mc.block import WoolBlock
 from mc.template import Template
 from mc.advancement import Advancement
 from os.path import join
-import os
 from mc.globals import Globals
-import json
 
 
 class WoolBanner (WoolBlock):

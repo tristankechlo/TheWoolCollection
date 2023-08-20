@@ -103,6 +103,7 @@ if __name__ == "__main__":
         createCarpet(color)
         createBanner(color)
         print(f'generated {len(tags.keys())} blocks for color "{color}"')
+        print(f'generated {Globals.save_counter} files')
 
     # create lang file
     path_lang = join(Globals.common_dir, "assets", "wool_collection", "lang", "en_us.json")

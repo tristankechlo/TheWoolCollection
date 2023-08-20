@@ -41,7 +41,11 @@ class RecipeTemplate(Template):
         super().__init__(block, ["recipe_creating.json"])
         self.replace("%count%", str(count))
 
-    def setCount(self, count: int):
+
+class EmptyRecipeTemplate(Template):
+
+    def __init__(self, block: WoolBlock, count: int = 1):
+        super().__init__(block, ["recipe_creating_empty.json"])
         self.replace("%count%", str(count))
 
 

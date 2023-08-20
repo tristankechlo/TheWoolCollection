@@ -102,7 +102,7 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
     }
 
     public boolean hasInputItem() {
-        return this.inputSlotTop.hasItem() && this.inputSlotBottom.hasItem() && !this.recipes.isEmpty();
+        return this.inputSlotTop.hasItem() /*&& this.inputSlotBottom.hasItem()*/ && !this.recipes.isEmpty();
     }
 
     public int getSelectedRecipe() {
@@ -141,7 +141,7 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
         this.recipes.clear();
         this.selectedRecipe.set(-1);
         this.resultSlot.set(ItemStack.EMPTY);
-        if (!stack1.isEmpty() && !stack2.isEmpty()) {
+        if (!stack1.isEmpty() /*&& !stack2.isEmpty()*/) {
             this.recipes = this.level.getRecipeManager().getRecipesFor(ModRegistry.WOOL_PROCESSOR_RECIPE_TYPE.get(), container, this.level);
         }
     }

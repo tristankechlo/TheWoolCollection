@@ -1,7 +1,7 @@
 from mc.block import WoolBlock
 from mc.advancement import Advancement
 from mc.loottable import LootTable
-from mc.template import RecipeTemplate, RecoloringRecipeTemplate, Template
+from mc.template import RecipeTemplate, RecoloringRecipeTemplate, Template, EmptyRecipeTemplate
 
 
 """
@@ -26,6 +26,7 @@ class WoolSlabs (WoolBlock):
         self.blockstate = Template(self, ["slabs", "blockstate.json"])
         self.item_model = Template(self, ["slabs", "item_model.json"])
         self.recipe_creating = RecipeTemplate(self, 2)
+        self.recipe_creating_empty = EmptyRecipeTemplate(self, 2)
         self.recipe_recoloring = RecoloringRecipeTemplate(self)
 
     def createSpecialTemplates(self):
@@ -42,6 +43,7 @@ class WoolSlabs (WoolBlock):
         self.model_top.save(WoolBlock.path_block_models, self.name + "_top.json")
         self.item_model.save(WoolBlock.path_item_models, self.name + ".json")
         self.recipe_creating.save(WoolBlock.path_recipes, self.name + ".json")
+        self.recipe_creating_empty.save(WoolBlock.path_recipes, self.name + "_empty.json")
         self.recipe_recoloring.save(WoolBlock.path_recipes, self.name + "_recoloring.json")
         self.advancement.save()
         self.loot_table.save(LootTable.path, self.name + ".json")
