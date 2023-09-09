@@ -1,10 +1,17 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
-            "item": "minecraft:loom"
-        }
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WW",
+        "PP"
     ],
+    "key": {
+        "W": {
+            "tag": "minecraft:wool"
+        },
+        "P": {
+            "tag": "minecraft:planks"
+        }
+    },
     "result": {
         "item": "wool_collection:wool_processor"
     }

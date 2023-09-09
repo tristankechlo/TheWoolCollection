@@ -43,6 +43,10 @@ public class TheWoolCollectionFabric implements ModInitializer {
             TheWoolCollection.sortedListByColor(ModBlocks.BUTTONS).forEach(content::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(content::accept);
         });
+        // add all items to functional blocks creative tab
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register((content) -> {
+            content.accept(ModRegistry.WOOL_PROCESSOR_ITEM.get());
+        });
     }
 
 }

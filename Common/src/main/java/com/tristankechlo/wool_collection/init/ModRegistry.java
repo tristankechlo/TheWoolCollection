@@ -28,7 +28,7 @@ public final class ModRegistry {
 
     /* Content */
     public static final RegistryObject<Block> WOOL_PROCESSOR_BLOCK = BLOCKS.register("wool_processor", WoolProcessorBlock::new);
-    public static final RegistryObject<Item> WOOL_PROCESSOR_ITEM = ITEMS.register("wool_processor", () -> new BlockItem(WOOL_PROCESSOR_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> WOOL_PROCESSOR_ITEM = ITEMS.register("wool_processor", () -> new BlockItem(WOOL_PROCESSOR_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<MenuType<WoolProcessorContainer>> WOOL_PROCESSOR_CONTAINER = CONTAINERS.register("wool_processor", Services.PLATFORM.buildContainer());
     public static final RegistryObject<RecipeType<WoolProcessorRecipe>> WOOL_PROCESSOR_RECIPE_TYPE = RECIPES.register("wool_processor", () -> new RecipeType<>() {});
     public static final RegistryObject<RecipeSerializer<WoolProcessorRecipe>> WOOL_PROCESSOR_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("wool_processor", WoolProcessorRecipe.Serializer::new);
