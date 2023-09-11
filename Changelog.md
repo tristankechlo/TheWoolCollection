@@ -1,6 +1,6 @@
 # Changelog
 
-### Version 1.20.1 - 1.1
+### Version 1.19.4 - 1.1
 
 - fix fence_gates and buttons not making sounds sometimes
 - add new block `weaving_station`
@@ -8,10 +8,6 @@
     - all previous recipes are no longer available
     - fixes recipe conflicts with some vanilla recipes
     - support for JustEnoughItems, to show all the recipes
-
-### Version 1.20.1 - 1.0
-
-- port to 1.20.1
 
 ### Version 1.19.4 - 1.0
 

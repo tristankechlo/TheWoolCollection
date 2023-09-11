@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Optional;
@@ -19,7 +20,7 @@ import java.util.Optional;
 public class WoolFenceBlock extends FenceBlock implements CustomWoolBlock {
 
     public WoolFenceBlock(DyeColor color) {
-        super(Properties.of().mapColor(color).forceSolidOn().strength(0.8F).sound(SoundType.WOOL).ignitedByLava());
+        super(Properties.of(Material.DECORATION, color).strength(0.8F).sound(SoundType.WOOL));
     }
 
     @Override

@@ -41,7 +41,7 @@ public class WeavingStationContainer extends AbstractContainerMenu {
     public WeavingStationContainer(int id, Inventory playerInventory, final ContainerLevelAccess worldCallable) {
         super(ModRegistry.WEAVING_STATION_CONTAINER.get(), id);
         this.worldPos = worldCallable;
-        this.level = playerInventory.player.level();
+        this.level = playerInventory.player.level;
         this.recipes = Lists.newArrayList();
 
         this.container = new SimpleContainer(2) {
@@ -63,8 +63,8 @@ public class WeavingStationContainer extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player player, ItemStack stack) {
-                stack.onCraftedBy(player.level(), player, stack.getCount());
-                WeavingStationContainer.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
+                stack.onCraftedBy(player.level, player, stack.getCount());
+                WeavingStationContainer.this.resultContainer.awardUsedRecipes(player);
                 ItemStack $$$1 = WeavingStationContainer.this.inputSlotTop.remove(1);
                 ItemStack $$$2 = WeavingStationContainer.this.inputSlotBottom.remove(1);
                 if (!$$$1.isEmpty() && !$$$2.isEmpty()) {
@@ -72,10 +72,6 @@ public class WeavingStationContainer extends AbstractContainerMenu {
                 }
                 //TODO play sound
                 super.onTake(player, stack);
-            }
-
-            private List<ItemStack> getRelevantItems() {
-                return List.of(WeavingStationContainer.this.inputSlotTop.getItem(), WeavingStationContainer.this.inputSlotBottom.getItem());
             }
         });
 
@@ -180,7 +176,7 @@ public class WeavingStationContainer extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
             } else if (index == 2) {
-                item.onCraftedBy(itemstack1, player.level(), player);
+                item.onCraftedBy(itemstack1, player.level, player);
                 if (!this.moveItemStackTo(itemstack1, 3, 39, true)) { // move from result to player inv
                     return ItemStack.EMPTY;
                 }

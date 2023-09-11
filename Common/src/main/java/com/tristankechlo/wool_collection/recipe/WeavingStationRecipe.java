@@ -79,13 +79,13 @@ public class WeavingStationRecipe implements Recipe<Container> {
 
         @Override
         public WeavingStationRecipe fromJson(ResourceLocation id, JsonObject json) {
-            Ingredient input_top = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_top"), false);
+            Ingredient input_top = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_top"));
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
             Ingredient input_bottom = Ingredient.EMPTY;
             JsonElement jsonElement = json.get("input_bottom");
             if (jsonElement != null && !jsonElement.isJsonNull()) {
-                input_bottom = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_bottom"), false);
+                input_bottom = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_bottom"));
             }
 
             return new WeavingStationRecipe(id, input_top, input_bottom, result);

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[46,)"
+loaderVersion="[45,)"
 license="CC BY-NC-ND 4.0"
 showAsResourcePack=false
 
@@ -16,13 +16,13 @@ description='''Adds more wool blocks to the game!'''
 [[dependencies.wool_collection]]
 modId="forge"
 mandatory=true
-versionRange="[46,)"
+versionRange="[45,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.wool_collection]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.20,1.21)"
+versionRange="[1.19.4,1.20)"
 ordering="NONE"
 side="BOTH"

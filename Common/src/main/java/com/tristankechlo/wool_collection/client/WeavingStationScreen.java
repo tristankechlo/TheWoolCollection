@@ -1,10 +1,11 @@
 package com.tristankechlo.wool_collection.client;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
@@ -40,35 +41,36 @@ public class WeavingStationScreen extends AbstractContainerScreen<WeavingStation
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        super.render(graphics, mouseX, mouseY, partialTicks);
-        this.renderTooltip(graphics, mouseX, mouseY);
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+        super.render(poseStack, mouseX, mouseY, partialTicks);
+        this.renderTooltip(poseStack, mouseX, mouseY);
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
-        this.renderBackground(graphics); // render transparent background
-        graphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+    protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY) {
+        this.renderBackground(poseStack);
+        RenderSystem.setShaderTexture(0, TEXTURE);
+        blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         //render JEI if loaded
         if (TheWoolCollection.JEI_LOADED) {
-            graphics.blit(TEXTURE, this.leftPos + this.imageWidth - 3, this.topPos, 176, 0, 18, 22);
+            blit(poseStack, this.leftPos + this.imageWidth - 3, this.topPos, 176, 0, 18, 22);
         }
 
         //render scrollbar
         int offset = (int) (39.0F * this.scrollOffs);
-        graphics.blit(TEXTURE, this.leftPos + 116, this.topPos + RECIPES_Y_START + offset, 214 + (this.isScrollBarActive() ? 0 : SCROLLER_WIDTH), 0, SCROLLER_WIDTH, SCROLLER_HEIGHT);
+        blit(poseStack, this.leftPos + 116, this.topPos + RECIPES_Y_START + offset, 214 + (this.isScrollBarActive() ? 0 : SCROLLER_WIDTH), 0, SCROLLER_WIDTH, SCROLLER_HEIGHT);
 
         //render recipes and buttons
         int startX = this.leftPos + RECIPES_X_START;
         int startY = this.topPos + RECIPES_Y_START;
         int $$9 = this.startIndex + SCROLLER_WIDTH;
-        this.renderButtons(graphics, mouseX, mouseY, startX, startY, $$9);
-        this.renderRecipes(graphics, startX, startY, $$9);
+        this.renderButtons(poseStack, mouseX, mouseY, startX, startY, $$9);
+        this.renderRecipes(poseStack, startX, startY, $$9);
     }
 
     @Override
-    protected void renderTooltip(GuiGraphics graphics, int x, int y) {
-        super.renderTooltip(graphics, x, y);
+    protected void renderTooltip(PoseStack poseStack, int x, int y) {
+        super.renderTooltip(poseStack, x, y);
         if (this.displayRecipes) {
             int $$3 = this.leftPos + RECIPES_X_START;
             int $$4 = this.topPos + RECIPES_Y_START;
@@ -80,13 +82,13 @@ public class WeavingStationScreen extends AbstractContainerScreen<WeavingStation
                 int $$9 = $$3 + $$8 % 4 * RECIPES_IMAGE_SIZE_WIDTH;
                 int $$10 = $$4 + $$8 / 4 * RECIPES_IMAGE_SIZE_HEIGHT + 2;
                 if (x >= $$9 && x < $$9 + RECIPES_IMAGE_SIZE_WIDTH && y >= $$10 && y < $$10 + RECIPES_IMAGE_SIZE_HEIGHT) {
-                    graphics.renderTooltip(this.font, recipes.get($$7).getResultItem(this.minecraft.level.registryAccess()), x, y);
+                    this.renderTooltip(poseStack, recipes.get($$7).getResultItem(this.minecraft.level.registryAccess()), x, y);
                 }
             }
         }
     }
 
-    private void renderButtons(GuiGraphics graphics, int mouseX, int mouseY, int startX, int startY, int $$5) {
+    private void renderButtons(PoseStack poseStack, int mouseX, int mouseY, int startX, int startY, int $$5) {
         for (int index = this.startIndex; index < $$5 && index < (this.menu).getNumRecipes(); ++index) {
             int $$7 = index - this.startIndex;
             int $$8 = startX + $$7 % 4 * RECIPES_IMAGE_SIZE_WIDTH;
@@ -99,18 +101,18 @@ public class WeavingStationScreen extends AbstractContainerScreen<WeavingStation
                 yPosButtonTexture += 36;
             }
 
-            graphics.blit(TEXTURE, $$8, $$10 - 1, 238, yPosButtonTexture, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
+            blit(poseStack, $$8, $$10 - 1, 238, yPosButtonTexture, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
         }
     }
 
-    private void renderRecipes(GuiGraphics graphics, int startX, int startY, int $$3) {
+    private void renderRecipes(PoseStack poseStack, int startX, int startY, int $$3) {
         List<WeavingStationRecipe> recipes = (this.menu).getRecipes();
         for (int index = this.startIndex; index < $$3 && index < (this.menu).getNumRecipes(); ++index) {
             int $$6 = index - this.startIndex;
             int $$7 = startX + $$6 % 4 * RECIPES_IMAGE_SIZE_WIDTH + 1;
             int $$8 = $$6 / 4;
             int $$9 = startY + $$8 * RECIPES_IMAGE_SIZE_HEIGHT + 1;
-            graphics.renderItem(recipes.get(index).getResultItem(this.minecraft.level.registryAccess()), $$7, $$9);
+            this.minecraft.getItemRenderer().renderAndDecorateItem(poseStack, recipes.get(index).getResultItem(this.minecraft.level.registryAccess()), $$7, $$9);
         }
 
     }
