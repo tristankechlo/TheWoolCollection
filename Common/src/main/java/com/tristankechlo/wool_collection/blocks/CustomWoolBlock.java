@@ -32,10 +32,6 @@ public interface CustomWoolBlock {
         ItemStack stack = player.getItemInHand(hand);
         Item item = stack.getItem();
 
-        if (level.isClientSide) {
-            boolean flag = stack.is(Items.SHEARS) || (item instanceof DyeItem);
-            return flag ? Optional.of(InteractionResult.SUCCESS) : Optional.empty();
-        }
         if (stack.is(Items.SHEARS)) {
             return Optional.of(this.onSheared(state, level, pos));
         } else if (item instanceof DyeItem) {
@@ -56,7 +52,7 @@ public interface CustomWoolBlock {
         String blockColor = blockName.split("_wool_")[0];
         DyeColor color = item.getDyeColor();
 
-        if (!blockColor.equals(color.getName())) {
+        if (!blockColor.equals(color.getName())) { // prevent recoloring to the same color
             Optional<Block> optional = getNewBlock(color);
             if (optional.isEmpty()) {
                 TheWoolCollection.LOGGER.error("Tried to repaint {} to the unsupported color {}!", blockName, color.getName());
@@ -64,7 +60,7 @@ public interface CustomWoolBlock {
             }
             BlockState newState = copyBlockState(optional.get().defaultBlockState(), state);
             level.setBlockAndUpdate(pos, newState);
-            level.scheduleTick(pos, newState.getBlock(), 5); //prevent buttons and pressure plates from being stuck in the down position
+            level.scheduleTick(pos, newState.getBlock(), 5); // prevent buttons and pressure plates from being stuck in the down position
             if (!player.isCreative()) {
                 stack.shrink(1);
             }

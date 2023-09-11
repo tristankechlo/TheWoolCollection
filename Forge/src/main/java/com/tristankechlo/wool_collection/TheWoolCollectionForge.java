@@ -1,6 +1,8 @@
 package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.init.ModBlocks;
+import com.tristankechlo.wool_collection.init.ModRegistry;
+import com.tristankechlo.wool_collection.platform.ForgeItemGroup;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -19,14 +21,15 @@ public class TheWoolCollectionForge {
     public static CreativeModeTab ITEM_GROUP = new ForgeItemGroup();
 
     public TheWoolCollectionForge() {
+        ModRegistry.load();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onCommonSetup);
     }
 
     /* mark all blocks as flammable */
     private void onCommonSetup(FMLCommonSetupEvent event) {
+        FireBlock fireBlock = (FireBlock) Blocks.FIRE;
         ModBlocks.ALL_BLOCKS.forEach((id, block) -> {
-            FireBlock fireBlock = (FireBlock) Blocks.FIRE;
             fireBlock.setFlammable(block, 30, 60);
         });
     }

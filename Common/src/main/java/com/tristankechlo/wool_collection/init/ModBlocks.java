@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public final class ModBlocks {
 
@@ -44,18 +45,13 @@ public final class ModBlocks {
         }
     }
 
-    private static void register(String id, DyeColor color, BlockSupplier bs, Map<DyeColor, BlockItem> category) {
+    private static void register(String id, DyeColor color, Function<DyeColor, Block> bs, Map<DyeColor, BlockItem> category) {
         ResourceLocation rl = new ResourceLocation(TheWoolCollection.MOD_ID, id);
         Block block = Services.PLATFORM.createBlock(bs, color, rl);
         BlockItem item = Services.PLATFORM.createBlockItem(block, ITEM_PROPERTIES, rl);
         ALL_ITEMS.put(rl, item);
         ALL_BLOCKS.put(rl, block);
         category.put(color, item);
-    }
-
-    @FunctionalInterface
-    public interface BlockSupplier {
-        Block create(DyeColor color);
     }
 
 }
