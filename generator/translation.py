@@ -8,3 +8,6 @@ class Translation:
 
     def add(self, block: WoolBlock):
         self.content[block.getTranslationKey()] = block.getTranslation()
+
+    def addRaw(self, key: str, value: str):
+        self.content[key] = value

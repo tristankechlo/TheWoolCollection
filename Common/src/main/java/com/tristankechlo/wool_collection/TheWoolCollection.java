@@ -16,6 +16,7 @@ public final class TheWoolCollection {
     public static final String MOD_ID = "wool_collection";
     public static final String MOD_NAME = "The Wool Collection";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+    public static boolean JEI_LOADED = false;
 
     public static List<BlockItem> sortedListByColor(Map<DyeColor, BlockItem> map) {
         return map.entrySet().stream()

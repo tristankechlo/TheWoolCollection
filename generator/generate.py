@@ -8,10 +8,13 @@ from mc.slabs import WoolSlabs
 from mc.walls import WoolWalls
 from mc.buttons import WoolButtons
 from mc.pressure_plate import WoolPressurePlate
+from mc.carpet import WoolCarpet
+from mc.banner import WoolBanner
 from mc.globals import Globals
 
 
 translation = Translation()
+translation.addRaw("block.wool_collection.weaving_station", "Weaving Station")
 
 
 tags = {
@@ -74,6 +77,16 @@ def createPressurePlates(color: str):
     pressure_plate.save()
 
 
+def createCarpet(color: str):
+    carpet = WoolCarpet(color)
+    carpet.save()
+
+
+def createBanner(color: str):
+    banner = WoolBanner(color)
+    banner.save()
+
+
 if __name__ == "__main__":
     # clear folders before generating
     Globals.clearAllDirs()
@@ -87,6 +100,8 @@ if __name__ == "__main__":
         createWalls(color)
         createButtons(color)
         createPressurePlates(color)
+        createCarpet(color)
+        createBanner(color)
         print(f'generated {len(tags.keys())} blocks for color "{color}"')
 
     # create lang file
@@ -126,3 +141,5 @@ if __name__ == "__main__":
         ref = {"replace": False, "values": ["#wool_collection:" + tag]}
         saveAsJson(path.replace("%", "blocks"), ref)  # c:fences => reference #wool_collection:fences
         saveAsJson(path.replace("%", "items"), ref)  # c:fences => reference #wool_collection:fences
+
+    print(f'generated {Globals.save_counter} files')

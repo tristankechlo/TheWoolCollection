@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "WW",
+        "PP"
+    ],
+    "key": {
+        "W": {
+            "tag": "minecraft:wool"
+        },
+        "P": {
+            "tag": "minecraft:planks"
+        }
+    },
+    "result": {
+        "item": "wool_collection:weaving_station"
+    }
+}

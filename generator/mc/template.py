@@ -22,9 +22,7 @@ class Template():
         import json
         # replace default replacements
         temp = self.template.replace("%color%", self.block.color)
-        temp = temp.replace("%name%", self.block.name)
         temp = temp.replace("%block_id%", self.block.full_id)
-        temp = temp.replace("%group%", "wool_" + self.block.type)
         temp = temp.replace("%type%", self.block.type)
         temp = temp.replace("%modid%", Globals.modid)
         # replace all other replacements
@@ -37,15 +35,21 @@ class Template():
         Globals.saveAsJson(join(path, filename), temp)
 
 
-class StoneCuttingTemplate(Template):
+class RecipeTemplate(Template):
 
     def __init__(self, block: WoolBlock, count: int = 1):
-        super().__init__(block, ["stonecutting.json"])
-        self.replace("%output%", self.block.full_id)
+        super().__init__(block, ["recipe_creating.json"])
         self.replace("%count%", str(count))
 
-    def setCount(self, count: int):
+
+class EmptyRecipeTemplate(Template):
+
+    def __init__(self, block: WoolBlock, count: int = 1):
+        super().__init__(block, ["recipe_creating_empty.json"])
         self.replace("%count%", str(count))
 
-    def setOutput(self, output: str):
-        self.replace("%output%", output)
+
+class RecoloringRecipeTemplate(Template):
+
+    def __init__(self, block: WoolBlock):
+        super().__init__(block, ["recipe_recoloring.json"])
