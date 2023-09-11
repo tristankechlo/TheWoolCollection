@@ -67,7 +67,7 @@ public class WeavingStationContainer extends AbstractContainerMenu {
                 WeavingStationContainer.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
                 ItemStack $$$1 = WeavingStationContainer.this.inputSlotTop.remove(1);
                 ItemStack $$$2 = WeavingStationContainer.this.inputSlotBottom.remove(1);
-                if (!$$$1.isEmpty() && !$$$2.isEmpty()) {
+                if (!$$$1.isEmpty()) {
                     WeavingStationContainer.this.setupResultSlot();
                 }
                 //TODO play sound
