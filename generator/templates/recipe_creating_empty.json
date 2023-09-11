@@ -1,0 +1,11 @@
+{
+    "type": "wool_collection:weaving_station",
+    "input_top": {
+        "item": "minecraft:%color%_wool"
+    },
+    "input_bottom": null,
+    "result": {
+        "count": %count%,
+        "item": "%block_id%"
+    }
+}

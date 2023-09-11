@@ -1,12 +1,13 @@
 package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.init.ModBlocks;
+import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -20,6 +21,7 @@ public class TheWoolCollectionForge {
     public TheWoolCollectionForge() {
         BlockSetType.register(TheWoolCollection.BLOCK_SET_TYPE_WOOL);
         WoodType.register(TheWoolCollection.WOOD_TYPE_WOOL);
+        ModRegistry.load();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onRegister);
@@ -38,24 +40,27 @@ public class TheWoolCollectionForge {
     }
 
     /* add items to their creative tab */
-    private void onCreativeModeTabRegister(CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab() == CreativeModeTabs.COLORED_BLOCKS) {
+    private void onCreativeModeTabRegister(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
             TheWoolCollection.sortedListByColor(ModBlocks.FENCES).forEach(event::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.FENCE_GATES).forEach(event::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.STAIRS).forEach(event::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.SLABS).forEach(event::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.WALLS).forEach(event::accept);
         }
-        if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS) {
+        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
             TheWoolCollection.sortedListByColor(ModBlocks.BUTTONS).forEach(event::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(event::accept);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ModRegistry.WEAVING_STATION_ITEM.get());
         }
     }
 
     /* mark all blocks as flammable */
     private void onCommonSetup(FMLCommonSetupEvent event) {
+        FireBlock fireBlock = (FireBlock) Blocks.FIRE;
         ModBlocks.ALL_BLOCKS.forEach((id, block) -> {
-            FireBlock fireBlock = (FireBlock) Blocks.FIRE;
             fireBlock.setFlammable(block, 30, 60);
         });
     }

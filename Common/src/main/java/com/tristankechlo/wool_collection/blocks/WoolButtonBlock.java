@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Optional;
@@ -50,7 +50,7 @@ public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
     }
 
     private static Properties get(DyeColor color) {
-        return Properties.of(Material.DECORATION, color).noCollission().strength(0.5F).sound(SoundType.WOOL);
+        return Properties.of().mapColor(color).noCollission().strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
     }
 
 }

@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=east": {
+            "model": "wool_collection:block/weaving_station",
+            "y": 270
+        },
+        "facing=north": {
+            "model": "wool_collection:block/weaving_station",
+            "y": 180
+        },
+        "facing=south": {
+            "model": "wool_collection:block/weaving_station"
+        },
+        "facing=west": {
+            "model": "wool_collection:block/weaving_station",
+            "y": 90
+        }
+    }
+}

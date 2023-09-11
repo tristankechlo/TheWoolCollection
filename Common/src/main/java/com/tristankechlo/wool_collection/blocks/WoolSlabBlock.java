@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Optional;
@@ -20,7 +19,7 @@ import java.util.Optional;
 public class WoolSlabBlock extends SlabBlock implements CustomWoolBlock {
 
     public WoolSlabBlock(DyeColor color) {
-        super(Properties.of(Material.WOOL, color).strength(0.8F).sound(SoundType.WOOL));
+        super(Properties.of().mapColor(color).strength(0.8F).sound(SoundType.WOOL).ignitedByLava());
     }
 
     @Override

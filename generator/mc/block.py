@@ -42,26 +42,8 @@ class WoolBlock:
     def getFullId(self):
         return self.full_id
 
-    def saveForAllVariants(self):
-        pass
-
-    def saveForWhiteVariant(self):
-        pass
-
-    def saveForNonWhiteVariants(self):
-        pass
-
     def save(self):
-        # save all files relevant for all variants
-        self.saveForAllVariants()
-
-        # save all files relevant for white variants
-        if self.color == "white":
-            self.saveForWhiteVariant()
-            return
-
-        # save all files relevant for non-white variants
-        self.saveForNonWhiteVariants()
+        pass
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 package com.tristankechlo.wool_collection;
 
 import com.tristankechlo.wool_collection.init.ModBlocks;
+import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -16,6 +17,7 @@ public class TheWoolCollectionFabric implements ModInitializer {
     public void onInitialize() {
         BlockSetType.register(TheWoolCollection.BLOCK_SET_TYPE_WOOL);
         WoodType.register(TheWoolCollection.WOOD_TYPE_WOOL);
+        ModRegistry.load();
 
         //register all blocks and mark as flammable
         ModBlocks.ALL_BLOCKS.forEach((id, block) -> {
@@ -40,6 +42,10 @@ public class TheWoolCollectionFabric implements ModInitializer {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register((content) -> {
             TheWoolCollection.sortedListByColor(ModBlocks.BUTTONS).forEach(content::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(content::accept);
+        });
+        // add all items to functional blocks creative tab
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register((content) -> {
+            content.accept(ModRegistry.WEAVING_STATION_ITEM.get());
         });
     }
 

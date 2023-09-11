@@ -1,0 +1,34 @@
+{
+    "parent": "minecraft:recipes/root",
+    "criteria": {
+        "has_the_recipe": {
+            "conditions": {
+                "recipe": "%recipe_id%"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+        },
+        "has_trigger_item": {
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:%color%_wool"
+                        ]
+                    }
+                ]
+            },
+            "trigger": "minecraft:inventory_changed"
+        }
+    },
+    "requirements": [
+        [
+            "has_trigger_item",
+            "has_the_recipe"
+        ]
+    ],
+    "rewards": {
+        "recipes": [
+            "%recipe_id%"
+        ]
+    }
+}
