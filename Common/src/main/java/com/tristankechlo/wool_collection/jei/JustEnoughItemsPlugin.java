@@ -64,7 +64,7 @@ public class JustEnoughItemsPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         //while in weaving_station GUI, add clickable area to open the JEI GUI for the custom category
-        registration.addRecipeClickArea(WeavingStationScreen.class, 173, 0, 18, 22, RECIPE_TYPE);
+        registration.addGuiContainerHandler(WeavingStationScreen.class, new WeavingStationGuiHandler());
     }
 
     @Override
