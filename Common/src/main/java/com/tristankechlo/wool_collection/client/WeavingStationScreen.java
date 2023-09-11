@@ -1,8 +1,8 @@
 package com.tristankechlo.wool_collection.client;
 
 import com.tristankechlo.wool_collection.TheWoolCollection;
-import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
-import com.tristankechlo.wool_collection.recipe.WoolProcessorRecipe;
+import com.tristankechlo.wool_collection.container.WeavingStationContainer;
+import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -15,9 +15,9 @@ import net.minecraft.world.entity.player.Inventory;
 
 import java.util.List;
 
-public class WoolProcessorScreen extends AbstractContainerScreen<WoolProcessorContainer> {
+public class WeavingStationScreen extends AbstractContainerScreen<WeavingStationContainer> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheWoolCollection.MOD_ID, "textures/gui/wool_processor.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(TheWoolCollection.MOD_ID, "textures/gui/weaving_station.png");
     private static final int SCROLLER_WIDTH = 12;
     private static final int SCROLLER_HEIGHT = 15;
     private static final int RECIPES_IMAGE_SIZE_WIDTH = 18;
@@ -30,7 +30,7 @@ public class WoolProcessorScreen extends AbstractContainerScreen<WoolProcessorCo
     private int startIndex;
     private boolean displayRecipes;
 
-    public WoolProcessorScreen(WoolProcessorContainer container, Inventory inv, Component title) {
+    public WeavingStationScreen(WeavingStationContainer container, Inventory inv, Component title) {
         super(container, inv, title);
         this.imageWidth = 176;
         this.imageHeight = 166;
@@ -73,7 +73,7 @@ public class WoolProcessorScreen extends AbstractContainerScreen<WoolProcessorCo
             int $$3 = this.leftPos + RECIPES_X_START;
             int $$4 = this.topPos + RECIPES_Y_START;
             int $$5 = this.startIndex + SCROLLER_WIDTH;
-            List<WoolProcessorRecipe> recipes = this.menu.getRecipes();
+            List<WeavingStationRecipe> recipes = this.menu.getRecipes();
 
             for (int $$7 = this.startIndex; $$7 < $$5 && $$7 < (this.menu).getNumRecipes(); ++$$7) {
                 int $$8 = $$7 - this.startIndex;
@@ -104,7 +104,7 @@ public class WoolProcessorScreen extends AbstractContainerScreen<WoolProcessorCo
     }
 
     private void renderRecipes(GuiGraphics graphics, int startX, int startY, int $$3) {
-        List<WoolProcessorRecipe> recipes = (this.menu).getRecipes();
+        List<WeavingStationRecipe> recipes = (this.menu).getRecipes();
         for (int index = this.startIndex; index < $$3 && index < (this.menu).getNumRecipes(); ++index) {
             int $$6 = index - this.startIndex;
             int $$7 = startX + $$6 % 4 * RECIPES_IMAGE_SIZE_WIDTH + 1;

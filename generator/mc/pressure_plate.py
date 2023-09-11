@@ -6,7 +6,7 @@ from mc.template import RecipeTemplate, RecoloringRecipeTemplate, Template, Empt
 
 """
 => Recipe
-can be crafted inside the wool_processor and can be recolored from other wool pressure plates
+can be crafted inside the weaving_station and can be recolored from other wool pressure plates
 
 => Advancement
 each color has its own advancement, triggered by crafting the corresponding colored wool

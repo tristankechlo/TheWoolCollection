@@ -2,7 +2,7 @@ package com.tristankechlo.wool_collection.container;
 
 import com.google.common.collect.Lists;
 import com.tristankechlo.wool_collection.init.ModRegistry;
-import com.tristankechlo.wool_collection.recipe.WoolProcessorRecipe;
+import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -16,13 +16,13 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class WoolProcessorContainer extends AbstractContainerMenu {
+public class WeavingStationContainer extends AbstractContainerMenu {
 
     private final ContainerLevelAccess worldPos;
     private final DataSlot selectedRecipe = DataSlot.standalone();
     private final Level level;
     private Runnable changeListener = () -> {};
-    private List<WoolProcessorRecipe> recipes;
+    private List<WeavingStationRecipe> recipes;
     private final Slot inputSlotTop;
     private final Slot inputSlotBottom;
     private final Slot resultSlot;
@@ -30,16 +30,16 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
     private final ResultContainer resultContainer = new ResultContainer();
     private NonNullList<ItemStack> inputs = NonNullList.withSize(2, ItemStack.EMPTY);
 
-    public WoolProcessorContainer(int id, Inventory playerInventory, FriendlyByteBuf extraData) {
+    public WeavingStationContainer(int id, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(id, playerInventory, ContainerLevelAccess.NULL);
     }
 
-    public WoolProcessorContainer(int id, Inventory playerInventory) {
+    public WeavingStationContainer(int id, Inventory playerInventory) {
         this(id, playerInventory, ContainerLevelAccess.NULL);
     }
 
-    public WoolProcessorContainer(int id, Inventory playerInventory, final ContainerLevelAccess worldCallable) {
-        super(ModRegistry.WOOL_PROCESSOR_CONTAINER.get(), id);
+    public WeavingStationContainer(int id, Inventory playerInventory, final ContainerLevelAccess worldCallable) {
+        super(ModRegistry.WEAVING_STATION_CONTAINER.get(), id);
         this.worldPos = worldCallable;
         this.level = playerInventory.player.level();
         this.recipes = Lists.newArrayList();
@@ -48,8 +48,8 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
             @Override
             public void setChanged() {
                 super.setChanged();
-                WoolProcessorContainer.this.slotsChanged(this);
-                WoolProcessorContainer.this.changeListener.run();
+                WeavingStationContainer.this.slotsChanged(this);
+                WeavingStationContainer.this.changeListener.run();
             }
         };
 
@@ -64,18 +64,18 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
             @Override
             public void onTake(Player player, ItemStack stack) {
                 stack.onCraftedBy(player.level(), player, stack.getCount());
-                WoolProcessorContainer.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
-                ItemStack $$$1 = WoolProcessorContainer.this.inputSlotTop.remove(1);
-                ItemStack $$$2 = WoolProcessorContainer.this.inputSlotBottom.remove(1);
+                WeavingStationContainer.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
+                ItemStack $$$1 = WeavingStationContainer.this.inputSlotTop.remove(1);
+                ItemStack $$$2 = WeavingStationContainer.this.inputSlotBottom.remove(1);
                 if (!$$$1.isEmpty() && !$$$2.isEmpty()) {
-                    WoolProcessorContainer.this.setupResultSlot();
+                    WeavingStationContainer.this.setupResultSlot();
                 }
                 //TODO play sound
                 super.onTake(player, stack);
             }
 
             private List<ItemStack> getRelevantItems() {
-                return List.of(WoolProcessorContainer.this.inputSlotTop.getItem(), WoolProcessorContainer.this.inputSlotBottom.getItem());
+                return List.of(WeavingStationContainer.this.inputSlotTop.getItem(), WeavingStationContainer.this.inputSlotBottom.getItem());
             }
         });
 
@@ -93,7 +93,7 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
         this.addDataSlot(this.selectedRecipe);
     }
 
-    public List<WoolProcessorRecipe> getRecipes() {
+    public List<WeavingStationRecipe> getRecipes() {
         return recipes;
     }
 
@@ -142,13 +142,13 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
         this.selectedRecipe.set(-1);
         this.resultSlot.set(ItemStack.EMPTY);
         if (!stack1.isEmpty() /*&& !stack2.isEmpty()*/) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRegistry.WOOL_PROCESSOR_RECIPE_TYPE.get(), container, this.level);
+            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get(), container, this.level);
         }
     }
 
     private void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipe.get())) {
-            WoolProcessorRecipe recipe = this.recipes.get(this.selectedRecipe.get());
+            WeavingStationRecipe recipe = this.recipes.get(this.selectedRecipe.get());
             ItemStack $$1 = recipe.assemble(this.container, this.level.registryAccess());
             if ($$1.isItemEnabled(this.level.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed(recipe);
@@ -219,15 +219,15 @@ public class WoolProcessorContainer extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player var1) {
-        return stillValid(worldPos, var1, ModRegistry.WOOL_PROCESSOR_BLOCK.get());
+        return stillValid(worldPos, var1, ModRegistry.WEAVING_STATION_BLOCK.get());
     }
 
     private boolean hasRecipeTop(ItemStack stack) {
-        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WOOL_PROCESSOR_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.getInputTop().test(stack));
+        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.getInputTop().test(stack));
     }
 
     private boolean hasRecipeBottom(ItemStack stack) {
-        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WOOL_PROCESSOR_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.getInputBottom().test(stack));
+        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.getInputBottom().test(stack));
     }
 
     public void removed(Player player) {

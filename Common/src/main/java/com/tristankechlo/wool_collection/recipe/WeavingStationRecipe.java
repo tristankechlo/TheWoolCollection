@@ -12,14 +12,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-public class WoolProcessorRecipe implements Recipe<Container> {
+public class WeavingStationRecipe implements Recipe<Container> {
 
     private final ResourceLocation id;
     private final Ingredient input_top;
     private final Ingredient input_bottom;
     private final ItemStack result;
 
-    public WoolProcessorRecipe(ResourceLocation id, Ingredient input_top, Ingredient input_bottom, ItemStack result) {
+    public WeavingStationRecipe(ResourceLocation id, Ingredient input_top, Ingredient input_bottom, ItemStack result) {
         this.id = id;
         this.input_top = input_top;
         this.input_bottom = input_bottom;
@@ -59,12 +59,12 @@ public class WoolProcessorRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModRegistry.WOOL_PROCESSOR_RECIPE_SERIALIZER.get();
+        return ModRegistry.WEAVING_STATION_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return ModRegistry.WOOL_PROCESSOR_RECIPE_TYPE.get();
+        return ModRegistry.WEAVING_STATION_RECIPE_TYPE.get();
     }
 
     public Ingredient getInputTop() {
@@ -75,10 +75,10 @@ public class WoolProcessorRecipe implements Recipe<Container> {
         return input_bottom;
     }
 
-    public static class Serializer implements RecipeSerializer<WoolProcessorRecipe> {
+    public static class Serializer implements RecipeSerializer<WeavingStationRecipe> {
 
         @Override
-        public WoolProcessorRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public WeavingStationRecipe fromJson(ResourceLocation id, JsonObject json) {
             Ingredient input_top = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_top"), false);
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
@@ -88,11 +88,11 @@ public class WoolProcessorRecipe implements Recipe<Container> {
                 input_bottom = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_bottom"), false);
             }
 
-            return new WoolProcessorRecipe(id, input_top, input_bottom, result);
+            return new WeavingStationRecipe(id, input_top, input_bottom, result);
         }
 
         @Override
-        public WoolProcessorRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
+        public WeavingStationRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
             Ingredient input_top = Ingredient.fromNetwork(buffer);
 
             Ingredient input_bottom = Ingredient.EMPTY;
@@ -101,11 +101,11 @@ public class WoolProcessorRecipe implements Recipe<Container> {
                 input_bottom = Ingredient.fromNetwork(buffer);
             }
             ItemStack result = buffer.readItem();
-            return new WoolProcessorRecipe(id, input_top, input_bottom, result);
+            return new WeavingStationRecipe(id, input_top, input_bottom, result);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buffer, WoolProcessorRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, WeavingStationRecipe recipe) {
             recipe.input_top.toNetwork(buffer);
             if (recipe.input_bottom.isEmpty()) {
                 buffer.writeBoolean(false);

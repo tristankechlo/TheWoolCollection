@@ -53,7 +53,7 @@ public class TheWoolCollectionForge {
             TheWoolCollection.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(event::accept);
         }
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(ModRegistry.WOOL_PROCESSOR_ITEM.get());
+            event.accept(ModRegistry.WEAVING_STATION_ITEM.get());
         }
     }
 

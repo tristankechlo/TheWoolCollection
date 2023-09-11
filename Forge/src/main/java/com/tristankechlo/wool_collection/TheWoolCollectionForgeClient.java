@@ -1,6 +1,6 @@
 package com.tristankechlo.wool_collection;
 
-import com.tristankechlo.wool_collection.client.WoolProcessorScreen;
+import com.tristankechlo.wool_collection.client.WeavingStationScreen;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,7 +13,7 @@ public class TheWoolCollectionForgeClient {
 
     @SubscribeEvent
     public static void init(final FMLClientSetupEvent event) {
-        MenuScreens.register(ModRegistry.WOOL_PROCESSOR_CONTAINER.get(), WoolProcessorScreen::new);
+        MenuScreens.register(ModRegistry.WEAVING_STATION_CONTAINER.get(), WeavingStationScreen::new);
     }
 
 }

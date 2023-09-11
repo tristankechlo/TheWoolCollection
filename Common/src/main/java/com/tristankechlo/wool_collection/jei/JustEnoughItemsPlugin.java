@@ -2,10 +2,10 @@ package com.tristankechlo.wool_collection.jei;
 
 
 import com.tristankechlo.wool_collection.TheWoolCollection;
-import com.tristankechlo.wool_collection.client.WoolProcessorScreen;
-import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
+import com.tristankechlo.wool_collection.client.WeavingStationScreen;
+import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import com.tristankechlo.wool_collection.init.ModRegistry;
-import com.tristankechlo.wool_collection.recipe.WoolProcessorRecipe;
+import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -26,8 +26,8 @@ import java.util.Objects;
 public class JustEnoughItemsPlugin implements IModPlugin {
 
     private static final ResourceLocation UID = new ResourceLocation(TheWoolCollection.MOD_ID, "jei_plugin");
-    public static final RecipeType<WoolProcessorRecipe> RECIPE_TYPE = RecipeType.create(TheWoolCollection.MOD_ID, "wool_processor", WoolProcessorRecipe.class);
-    private IRecipeCategory<WoolProcessorRecipe> recipeCategory;
+    public static final RecipeType<WeavingStationRecipe> RECIPE_TYPE = RecipeType.create(TheWoolCollection.MOD_ID, "weaving_station", WeavingStationRecipe.class);
+    private IRecipeCategory<WeavingStationRecipe> recipeCategory;
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -48,44 +48,44 @@ public class JustEnoughItemsPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        //custom recipe category for the wool_processor
+        //custom recipe category for the weaving_station
         IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
-        registration.addRecipeCategories(recipeCategory = new WoolProcessorRecipeCategory(guiHelper));
+        registration.addRecipeCategories(recipeCategory = new WeavingStationRecipeCategory(guiHelper));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        //register recipes for the wool_processor category
-        Objects.requireNonNull(recipeCategory, "woolProcessorCategory");
-        List<WoolProcessorRecipe> recipes = getRecipes();
+        //register recipes for the weaving_station category
+        Objects.requireNonNull(recipeCategory, "weavingStationCategory");
+        List<WeavingStationRecipe> recipes = getRecipes();
         registration.addRecipes(RECIPE_TYPE, recipes);
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        //while in wool_processor GUI, add clickable area to open the JEI GUI for the custom category
-        registration.addRecipeClickArea(WoolProcessorScreen.class, 173, 0, 18, 22, RECIPE_TYPE);
+        //while in weaving_station GUI, add clickable area to open the JEI GUI for the custom category
+        registration.addRecipeClickArea(WeavingStationScreen.class, 173, 0, 18, 22, RECIPE_TYPE);
     }
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
         //move ingredients from the inventory into crafting GUIs
-        registration.addRecipeTransferHandler(WoolProcessorContainer.class, ModRegistry.WOOL_PROCESSOR_CONTAINER.get(), RECIPE_TYPE, 0, 2, 3, 36);
+        registration.addRecipeTransferHandler(WeavingStationContainer.class, ModRegistry.WEAVING_STATION_CONTAINER.get(), RECIPE_TYPE, 0, 2, 3, 36);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        //how to craft the thing where the recipe is for (e.g. the wool_processor)
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.WOOL_PROCESSOR_BLOCK.get()), RECIPE_TYPE);
+        //how to craft the thing where the recipe is for (e.g. the weaving_station)
+        registration.addRecipeCatalyst(new ItemStack(ModRegistry.WEAVING_STATION_BLOCK.get()), RECIPE_TYPE);
     }
 
-    public static List<WoolProcessorRecipe> getRecipes() {
+    public static List<WeavingStationRecipe> getRecipes() {
         Minecraft minecraft = Minecraft.getInstance();
         Objects.requireNonNull(minecraft, "minecraft");
         ClientLevel world = minecraft.level;
         Objects.requireNonNull(world, "minecraft world");
         RecipeManager recipeManager = world.getRecipeManager();
-        return recipeManager.getAllRecipesFor(ModRegistry.WOOL_PROCESSOR_RECIPE_TYPE.get());
+        return recipeManager.getAllRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get());
     }
 
 }

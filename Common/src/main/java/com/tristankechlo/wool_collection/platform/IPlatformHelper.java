@@ -1,6 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
-import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
+import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import net.minecraft.world.inventory.MenuType;
 
 import java.nio.file.Path;
@@ -21,6 +21,6 @@ public interface IPlatformHelper {
 
     Path getConfigDirectory();
 
-    Supplier<MenuType<WoolProcessorContainer>> buildContainer();
+    Supplier<MenuType<WeavingStationContainer>> buildContainer();
 
 }

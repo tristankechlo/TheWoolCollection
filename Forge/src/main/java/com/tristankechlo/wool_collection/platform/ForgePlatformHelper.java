@@ -1,6 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
-import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
+import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.fml.ModList;
@@ -33,8 +33,8 @@ public class ForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public Supplier<MenuType<WoolProcessorContainer>> buildContainer() {
-        return () -> IForgeMenuType.create(WoolProcessorContainer::new);
+    public Supplier<MenuType<WeavingStationContainer>> buildContainer() {
+        return () -> IForgeMenuType.create(WeavingStationContainer::new);
     }
 
 }

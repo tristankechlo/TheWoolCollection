@@ -11,7 +11,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "wool_collection:wool_processor"
+                    "name": "wool_collection:weaving_station"
                 }
             ],
             "rolls": 1.0

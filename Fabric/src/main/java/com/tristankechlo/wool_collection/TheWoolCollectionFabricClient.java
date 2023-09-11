@@ -1,6 +1,6 @@
 package com.tristankechlo.wool_collection;
 
-import com.tristankechlo.wool_collection.client.WoolProcessorScreen;
+import com.tristankechlo.wool_collection.client.WeavingStationScreen;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -11,8 +11,8 @@ public class TheWoolCollectionFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        MenuScreens.register(ModRegistry.WOOL_PROCESSOR_CONTAINER.get(), WoolProcessorScreen::new);
-        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.WOOL_PROCESSOR_BLOCK.get(), RenderType.cutout());
+        MenuScreens.register(ModRegistry.WEAVING_STATION_CONTAINER.get(), WeavingStationScreen::new);
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.WEAVING_STATION_BLOCK.get(), RenderType.cutout());
     }
 
 }

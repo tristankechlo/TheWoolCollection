@@ -3,8 +3,8 @@
     "render_type": "minecraft:cutout",
     "texture_size": [64, 64],
     "textures": {
-        "particle": "wool_collection:block/wool_processor",
-        "texture": "wool_collection:block/wool_processor"
+        "particle": "wool_collection:block/weaving_station",
+        "texture": "wool_collection:block/weaving_station"
     },
     "elements": [
         {

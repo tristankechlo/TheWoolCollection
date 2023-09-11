@@ -7,7 +7,7 @@ from mc.globals import Globals
 
 """
 => Recipe
-can be crafted inside the wool_processor and can be recolored from other wool buttons
+can be crafted inside the weaving_station and can be recolored from other wool buttons
 
 => Advancement
 each color has its own advancement, triggered by crafting the corresponding colored wool

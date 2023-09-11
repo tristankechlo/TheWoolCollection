@@ -1,6 +1,6 @@
 package com.tristankechlo.wool_collection.blocks;
 
-import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
+import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,7 +26,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class WoolProcessorBlock extends HorizontalDirectionalBlock {
+public class WeavingStationBlock extends HorizontalDirectionalBlock {
 
     private static final VoxelShape SHAPE_SOUTH = Shapes.or(Block.box(0, 0, 6, 16, 12, 16), Block.box(14, 0, 0, 16, 12, 6), Block.box(0, 0, 0, 2, 12, 6), Block.box(2, 0, 0, 14, 8, 9), Block.box(2, 10, 4, 14, 14, 8)).optimize();
     private static final VoxelShape SHAPE_NORTH = Shapes.or(Block.box(0, 0, 0, 16, 12, 10), Block.box(14, 0, 10, 16, 12, 16), Block.box(0, 0, 10, 2, 12, 16), Block.box(2, 0, 7, 14, 8, 16), Block.box(2, 10, 8, 14, 14, 12)).optimize();
@@ -34,7 +34,7 @@ public class WoolProcessorBlock extends HorizontalDirectionalBlock {
     private static final VoxelShape SHAPE_WEST = Shapes.or(Block.box(0, 0, 0, 10, 12, 16), Block.box(10, 0, 14, 16, 12, 16), Block.box(10, 0, 0, 16, 12, 2), Block.box(7, 0, 2, 16, 8, 14), Block.box(8, 10, 2, 12, 14, 14)).optimize();
     private static Component CONTAINER_NAME = null;
 
-    public WoolProcessorBlock() {
+    public WeavingStationBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.LOOM));
         registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }
@@ -66,13 +66,13 @@ public class WoolProcessorBlock extends HorizontalDirectionalBlock {
     @Override
     public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
         return new SimpleMenuProvider((id, playerInv, player) -> {
-            return new WoolProcessorContainer(id, playerInv, ContainerLevelAccess.create(level, pos));
+            return new WeavingStationContainer(id, playerInv, ContainerLevelAccess.create(level, pos));
         }, getContainerName());
     }
 
     public static Component getContainerName() {
         if (CONTAINER_NAME == null) {
-            CONTAINER_NAME = ModRegistry.WOOL_PROCESSOR_BLOCK.get().getName();
+            CONTAINER_NAME = ModRegistry.WEAVING_STATION_BLOCK.get().getName();
         }
         return CONTAINER_NAME;
     }

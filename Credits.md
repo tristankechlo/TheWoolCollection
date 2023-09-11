@@ -2,6 +2,6 @@
 
 ## Block Models
 
-|     Model      |   Creator    |
-|:--------------:|:------------:|
-| Wool Processor | sheppennings |
+|      Model      |   Creator    |
+|:---------------:|:------------:|
+| Weaving Station | sheppennings |

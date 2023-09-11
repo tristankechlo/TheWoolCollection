@@ -45,7 +45,7 @@ public class TheWoolCollectionFabric implements ModInitializer {
         });
         // add all items to functional blocks creative tab
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register((content) -> {
-            content.accept(ModRegistry.WOOL_PROCESSOR_ITEM.get());
+            content.accept(ModRegistry.WEAVING_STATION_ITEM.get());
         });
     }
 

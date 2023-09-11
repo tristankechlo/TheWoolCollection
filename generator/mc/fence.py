@@ -5,7 +5,7 @@ from mc.template import RecipeTemplate, RecoloringRecipeTemplate, Template, Empt
 
 """
 => Recipe
-can be crafted inside the wool_processor and can be recolored from other wool fences
+can be crafted inside the weaving_station and can be recolored from other wool fences
 
 => Advancement
 white fence has a separate advancement, triggerd by crafting white wool

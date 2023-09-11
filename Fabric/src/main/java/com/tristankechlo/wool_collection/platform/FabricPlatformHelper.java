@@ -1,6 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
-import com.tristankechlo.wool_collection.container.WoolProcessorContainer;
+import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
@@ -31,8 +31,8 @@ public class FabricPlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public Supplier<MenuType<WoolProcessorContainer>> buildContainer() {
-        return () -> new MenuType<>(WoolProcessorContainer::new, FeatureFlags.VANILLA_SET);
+    public Supplier<MenuType<WeavingStationContainer>> buildContainer() {
+        return () -> new MenuType<>(WeavingStationContainer::new, FeatureFlags.VANILLA_SET);
     }
 
 }
