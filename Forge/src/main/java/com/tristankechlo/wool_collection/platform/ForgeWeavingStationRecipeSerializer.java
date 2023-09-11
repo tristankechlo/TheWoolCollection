@@ -6,7 +6,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import org.jetbrains.annotations.Nullable;
 
 public class ForgeWeavingStationRecipeSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<WeavingStationRecipe> {
 
@@ -15,7 +14,6 @@ public class ForgeWeavingStationRecipeSerializer extends ForgeRegistryEntry<Reci
         return WeavingStationRecipe.Serializer.fromJson(id, json);
     }
 
-    @Nullable
     @Override
     public WeavingStationRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
         return WeavingStationRecipe.Serializer.fromNetwork(id, buffer);

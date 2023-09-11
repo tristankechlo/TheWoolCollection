@@ -24,7 +24,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
 public class WeavingStationBlock extends HorizontalDirectionalBlock {
 
@@ -62,7 +61,6 @@ public class WeavingStationBlock extends HorizontalDirectionalBlock {
         }
     }
 
-    @Nullable
     @Override
     public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
         return new SimpleMenuProvider((id, playerInv, player) -> {
