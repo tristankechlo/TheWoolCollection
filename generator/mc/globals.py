@@ -14,6 +14,7 @@ class Globals():
         "white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray",
         "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"
     ]
+    save_counter = 0
 
     def clearAllDirs():
         import shutil
@@ -33,6 +34,7 @@ class Globals():
             return data
 
     def saveAsJson(path: str, data, indent=0, sort_keys=False):
+        Globals.save_counter += 1
         import json
         with open(path, "w") as f:
             if indent == 0:

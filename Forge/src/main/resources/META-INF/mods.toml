@@ -5,7 +5,7 @@ showAsResourcePack=false
 
 [[mods]]
 modId="wool_collection"
-version="1.19-1.0"
+version="${version}"
 displayName="The Wool Collection"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/wool-collection"
 #logoFile="examplemod.png"

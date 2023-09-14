@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "criteria": {
+        "has_the_recipe": {
+            "conditions": {
+                "recipe": "wool_collection:weaving_station"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+        },
+        "has_trigger_item": {
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "minecraft:wool"
+                    }
+                ]
+            },
+            "trigger": "minecraft:inventory_changed"
+        }
+    },
+    "requirements": [
+        [
+            "has_trigger_item",
+            "has_the_recipe"
+        ]
+    ],
+    "rewards": {
+        "recipes": [
+            "wool_collection:weaving_station"
+        ]
+    }
+}

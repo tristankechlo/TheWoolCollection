@@ -1,8 +1,10 @@
 import json
 import os
+from mc.globals import Globals
 
 
 def saveAsJson(path: str, data, indent=0, sort_keys=False):
+    Globals.save_counter += 1
     # create folders if they don't exist
     folders = path.split("\\")
     folders.pop()  # remove file name
