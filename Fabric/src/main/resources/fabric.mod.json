@@ -3,7 +3,7 @@
     "id": "wool_collection",
     "version": "${version}",
     "name": "The Wool Collection",
-    "description": "Adds more wool blocks to the game!",
+    "description": "Adds wool variants for various blocks, like fences, stairs, gates, buttons and more!",
     "authors": [
         "Buecher_wurm"
     ],
@@ -13,7 +13,7 @@
         "homepage": "https://www.curseforge.com/minecraft/mc-mods/wool-collection"
     },
     "license": "CC BY-NC-ND 4.0",
-    "icon": "assets/wool_collection/icon.png",
+    "icon": "icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
