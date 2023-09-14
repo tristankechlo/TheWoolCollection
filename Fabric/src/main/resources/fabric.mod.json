@@ -9,7 +9,8 @@
     ],
     "contact": {
         "sources": "https://github.com/tristankechlo/TheWoolCollection",
-        "issues": "https://github.com/tristankechlo/TheWoolCollection/issues"
+        "issues": "https://github.com/tristankechlo/TheWoolCollection/issues",
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/wool-collection"
     },
     "license": "CC BY-NC-ND 4.0",
     "icon": "icon.png",
