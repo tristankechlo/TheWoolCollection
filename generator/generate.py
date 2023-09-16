@@ -15,6 +15,7 @@ from mc.globals import Globals
 
 translation = Translation()
 translation.addRaw("block.wool_collection.weaving_station", "Weaving Station")
+translation.addRaw("itemGroup.wool_collection.general", "Wool Collection")
 
 
 tags = {

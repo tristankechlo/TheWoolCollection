@@ -3,15 +3,20 @@ package com.tristankechlo.wool_collection;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class TheWoolCollectionFabric implements ModInitializer {
+
+    private static final CreativeModeTab GENERAL_TAB = FabricItemGroup.builder(new ResourceLocation(TheWoolCollection.MOD_ID, "general"))
+            .icon(() -> ModRegistry.WEAVING_STATION_ITEM.get().getDefaultInstance()).build();
 
     @Override
     public void onInitialize() {
@@ -30,22 +35,16 @@ public class TheWoolCollectionFabric implements ModInitializer {
             Registry.register(BuiltInRegistries.ITEM, id, item);
         });
 
-        // add all items to creative tab for colored blocks
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COLORED_BLOCKS).register((content) -> {
+        // add all items to creative tab
+        ItemGroupEvents.modifyEntriesEvent(GENERAL_TAB).register((content) -> {
+            content.accept(ModRegistry.WEAVING_STATION_ITEM.get());
             TheWoolCollection.sortedListByColor(ModBlocks.FENCES).forEach(content::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.FENCE_GATES).forEach(content::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.STAIRS).forEach(content::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.SLABS).forEach(content::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.WALLS).forEach(content::accept);
-        });
-        // add all buttons to redstone creative tab
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register((content) -> {
-            TheWoolCollection.sortedListByColor(ModBlocks.BUTTONS).forEach(content::accept);
             TheWoolCollection.sortedListByColor(ModBlocks.PRESSURE_PLATES).forEach(content::accept);
-        });
-        // add all items to functional blocks creative tab
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register((content) -> {
-            content.accept(ModRegistry.WEAVING_STATION_ITEM.get());
+            TheWoolCollection.sortedListByColor(ModBlocks.BUTTONS).forEach(content::accept);
         });
     }
 
