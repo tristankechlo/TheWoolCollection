@@ -20,14 +20,15 @@ class Template():
     def save(self, path: str, filename: str):
         import os
         import json
-        # replace default replacements
-        temp = self.template.replace("%color%", self.block.color)
-        temp = temp.replace("%block_id%", self.block.full_id)
-        temp = temp.replace("%type%", self.block.type)
-        temp = temp.replace("%modid%", Globals.modid)
+        temp = self.template
         # replace all other replacements
         for key, value in self.replacements.items():
             temp = temp.replace(key, value)
+        # replace default replacements
+        temp = temp.replace("%color%", self.block.color)
+        temp = temp.replace("%block_id%", self.block.full_id)
+        temp = temp.replace("%type%", self.block.type)
+        temp = temp.replace("%modid%", Globals.modid)
         # save file
         temp = json.loads(temp)
         if not os.path.exists(path):
