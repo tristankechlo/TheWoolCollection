@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
+import com.tristankechlo.wool_collection.TheWoolCollection;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 
@@ -71,7 +72,7 @@ public interface RegistrationProvider<T> {
         /**
          * The singleton instance of the {@link Factory}. This is different on each loader.
          */
-        Factory INSTANCE = Services.load(Factory.class);
+        Factory INSTANCE = TheWoolCollection.load(Factory.class);
 
         /**
          * Creates a {@link RegistrationProvider}.
