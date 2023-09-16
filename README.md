@@ -1,6 +1,6 @@
 # The Wool Collection [![Curseforge](http://cf.way2muchnoise.eu/full_821255_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/wool-collection) [![Discord](https://img.shields.io/discord/639540436524072970?color=0a48c4&label=%20&logo=discord&logoColor=FFF)](https://discord.gg/bhUaWhq)
 
-Adds more wool blocks to the game!
+Adds wool variants for various blocks, like fences, stairs, gates, buttons and more!
 
 ## New Wool Variants
 
