@@ -27,17 +27,18 @@ class WoolStairs (WoolBlock):
         self.item_model = Template(self, ["stairs", "item_model.json"])
         self.recipe_creating = RecipeTemplate(self, 1)
         self.recipe_creating_empty = EmptyRecipeTemplate(self, 1)
-        self.recipe_recoloring = RecoloringRecipeTemplate(self)
 
     def createSpecialTemplates(self):
         self.model = Template(self, ["stairs", "block_model.json"])
         self.model_inner = Template(self, ["stairs", "block_model.json"])
         self.model_outer = Template(self, ["stairs", "block_model.json"])
+        self.recipe_recoloring = RecoloringRecipeTemplate(self)
 
     def setupSpecialTemplates(self):
         self.model.replace("%parent%", "minecraft:block/stairs")
         self.model_inner.replace("%parent%", "minecraft:block/inner_stairs")
         self.model_outer.replace("%parent%", "minecraft:block/outer_stairs")
+        self.recipe_recoloring.replace("%type%", "stair")
 
     def save(self):
         self.blockstate.save(WoolBlock.path_blockstates, self.name + ".json")
