@@ -66,6 +66,7 @@ public class WeavingStationContainer extends AbstractContainerMenu {
                 stack.onCraftedBy(player.level, player, stack.getCount());
                 WeavingStationContainer.this.resultContainer.awardUsedRecipes(player);
                 ItemStack $$$1 = WeavingStationContainer.this.inputSlotTop.remove(1);
+                ItemStack $$$2 = WeavingStationContainer.this.inputSlotBottom.remove(1);
                 if (!$$$1.isEmpty()) {
                     WeavingStationContainer.this.setupResultSlot();
                 }
