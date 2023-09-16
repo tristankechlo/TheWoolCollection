@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 public final class TheWoolCollection {
 
@@ -27,5 +28,13 @@ public final class TheWoolCollection {
 
     public static final BlockSetType BLOCK_SET_TYPE_WOOL = new BlockSetType("wool");
     public static final WoodType WOOD_TYPE_WOOL = new WoodType("wool", BLOCK_SET_TYPE_WOOL);
+
+    public static <T> T load(Class<T> clazz) {
+        final T loadedService = ServiceLoader.load(clazz)
+                .findFirst()
+                .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
+        LOGGER.debug("Loaded {} for service {}", loadedService, clazz);
+        return loadedService;
+    }
 
 }

@@ -2,6 +2,7 @@ package com.tristankechlo.wool_collection.platform;
 
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -35,6 +36,11 @@ public class ForgePlatformHelper implements IPlatformHelper {
     @Override
     public Supplier<MenuType<WeavingStationContainer>> buildContainer() {
         return () -> IForgeMenuType.create(WeavingStationContainer::new);
+    }
+
+    @Override
+    public CreativeModeTab.Builder getCreativeTabBuilder() {
+        return CreativeModeTab.builder();
     }
 
 }

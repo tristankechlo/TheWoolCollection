@@ -8,6 +8,7 @@
     - all previous recipes are no longer available
     - fixes recipe conflicts with some vanilla recipes
     - support for JustEnoughItems, to show all the recipes
+- add custom creative tab
 
 ### Version 1.20.1 - 1.0
 
