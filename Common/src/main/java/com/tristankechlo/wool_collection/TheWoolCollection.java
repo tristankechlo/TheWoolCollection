@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 public final class TheWoolCollection {
 
@@ -23,6 +24,14 @@ public final class TheWoolCollection {
                 .sorted(Comparator.comparingInt(e -> e.getKey().getId()))
                 .map(Map.Entry::getValue)
                 .toList();
+    }
+
+    public static <T> T load(Class<T> clazz) {
+        final T loadedService = ServiceLoader.load(clazz)
+                .findFirst()
+                .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
+        LOGGER.debug("Loaded {} for service {}", loadedService, clazz);
+        return loadedService;
     }
 
 }

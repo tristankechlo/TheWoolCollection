@@ -1,7 +1,7 @@
 package com.tristankechlo.wool_collection.platform;
 
+import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
-import com.tristankechlo.wool_collection.init.ModBlocks;
 import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
@@ -16,6 +16,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public interface IPlatformHelper {
+
+    public static final IPlatformHelper INSTANCE = TheWoolCollection.load(IPlatformHelper.class);
 
     String getPlatformName();
 

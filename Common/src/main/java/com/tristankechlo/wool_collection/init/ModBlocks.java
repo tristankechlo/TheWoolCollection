@@ -2,7 +2,7 @@ package com.tristankechlo.wool_collection.init;
 
 import com.tristankechlo.wool_collection.TheWoolCollection;
 import com.tristankechlo.wool_collection.blocks.*;
-import com.tristankechlo.wool_collection.platform.Services;
+import com.tristankechlo.wool_collection.platform.IPlatformHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -47,8 +47,8 @@ public final class ModBlocks {
 
     private static void register(String id, DyeColor color, Function<DyeColor, Block> bs, Map<DyeColor, BlockItem> category) {
         ResourceLocation rl = new ResourceLocation(TheWoolCollection.MOD_ID, id);
-        Block block = Services.PLATFORM.createBlock(bs, color, rl);
-        BlockItem item = Services.PLATFORM.createBlockItem(block, ITEM_PROPERTIES, rl);
+        Block block = IPlatformHelper.INSTANCE.createBlock(bs, color, rl);
+        BlockItem item = IPlatformHelper.INSTANCE.createBlockItem(block, ITEM_PROPERTIES, rl);
         ALL_ITEMS.put(rl, item);
         ALL_BLOCKS.put(rl, block);
         category.put(color, item);
