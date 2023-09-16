@@ -1,17 +1,17 @@
 # The Wool Collection [![Curseforge](http://cf.way2muchnoise.eu/full_821255_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/wool-collection) [![Discord](https://img.shields.io/discord/639540436524072970?color=0a48c4&label=%20&logo=discord&logoColor=FFF)](https://discord.gg/bhUaWhq)
 
-Adds more wool blocks to the game!
+Adds wool variants for various blocks, like fences, stairs, gates, buttons and more!
 
 ## New Wool Variants
 
 - added new wool variants
-    - 16 new wool fences
-    - 16 new wool fences gates
-    - 16 new wool stairs
-    - 16 new wool slabs
-    - 16 new wool walls
-    - 16 new wool buttons
-    - 16 new wool pressure plates
+  - 16 new wool fences
+  - 16 new wool fences gates
+  - 16 new wool stairs
+  - 16 new wool slabs
+  - 16 new wool walls
+  - 16 new wool buttons
+  - 16 new wool pressure plates
 - right clicking with shears will drop them instantly
 - right clicking with a dye will change the color of the block
 
@@ -19,40 +19,32 @@ Adds more wool blocks to the game!
 
 ## Recipes
 
-### Wool Fence
+all newly added blocks are crafted in the weaving station
 
-|                                         White Fence                                          |                                   Other Fences                                    |
-|:--------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
-| <img src="https://i.ibb.co/DzSH0hV/fence-recipe-white.png" alt="fence white" height="150" /> | <img src="https://i.ibb.co/qjmYcjF/fence-recipe.gif" alt="fences" height="150" /> |
+### Weaving Station
 
-### Wool Fence Gate
+<img src="images/recipes/weaving_station.png" alt="Weaving Station" height="200" width="400" />  
 
-|                                            White Fence Gate                                            |                                     Other Fences Gates                                      |
-|:------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|
-| <img src="https://i.ibb.co/88myYgR/fence-gate-recipe-white.png" alt="fence gate white" height="150" /> | <img src="https://i.ibb.co/WBnf1ms/fence-gate-recipe.gif" alt="fence gates" height="150" /> |
+any type of wool and wood_planks can be used
 
-### Wool Stairs
+#### Normal Recipes
 
-<img src="https://i.ibb.co/xGCC59f/stair-recipe.gif" alt="stairs" height="200" width="400" />
-and from the stonecutter
+<img src="images/recipes/weaving_station_recipes_normal.gif" alt="Normal Recipes" height="250" width="275" />
 
-### Wool Slabs
+placing any color of wool in the top slot lets you craft the corresponding colored blocks
 
-<img src="https://i.ibb.co/vwchdBD/slab-recipe.gif" alt="slabs" height="200" width="400" />
-and from the stonecutter
+#### Dyed Recipes
 
-### Wool Walls
+<img src="images/recipes/weaving_station_recipes_with_dye.gif" alt="Dyed Recipes" height="250" width="275" />
 
-<img src="https://i.ibb.co/fk3Fh9R/wall-recipe.gif" alt="walls" height="200" width="400" />
-and from the stonecutter
+placing any color of wool in the top slot, and a dye in the bottom slot, lets you craft the corresponding colored blocks
 
-### Wool Buttons
+### Recoloring Recipes
 
-<img src="https://i.ibb.co/85xzRDg/button-recipe.gif" alt="buttons" height="200" width="400" />
+<img src="images/recipes/recoloring_example.gif" alt="Recoloring Recipes" height="200" width="400" />
 
-### Wool Pressure Plates
-
-<img src="https://i.ibb.co/cQ3rjnm/pressure-plate-recipe.gif" alt="pressure plates" height="200" width="400" />
+all blocks added by this mod can be simply recolored by placing any color of dye in the crafting grid with the block  
+example gif: any colored fence can be recolored to orange with orange dye
 
 ## Project setup
 
