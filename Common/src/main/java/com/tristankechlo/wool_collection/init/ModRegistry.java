@@ -10,6 +10,7 @@ import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import net.minecraft.core.Registry;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -28,7 +29,7 @@ public final class ModRegistry {
 
     /* Content */
     public static final RegistryObject<Block> WEAVING_STATION_BLOCK = BLOCKS.register("weaving_station", WeavingStationBlock::new);
-    public static final RegistryObject<BlockItem> WEAVING_STATION_ITEM = ITEMS.register("weaving_station", () -> new BlockItem(WEAVING_STATION_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> WEAVING_STATION_ITEM = ITEMS.register("weaving_station", () -> new BlockItem(WEAVING_STATION_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_SEARCH)));
     public static final RegistryObject<MenuType<WeavingStationContainer>> WEAVING_STATION_CONTAINER = CONTAINERS.register("weaving_station", Services.PLATFORM.buildContainer());
     public static final RegistryObject<RecipeType<WeavingStationRecipe>> WEAVING_STATION_RECIPE_TYPE = RECIPES.register("weaving_station", () -> new RecipeType<>() {});
     public static final RegistryObject<RecipeSerializer<WeavingStationRecipe>> WEAVING_STATION_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("weaving_station", WeavingStationRecipe.Serializer::new);
