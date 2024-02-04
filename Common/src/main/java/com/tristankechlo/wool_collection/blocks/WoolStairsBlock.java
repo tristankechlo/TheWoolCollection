@@ -18,7 +18,7 @@ import java.util.Optional;
 public class WoolStairsBlock extends StairBlock implements CustomWoolBlock {
 
     public WoolStairsBlock(DyeColor color) {
-        super(WOOL_MAP.get(color).defaultBlockState(), Properties.copy(WOOL_MAP.get(color)));
+        super(WOOL_MAP.get(color).defaultBlockState(), Properties.ofFullCopy(WOOL_MAP.get(color)));
     }
 
     @Override

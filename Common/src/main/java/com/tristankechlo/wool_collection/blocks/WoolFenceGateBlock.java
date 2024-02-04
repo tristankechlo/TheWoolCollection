@@ -20,7 +20,7 @@ import java.util.Optional;
 public class WoolFenceGateBlock extends FenceGateBlock implements CustomWoolBlock {
 
     public WoolFenceGateBlock(DyeColor color) {
-        super(Properties.of().mapColor(color).forceSolidOn().strength(0.8F).sound(SoundType.WOOL).ignitedByLava(), TheWoolCollection.WOOD_TYPE_WOOL);
+        super(TheWoolCollection.WOOD_TYPE_WOOL, Properties.of().mapColor(color).forceSolidOn().strength(0.8F).sound(SoundType.WOOL).ignitedByLava());
     }
 
     @Override

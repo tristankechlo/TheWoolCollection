@@ -47,7 +47,7 @@ public class WeavingStationScreen extends AbstractContainerScreen<WeavingStation
 
     @Override
     protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
-        this.renderBackground(graphics); // render transparent background
+        this.renderTransparentBackground(graphics); // render transparent background
         graphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         //render JEI if loaded
         if (TheWoolCollection.JEI_LOADED) {
@@ -159,7 +159,7 @@ public class WeavingStationScreen extends AbstractContainerScreen<WeavingStation
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double delta, double $$3) {
         if (this.isScrollBarActive()) {
             int offScreenRows = this.getOffscreenRows();
             float $$4 = (float) delta / (float) offScreenRows;

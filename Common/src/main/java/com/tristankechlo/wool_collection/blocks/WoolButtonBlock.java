@@ -20,11 +20,10 @@ import java.util.Optional;
 
 public class WoolButtonBlock extends ButtonBlock implements CustomWoolBlock {
 
-    private static final boolean ARROW_TRIGGERED = true;
     private static final int POWER_TIME = 30;
 
     public WoolButtonBlock(DyeColor color) {
-        super(get(color), TheWoolCollection.BLOCK_SET_TYPE_WOOL, POWER_TIME, ARROW_TRIGGERED);
+        super(TheWoolCollection.BLOCK_SET_TYPE_WOOL, POWER_TIME, get(color));
     }
 
     @Override

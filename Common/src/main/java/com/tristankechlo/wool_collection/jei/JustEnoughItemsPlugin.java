@@ -17,6 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class JustEnoughItemsPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         //register recipes for the weaving_station category
         Objects.requireNonNull(recipeCategory, "weavingStationCategory");
-        List<WeavingStationRecipe> recipes = getRecipes();
+        List<WeavingStationRecipe> recipes = getRecipes().stream().map(RecipeHolder::value).toList();
         registration.addRecipes(RECIPE_TYPE, recipes);
     }
 
@@ -79,7 +80,7 @@ public class JustEnoughItemsPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModRegistry.WEAVING_STATION_BLOCK.get()), RECIPE_TYPE);
     }
 
-    public static List<WeavingStationRecipe> getRecipes() {
+    public static List<RecipeHolder<WeavingStationRecipe>> getRecipes() {
         Minecraft minecraft = Minecraft.getInstance();
         Objects.requireNonNull(minecraft, "minecraft");
         ClientLevel world = minecraft.level;

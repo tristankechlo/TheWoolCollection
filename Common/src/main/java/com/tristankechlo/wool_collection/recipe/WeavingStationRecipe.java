@@ -1,26 +1,27 @@
 package com.tristankechlo.wool_collection.recipe;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+
+import java.util.Optional;
 
 public class WeavingStationRecipe implements Recipe<Container> {
 
-    private final ResourceLocation id;
     private final Ingredient input_top;
-    private final Ingredient input_bottom;
+    private final Optional<Ingredient> input_bottom;
     private final ItemStack result;
 
-    public WeavingStationRecipe(ResourceLocation id, Ingredient input_top, Ingredient input_bottom, ItemStack result) {
-        this.id = id;
+    public WeavingStationRecipe(Ingredient input_top, Optional<Ingredient> input_bottom, ItemStack result) {
         this.input_top = input_top;
         this.input_bottom = input_bottom;
         this.result = result;
@@ -31,10 +32,10 @@ public class WeavingStationRecipe implements Recipe<Container> {
         if (container.getContainerSize() < 2) {
             return false;
         }
-        if (this.input_bottom.isEmpty() && container.getItem(1).isEmpty()) {
+        if (this.getInputBottom().isEmpty() && container.getItem(1).isEmpty()) {
             return this.input_top.test(container.getItem(0));
         }
-        return this.input_top.test(container.getItem(0)) && this.input_bottom.test(container.getItem(1));
+        return this.input_top.test(container.getItem(0)) && this.getInputBottom().test(container.getItem(1));
     }
 
     @Override
@@ -53,11 +54,6 @@ public class WeavingStationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRegistry.WEAVING_STATION_RECIPE_SERIALIZER.get();
     }
@@ -72,27 +68,21 @@ public class WeavingStationRecipe implements Recipe<Container> {
     }
 
     public Ingredient getInputBottom() {
-        return input_bottom;
+        return input_bottom.orElse(Ingredient.EMPTY);
     }
 
     public static class Serializer implements RecipeSerializer<WeavingStationRecipe> {
 
-        @Override
-        public WeavingStationRecipe fromJson(ResourceLocation id, JsonObject json) {
-            Ingredient input_top = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_top"), false);
-            ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-
-            Ingredient input_bottom = Ingredient.EMPTY;
-            JsonElement jsonElement = json.get("input_bottom");
-            if (jsonElement != null && !jsonElement.isJsonNull()) {
-                input_bottom = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input_bottom"), false);
-            }
-
-            return new WeavingStationRecipe(id, input_top, input_bottom, result);
-        }
+        public static final Codec<WeavingStationRecipe> CODEC = RecordCodecBuilder.create(
+                builder -> builder.group(
+                        Ingredient.CODEC_NONEMPTY.fieldOf("input_top").forGetter(recipe -> recipe.input_top),
+                        Ingredient.CODEC.optionalFieldOf("input_bottom").forGetter(recipe -> recipe.input_bottom),
+                        ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
+                ).apply(builder, WeavingStationRecipe::new)
+        );
 
         @Override
-        public WeavingStationRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
+        public WeavingStationRecipe fromNetwork(FriendlyByteBuf buffer) {
             Ingredient input_top = Ingredient.fromNetwork(buffer);
 
             Ingredient input_bottom = Ingredient.EMPTY;
@@ -101,19 +91,24 @@ public class WeavingStationRecipe implements Recipe<Container> {
                 input_bottom = Ingredient.fromNetwork(buffer);
             }
             ItemStack result = buffer.readItem();
-            return new WeavingStationRecipe(id, input_top, input_bottom, result);
+            return new WeavingStationRecipe(input_top, Optional.of(input_bottom), result);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, WeavingStationRecipe recipe) {
             recipe.input_top.toNetwork(buffer);
-            if (recipe.input_bottom.isEmpty()) {
+            if (recipe.getInputBottom().isEmpty()) {
                 buffer.writeBoolean(false);
             } else {
                 buffer.writeBoolean(true);
-                recipe.input_bottom.toNetwork(buffer);
+                recipe.getInputBottom().toNetwork(buffer);
             }
             buffer.writeItem(recipe.result);
+        }
+
+        @Override
+        public Codec<WeavingStationRecipe> codec() {
+            return CODEC;
         }
 
     }
