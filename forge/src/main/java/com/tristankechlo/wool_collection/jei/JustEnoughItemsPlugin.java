@@ -9,7 +9,6 @@ import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IJeiRuntime;
@@ -26,7 +25,6 @@ import java.util.Objects;
 public class JustEnoughItemsPlugin implements IModPlugin {
 
     private static final ResourceLocation UID = new ResourceLocation(TheWoolCollection.MOD_ID, "jei_plugin");
-    public static final RecipeType<WeavingStationRecipe> RECIPE_TYPE = RecipeType.create(TheWoolCollection.MOD_ID, "weaving_station", WeavingStationRecipe.class);
     private IRecipeCategory<WeavingStationRecipe> recipeCategory;
 
     @Override
@@ -52,7 +50,7 @@ public class JustEnoughItemsPlugin implements IModPlugin {
         //register recipes for the weaving_station category
         Objects.requireNonNull(recipeCategory, "woolProcessorCategory");
         List<WeavingStationRecipe> recipes = getRecipes();
-        registration.addRecipes(RECIPE_TYPE, recipes);
+        registration.addRecipes(recipes, WeavingStationRecipeCategory.UID);
     }
 
     @Override
@@ -64,13 +62,13 @@ public class JustEnoughItemsPlugin implements IModPlugin {
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
         //move ingredients from the inventory into crafting GUIs
-        registration.addRecipeTransferHandler(WeavingStationContainer.class, RECIPE_TYPE, 0, 2, 3, 36);
+        registration.addRecipeTransferHandler(WeavingStationContainer.class, WeavingStationRecipeCategory.UID, 0, 2, 3, 36);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         //how to craft the thing where the recipe is for (e.g. the weaving_station)
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.WEAVING_STATION_BLOCK.get()), RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModRegistry.WEAVING_STATION_BLOCK.get()), WeavingStationRecipeCategory.UID);
     }
 
     public static List<WeavingStationRecipe> getRecipes() {

@@ -3,6 +3,7 @@ package com.tristankechlo.wool_collection.recipe;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tristankechlo.wool_collection.init.ModRegistry;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -44,6 +45,11 @@ public class WeavingStationRecipe implements Recipe<Container> {
     @Override
     public boolean canCraftInDimensions(int i, int j) {
         return true;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return NonNullList.of(this.input_top, this.input_bottom);
     }
 
     @Override

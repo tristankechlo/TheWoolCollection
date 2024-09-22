@@ -16,7 +16,6 @@ public final class TheWoolCollection {
     public static final String MOD_ID = "wool_collection";
     public static final String MOD_NAME = "The Wool Collection";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
-    public static final ResourceLocation ICON_LOCATION = new ResourceLocation(MOD_ID, "white_wool_fence");
     public static boolean JEI_LOADED = false;
 
     public static List<BlockItem> sortedListByColor(Map<DyeColor, BlockItem> map) {

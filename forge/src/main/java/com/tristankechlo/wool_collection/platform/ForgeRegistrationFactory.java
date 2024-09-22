@@ -1,36 +1,56 @@
 package com.tristankechlo.wool_collection.platform;
 
-import net.minecraft.core.Holder;
+import com.google.auto.service.AutoService;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.javafmlmod.FMLModContainer;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 
+@AutoService(RegistrationProvider.Factory.class)
 public class ForgeRegistrationFactory implements RegistrationProvider.Factory {
 
+    // very bad way to do this
+    private static final Map<ResourceLocation, IForgeRegistry<?>> REGISTRIES = ImmutableMap.of(
+            key("block"), ForgeRegistries.BLOCKS,
+            key("item"), ForgeRegistries.ITEMS,
+            key("menu"), ForgeRegistries.CONTAINERS,
+            key("recipe_serializer"), ForgeRegistries.RECIPE_SERIALIZERS
+    );
+
+    private static ResourceLocation key(String key) {
+        return new ResourceLocation(key);
+    }
+
     @Override
+    @SuppressWarnings("unchecked")
     public <T> RegistrationProvider<T> create(ResourceKey<? extends Registry<T>> resourceKey, String modId) {
         final var containerOpt = ModList.get().getModContainerById(modId);
         if (containerOpt.isEmpty())
             throw new NullPointerException("Cannot find mod container for id " + modId);
         final var cont = containerOpt.get();
         if (cont instanceof FMLModContainer fmlModContainer) {
-            final var register = DeferredRegister.create(resourceKey, modId);
+            IForgeRegistry<?> reg = REGISTRIES.get(resourceKey.location());
+            final var register = DeferredRegister.create(reg, modId);
             register.register(fmlModContainer.getEventBus());
-            return new Provider<>(modId, register);
+            return (RegistrationProvider<T>) new Provider<>(modId, register);
         } else {
             throw new ClassCastException("The container of the mod " + modId + " is not a FML one!");
         }
     }
 
-    private static class Provider<T> implements RegistrationProvider<T> {
+    private static class Provider<T extends IForgeRegistryEntry<T>> implements RegistrationProvider<T> {
         private final String modId;
         private final DeferredRegister<T> registry;
 
@@ -54,11 +74,6 @@ public class ForgeRegistrationFactory implements RegistrationProvider.Factory {
             final var ro = new RegistryObject<I>() {
 
                 @Override
-                public ResourceKey<I> getResourceKey() {
-                    return obj.getKey();
-                }
-
-                @Override
                 public ResourceLocation getId() {
                     return obj.getId();
                 }
@@ -68,10 +83,6 @@ public class ForgeRegistrationFactory implements RegistrationProvider.Factory {
                     return obj.get();
                 }
 
-                @Override
-                public Holder<I> asHolder() {
-                    return obj.getHolder().orElseThrow();
-                }
             };
             entries.add((RegistryObject<T>) ro);
             return ro;

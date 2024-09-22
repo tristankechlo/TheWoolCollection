@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
+import com.google.auto.service.AutoService;
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -9,7 +10,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -17,6 +17,7 @@ import java.nio.file.Path;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+@AutoService(IPlatformHelper.class)
 public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
@@ -50,7 +51,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public Supplier<MenuType<WeavingStationContainer>> buildContainer() {
-        return () -> IForgeMenuType.create(WeavingStationContainer::new);
+        return () -> new MenuType<>(WeavingStationContainer::new);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
-import net.minecraft.core.Holder;
+import com.google.auto.service.AutoService;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
+@AutoService(RegistrationProvider.Factory.class)
 public class FabricRegistrationFactory implements RegistrationProvider.Factory {
 
     @Override
@@ -52,12 +53,6 @@ public class FabricRegistrationFactory implements RegistrationProvider.Factory {
             final var rl = new ResourceLocation(modId, name);
             final var obj = Registry.register(registry, rl, supplier.get());
             final var ro = new RegistryObject<I>() {
-                final ResourceKey<I> key = ResourceKey.create((ResourceKey<? extends Registry<I>>) registry.key(), rl);
-
-                @Override
-                public ResourceKey<I> getResourceKey() {
-                    return key;
-                }
 
                 @Override
                 public ResourceLocation getId() {
@@ -69,10 +64,6 @@ public class FabricRegistrationFactory implements RegistrationProvider.Factory {
                     return obj;
                 }
 
-                @Override
-                public Holder<I> asHolder() {
-                    return (Holder<I>) registry.getOrCreateHolder((ResourceKey<T>) this.key);
-                }
             };
             entries.add((RegistryObject<T>) ro);
             return ro;

@@ -60,7 +60,7 @@ public interface CustomWoolBlock {
             }
             BlockState newState = copyBlockState(optional.get().defaultBlockState(), state);
             level.setBlockAndUpdate(pos, newState);
-            level.scheduleTick(pos, newState.getBlock(), 5); // prevent buttons and pressure plates from being stuck in the down position
+            level.getBlockTicks().scheduleTick(pos, newState.getBlock(), 5); // prevent buttons and pressure plates from being stuck in the down position
             if (!player.isCreative()) {
                 stack.shrink(1);
             }
