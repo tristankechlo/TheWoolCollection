@@ -2,6 +2,8 @@
 
 ### Version 1.17.1 - 1.1.1
 
+- add simple modcommand `/wool_collection`
+
 ### Version 1.18.2 - 1.1
 
 - fix fence_gates and buttons not making sounds sometimes

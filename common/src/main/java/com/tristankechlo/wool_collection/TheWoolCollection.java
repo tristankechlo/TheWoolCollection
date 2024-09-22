@@ -1,6 +1,5 @@
 package com.tristankechlo.wool_collection;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import org.slf4j.Logger;
@@ -16,7 +15,11 @@ public final class TheWoolCollection {
     public static final String MOD_ID = "wool_collection";
     public static final String MOD_NAME = "The Wool Collection";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
-    public static final ResourceLocation ICON_LOCATION = new ResourceLocation(MOD_ID, "white_wool_fence");
+    public static final String GITHUB_URL = "https://github.com/tristankechlo/TheWoolCollection";
+    public static final String GITHUB_ISSUE_URL = GITHUB_URL + "/issues";
+    public static final String DISCORD_URL = "https://discord.gg/bhUaWhq";
+    public static final String CURSEFORGE_URL = "https://curseforge.com/minecraft/mc-mods/wool-collection";
+    public static final String MODRINTH_URL = "https://modrinth.com/mod/wool-collection";
     public static boolean JEI_LOADED = false;
 
     public static List<BlockItem> sortedListByColor(Map<DyeColor, BlockItem> map) {
