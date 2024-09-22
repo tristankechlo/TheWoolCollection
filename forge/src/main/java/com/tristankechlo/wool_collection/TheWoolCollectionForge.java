@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection;
 
+import com.tristankechlo.wool_collection.commands.TheWoolCollectionCommand;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import com.tristankechlo.wool_collection.platform.ForgeItemGroup;
@@ -8,6 +9,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,6 +27,8 @@ public class TheWoolCollectionForge {
         ModRegistry.load();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onCommonSetup);
+        // register commands
+        MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
     }
 
     /* mark all blocks as flammable */
@@ -32,6 +37,10 @@ public class TheWoolCollectionForge {
         ModBlocks.ALL_BLOCKS.forEach((id, block) -> {
             fireBlock.setFlammable(block, 30, 60);
         });
+    }
+
+    private void registerCommands(final RegisterCommandsEvent event) {
+        TheWoolCollectionCommand.register(event.getDispatcher());
     }
 
     @Mod.EventBusSubscriber(modid = TheWoolCollection.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

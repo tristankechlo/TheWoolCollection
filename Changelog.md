@@ -1,9 +1,10 @@
 # Changelog
 
-### Version 1.17.1 - 1.1
+### Version 1.17.1 - 1.1.1
 
 - backport to 1.17.1
 - JustEnoughItems-support only for forge
+- add simple modcommand `/wool_collection`
 
 ### Version 1.18.2 - 1.1
 
