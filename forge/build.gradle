@@ -1,7 +1,15 @@
-plugins {
-    id 'idea'
-    id 'net.minecraftforge.gradle'
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '[6.0,6.2)', changing: true
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'net.minecraftforge.gradle'
 
 base {
     version = "${minecraft_version}-${mod_version}"
@@ -60,17 +68,9 @@ dependencies {
 tasks.withType(JavaCompile).configureEach {
     source(project(":common").sourceSets.main.allSource)
 }
-tasks.withType(Javadoc).configureEach {
-    source(project(":common").sourceSets.main.allJava)
-}
 
 processResources {
     from project(":common").sourceSets.main.resources
-    inputs.property "version", project.version
-
-    filesMatching("META-INF/mods.toml") {
-        expand "version": project.version
-    }
 }
 
 jar.finalizedBy('reobfJar')
