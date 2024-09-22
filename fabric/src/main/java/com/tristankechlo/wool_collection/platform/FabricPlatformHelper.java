@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
+import com.google.auto.service.AutoService;
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.inventory.MenuType;
@@ -7,6 +8,7 @@ import net.minecraft.world.inventory.MenuType;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+@AutoService(IPlatformHelper.class)
 public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
