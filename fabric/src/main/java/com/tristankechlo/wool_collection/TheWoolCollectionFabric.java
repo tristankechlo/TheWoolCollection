@@ -1,9 +1,11 @@
 package com.tristankechlo.wool_collection;
 
+import com.tristankechlo.wool_collection.commands.TheWoolCollectionCommand;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import com.tristankechlo.wool_collection.platform.FabricItemGroup;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.Registry;
 
@@ -23,6 +25,11 @@ public class TheWoolCollectionFabric implements ModInitializer {
         //register all items
         ModBlocks.ALL_ITEMS.forEach((id, item) -> {
             Registry.register(Registry.ITEM, id, item);
+        });
+
+        // register commands
+        CommandRegistrationCallback.EVENT.register((dispatcher, access, environment) -> {
+            TheWoolCollectionCommand.register(dispatcher);
         });
     }
 
