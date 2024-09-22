@@ -62,11 +62,18 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
 
+      - name: generateRessources
+        run: python ./generator/generate.py
+
       - name: Execute Gradle build
-        run: ./gradlew build
+        run: ./gradlew build --exclude-task generateRessources
 
       - name: copy jar-files
         shell: bash

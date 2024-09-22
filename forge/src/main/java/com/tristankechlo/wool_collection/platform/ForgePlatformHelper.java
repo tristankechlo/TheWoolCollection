@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
+import com.google.auto.service.AutoService;
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,7 @@ import java.nio.file.Path;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+@AutoService(IPlatformHelper.class)
 public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
