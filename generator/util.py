@@ -14,7 +14,7 @@ def saveAsJson(path: str, data, indent=0, sort_keys=False):
         if not os.path.exists(folder):
             os.mkdir(folder)
 
-    with open(path, "w") as f:
+    with open(path, "w+") as f:
         if indent == 0:
             json.dump(data, f)
         else:
