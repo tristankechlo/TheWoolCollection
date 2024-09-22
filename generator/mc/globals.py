@@ -7,9 +7,9 @@ class Globals():
     modid = "wool_collection"
     modbase_dir = dirname(dirname(dirname(realpath(__file__))))
     generator_dir = join(modbase_dir, "generator")
-    common_dir = join(modbase_dir, "Common", "src", "generated", "resources")
-    forge_dir = join(modbase_dir, "Forge", "src", "generated", "resources")
-    fabric_dir = join(modbase_dir, "Fabric", "src", "generated", "resources")
+    common_dir = join(modbase_dir, "common", "src", "generated", "resources")
+    forge_dir = join(modbase_dir, "forge", "src", "generated", "resources")
+    fabric_dir = join(modbase_dir, "fabric", "src", "generated", "resources")
     colors = [
         "white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray",
         "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"

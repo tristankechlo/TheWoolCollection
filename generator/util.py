@@ -6,15 +6,9 @@ from mc.globals import Globals
 def saveAsJson(path: str, data, indent=0, sort_keys=False):
     Globals.save_counter += 1
     # create folders if they don't exist
-    folders = path.split("\\")
-    folders.pop()  # remove file name
-    folder = ""
-    for f in folders:
-        folder += f + "/"
-        if not os.path.exists(folder):
-            os.mkdir(folder)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
 
-    with open(path, "w") as f:
+    with open(path, "w+") as f:
         if indent == 0:
             json.dump(data, f)
         else:
