@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.19.4 - 1.1.1
+
+- add simple modcommand `/wool_collection`
+
 ### Version 1.19.4 - 1.1
 
 - fix fence_gates and buttons not making sounds sometimes

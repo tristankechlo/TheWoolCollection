@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection;
 
+import com.tristankechlo.wool_collection.commands.TheWoolCollectionCommand;
 import com.tristankechlo.wool_collection.init.ModBlocks;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.network.chat.Component;
@@ -8,7 +9,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -28,6 +31,9 @@ public class TheWoolCollectionForge {
         modEventBus.addListener(this::onRegister);
         modEventBus.addListener(this::onCommonSetup);
         modEventBus.addListener(this::onCreativeModeTabRegister);
+
+        // register commands
+        MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
     }
 
     /* register all blocks and items */
@@ -63,6 +69,10 @@ public class TheWoolCollectionForge {
         ModBlocks.ALL_BLOCKS.forEach((id, block) -> {
             fireBlock.setFlammable(block, 30, 60);
         });
+    }
+
+    private void registerCommands(final RegisterCommandsEvent event) {
+        TheWoolCollectionCommand.register(event.getDispatcher());
     }
 
 }
