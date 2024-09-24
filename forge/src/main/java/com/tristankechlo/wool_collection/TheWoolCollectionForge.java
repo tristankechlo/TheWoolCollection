@@ -21,10 +21,10 @@ public class TheWoolCollectionForge {
 
     public static final CreativeModeTab ITEM_GROUP = new ForgeItemGroup();
 
-    public TheWoolCollectionForge(FMLJavaModLoadingContext context) {
+    public TheWoolCollectionForge() {
         ModRegistry.load();
 
-        IEventBus modEventBus = context.getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onRegister);
         modEventBus.addListener(this::onCommonSetup);
         // register commands

@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.19.2 - 1.1.2
+
+- add backwards compatibility for forge
+
 ### Version 1.19.2 - 1.1.1
 
 - add simple modcommand `/wool_collection`
