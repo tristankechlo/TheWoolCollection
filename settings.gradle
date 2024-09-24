@@ -32,4 +32,4 @@ pluginManagement {
 }
 
 rootProject.name = 'TheWoolCollection'
-include("Common", "Fabric", "Forge")
+include("common", "fabric", "forge")
