@@ -1,5 +1,6 @@
 package com.tristankechlo.wool_collection.platform;
 
+import com.google.auto.service.AutoService;
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
@@ -11,6 +12,7 @@ import net.neoforged.fml.loading.FMLPaths;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+@AutoService(IPlatformHelper.class)
 public class NeoforgePlatformHelper implements IPlatformHelper {
 
     @Override
