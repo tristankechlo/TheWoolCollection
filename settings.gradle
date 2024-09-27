@@ -35,4 +35,4 @@ plugins {
 }
 
 rootProject.name = 'TheWoolCollection'
-include("Common", "Fabric", "Forge", "Neoforge")
+include("common", "fabric", "forge", "neoforge")
