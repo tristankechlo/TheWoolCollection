@@ -1,7 +1,6 @@
 plugins {
-    id 'idea'
-    id 'net.neoforged.gradle.userdev' version '7.0.81'
-    id 'java-library'
+    id 'multiloader-loader'
+    id 'net.neoforged.gradle.userdev' version '7.0.107'
 }
 
 base {
@@ -9,8 +8,9 @@ base {
     archivesBaseName = "${mod_id}-neoforge"
 }
 
-if (file('src/main/resources/META-INF/accesstransformer.cfg').exists()) {
-    minecraft.accessTransformers.file file('src/main/resources/META-INF/accesstransformer.cfg')
+def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+if (at.exists()) {
+    minecraft.accessTransformers.file at
 }
 
 runs {
@@ -26,9 +26,10 @@ runs {
     }
 }
 
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
-    compileOnly project(":common")
 
     // compile against the JEI API but do not include it at runtime
     compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -38,25 +39,4 @@ dependencies {
 
     compileOnly group: 'com.google.auto.service', name: 'auto-service', version: auto_service_version
     annotationProcessor group: 'com.google.auto.service', name: 'auto-service', version: auto_service_version
-}
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-// NeoGradle compiles the game, but we don't want to add our common code to the game's code
-Spec<Task> notNeoTask = { Task it -> !it.name.startsWith("neo") } as Spec<Task>
-
-tasks.withType(JavaCompile).matching(notNeoTask).configureEach {
-    source(project(":common").sourceSets.main.allSource)
-}
-tasks.withType(Javadoc).matching(notNeoTask).configureEach {
-    source(project(":common").sourceSets.main.allJava)
-}
-
-processResources {
-    from project(":common").sourceSets.main.resources
-    inputs.property "version", project.version
-
-    filesMatching("META-INF/mods.toml") {
-        expand "version": project.version
-    }
 }

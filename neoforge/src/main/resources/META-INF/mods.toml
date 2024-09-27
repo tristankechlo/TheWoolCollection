@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[2,)"
+loaderVersion="${neoforge_loader_range}"
 license = "CC BY-NC-ND 4.0"
 showAsResourcePack = false
 
@@ -16,13 +16,13 @@ showAsResourcePack = false
 [[dependencies.wool_collection]]
     modId = "neoforge"
     type = "required"
-    versionRange  =  "[20.4,)"
+    vversionRange = "${neoforge_range}"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.wool_collection]]
     modId = "minecraft"
     type = "required"
-    versionRange = "[1.20.4,1.21)"
+    versionRange="${version_range}"
     ordering = "NONE"
     side = "BOTH"

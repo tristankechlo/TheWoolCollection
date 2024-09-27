@@ -1,11 +1,8 @@
 plugins {
-    id 'idea'
-    id 'java'
+    id 'multiloader-common'
     id 'org.spongepowered.gradle.vanilla' version '0.2.1-SNAPSHOT'
 }
-base {
-    archivesName = "${mod_name}-common-${minecraft_version}"
-}
+
 minecraft {
     version(minecraft_version)
 }
@@ -15,6 +12,22 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
     //compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly group: 'mezz.jei', name: "jei-${minecraft_version}-common-api", version: "${jei_version}"
+}
+
+configurations {
+    commonJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    commonResources {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+artifacts {
+    commonJava sourceSets.main.java.sourceDirectories.files
+    commonResources sourceSets.main.resources.sourceDirectories.files
 }
 
 task generateRessources(type: Exec) {
