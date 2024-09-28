@@ -29,6 +29,7 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 
     // compile against the JEI API but do not include it at runtime
     //compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))

@@ -5,9 +5,11 @@ import com.tristankechlo.wool_collection.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -24,10 +26,10 @@ public class WoolFenceGateBlock extends FenceGateBlock implements CustomWoolBloc
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        Optional<InteractionResult> optional = this.use(state, level, pos, player, hand);
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        Optional<ItemInteractionResult> optional = this.use(state, level, pos, player, hand);
         if (optional.isEmpty()) {
-            return super.use(state, level, pos, player, hand, result);
+            return super.useItemOn(stack, state, level, pos, player, hand, result);
         }
         return optional.get();
     }

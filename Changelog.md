@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.20.6 - 1.1.1
+
+- port to 1.20.6
+
 ### Version 1.20.4 - 1.1.1
 
 - add simple modcommand `/wool_collection`

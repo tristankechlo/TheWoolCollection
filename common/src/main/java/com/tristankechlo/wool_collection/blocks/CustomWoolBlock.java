@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -28,7 +29,7 @@ public interface CustomWoolBlock {
             .put(DyeColor.RED, Blocks.RED_WOOL).put(DyeColor.BLACK, Blocks.BLACK_WOOL)
             .build();
 
-    default Optional<InteractionResult> use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand) {
+    default Optional<ItemInteractionResult> use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         Item item = stack.getItem();
 
@@ -40,13 +41,13 @@ public interface CustomWoolBlock {
         return Optional.empty();
     }
 
-    default InteractionResult onSheared(BlockState state, Level level, BlockPos pos) {
+    default ItemInteractionResult onSheared(BlockState state, Level level, BlockPos pos) {
         Block.dropResources(state, level, pos);
         level.destroyBlock(pos, false);
-        return (InteractionResult.SUCCESS);
+        return (ItemInteractionResult.SUCCESS);
     }
 
-    default InteractionResult onDyed(BlockState state, Level level, BlockPos pos, ItemStack stack, DyeItem item, Player player) {
+    default ItemInteractionResult onDyed(BlockState state, Level level, BlockPos pos, ItemStack stack, DyeItem item, Player player) {
         Block block = state.getBlock();
         String blockName = BuiltInRegistries.BLOCK.getKey(block).getPath(); //name of the block without the modid
         String blockColor = blockName.split("_wool_")[0];
@@ -56,7 +57,7 @@ public interface CustomWoolBlock {
             Optional<Block> optional = getNewBlock(color);
             if (optional.isEmpty()) {
                 TheWoolCollection.LOGGER.error("Tried to repaint {} to the unsupported color {}!", blockName, color.getName());
-                return InteractionResult.FAIL;
+                return ItemInteractionResult.FAIL;
             }
             BlockState newState = copyBlockState(optional.get().defaultBlockState(), state);
             level.setBlockAndUpdate(pos, newState);
@@ -64,7 +65,7 @@ public interface CustomWoolBlock {
             if (!player.isCreative()) {
                 stack.shrink(1);
             }
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
         return null;
     }

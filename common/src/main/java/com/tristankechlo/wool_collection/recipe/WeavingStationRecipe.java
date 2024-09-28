@@ -1,10 +1,11 @@
 package com.tristankechlo.wool_collection.recipe;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.tristankechlo.wool_collection.init.ModRegistry;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -39,18 +40,18 @@ public class WeavingStationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container container, RegistryAccess access) {
+    public ItemStack assemble(Container container, HolderLookup.Provider provider) {
         return this.result.copy();
+    }
+
+    @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return this.result;
     }
 
     @Override
     public boolean canCraftInDimensions(int i, int j) {
         return true;
-    }
-
-    @Override
-    public ItemStack getResultItem(RegistryAccess access) {
-        return this.result;
     }
 
     @Override
@@ -73,42 +74,46 @@ public class WeavingStationRecipe implements Recipe<Container> {
 
     public static class Serializer implements RecipeSerializer<WeavingStationRecipe> {
 
-        public static final Codec<WeavingStationRecipe> CODEC = RecordCodecBuilder.create(
+        public static final MapCodec<WeavingStationRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 builder -> builder.group(
                         Ingredient.CODEC_NONEMPTY.fieldOf("input_top").forGetter(recipe -> recipe.input_top),
                         Ingredient.CODEC.optionalFieldOf("input_bottom").forGetter(recipe -> recipe.input_bottom),
-                        ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
+                        ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
                 ).apply(builder, WeavingStationRecipe::new)
         );
+        public static final StreamCodec<RegistryFriendlyByteBuf, WeavingStationRecipe> STREAM_CODEC = StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
 
         @Override
-        public WeavingStationRecipe fromNetwork(FriendlyByteBuf buffer) {
-            Ingredient input_top = Ingredient.fromNetwork(buffer);
+        public MapCodec<WeavingStationRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, WeavingStationRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static WeavingStationRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+            Ingredient input_top = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
 
             Ingredient input_bottom = Ingredient.EMPTY;
             boolean hasBottom = buffer.readBoolean();
             if (hasBottom) {
-                input_bottom = Ingredient.fromNetwork(buffer);
+                input_bottom = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
             }
-            ItemStack result = buffer.readItem();
+            ItemStack result = ItemStack.STREAM_CODEC.decode(buffer);
             return new WeavingStationRecipe(input_top, Optional.of(input_bottom), result);
         }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, WeavingStationRecipe recipe) {
-            recipe.input_top.toNetwork(buffer);
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, WeavingStationRecipe recipe) {
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.input_top);
             if (recipe.getInputBottom().isEmpty()) {
                 buffer.writeBoolean(false);
             } else {
                 buffer.writeBoolean(true);
-                recipe.getInputBottom().toNetwork(buffer);
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getInputBottom());
             }
-            buffer.writeItem(recipe.result);
-        }
-
-        @Override
-        public Codec<WeavingStationRecipe> codec() {
-            return CODEC;
+            ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
         }
 
     }
