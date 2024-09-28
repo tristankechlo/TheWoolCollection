@@ -143,4 +143,10 @@ if __name__ == "__main__":
         saveAsJson(path.replace("%", "blocks"), ref)  # c:fences => reference #wool_collection:fences
         saveAsJson(path.replace("%", "items"), ref)  # c:fences => reference #wool_collection:fences
 
+        # save neoforge tags
+        path = join(Globals.neoforge_dir, "data", "c", "tags", "%", tag + ".json")
+        ref = {"replace": False, "values": ["#wool_collection:" + tag]}
+        saveAsJson(path.replace("%", "blocks"), ref)  # c:fences => reference #wool_collection:fences
+        saveAsJson(path.replace("%", "items"), ref)  # c:fences => reference #wool_collection:fences
+
     print(f'generated {Globals.save_counter} files')

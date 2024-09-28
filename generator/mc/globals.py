@@ -10,6 +10,7 @@ class Globals():
     common_dir = join(modbase_dir, "common", "src", "generated", "resources")
     forge_dir = join(modbase_dir, "forge", "src", "generated", "resources")
     fabric_dir = join(modbase_dir, "fabric", "src", "generated", "resources")
+    neoforge_dir = join(modbase_dir, "neoforge", "src", "generated", "resources")
     colors = [
         "white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray",
         "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"

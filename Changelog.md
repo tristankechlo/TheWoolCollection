@@ -1,8 +1,9 @@
 # Changelog
 
-### Version 1.20.6 - 1.1.1
+### Version 1.20.6 - 1.1.3
 
 - port to 1.20.6
+- generate missing neoforge block/item tags
 
 ### Version 1.20.4 - 1.1.1
 
