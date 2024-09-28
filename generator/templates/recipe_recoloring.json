@@ -10,6 +10,6 @@
         }
     ],
     "result": {
-        "item": "%block_id%"
+        "id": "%block_id%"
     }
 }

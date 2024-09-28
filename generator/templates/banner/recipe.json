@@ -8,6 +8,6 @@
     },
     "result": {
         "count": 1,
-        "item": "%block_id%"
+        "id": "%block_id%"
     }
 }

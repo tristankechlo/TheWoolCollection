@@ -6,6 +6,6 @@
     "input_bottom": null,
     "result": {
         "count": %count%,
-        "item": "%block_id%"
+        "id": "%block_id%"
     }
 }
