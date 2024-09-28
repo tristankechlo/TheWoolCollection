@@ -1,6 +1,6 @@
 # Changelog
 
-### Version 1.20.4 - 1.1.2
+### Version 1.20.4 - 1.1.3
 
 - generate missing neoforge block/item tags
 
