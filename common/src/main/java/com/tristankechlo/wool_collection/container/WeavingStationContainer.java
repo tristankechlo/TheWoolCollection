@@ -12,7 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class WeavingStationContainer extends AbstractContainerMenu {
     private final DataSlot selectedRecipe = DataSlot.standalone();
     private final Level level;
     private Runnable changeListener = () -> {};
-    private List<RecipeHolder<WeavingStationRecipe>> recipes;
+    private List<WeavingStationRecipe> recipes;
     private final Slot inputSlotTop;
     private final Slot inputSlotBottom;
     private final Slot resultSlot;
@@ -95,7 +94,7 @@ public class WeavingStationContainer extends AbstractContainerMenu {
     }
 
     public List<WeavingStationRecipe> getRecipes() {
-        return recipes.stream().map(RecipeHolder::value).toList();
+        return recipes;
     }
 
     public int getNumRecipes() {
@@ -149,8 +148,8 @@ public class WeavingStationContainer extends AbstractContainerMenu {
 
     private void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipe.get())) {
-            RecipeHolder<WeavingStationRecipe> recipe = this.recipes.get(this.selectedRecipe.get());
-            ItemStack $$1 = recipe.value().assemble(this.container, this.level.registryAccess());
+            WeavingStationRecipe recipe = this.recipes.get(this.selectedRecipe.get());
+            ItemStack $$1 = recipe.assemble(this.container, this.level.registryAccess());
             if ($$1.isItemEnabled(this.level.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed(recipe);
                 this.resultSlot.set($$1);
@@ -224,11 +223,11 @@ public class WeavingStationContainer extends AbstractContainerMenu {
     }
 
     private boolean hasRecipeTop(ItemStack stack) {
-        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.value().getInputTop().test(stack));
+        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.getInputTop().test(stack));
     }
 
     private boolean hasRecipeBottom(ItemStack stack) {
-        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.value().getInputBottom().test(stack));
+        return this.level.getRecipeManager().getAllRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get()).stream().anyMatch((recipe) -> recipe.getInputBottom().test(stack));
     }
 
     public void removed(Player player) {

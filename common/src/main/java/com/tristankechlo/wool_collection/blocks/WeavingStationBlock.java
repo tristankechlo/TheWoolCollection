@@ -1,6 +1,5 @@
 package com.tristankechlo.wool_collection.blocks;
 
-import com.mojang.serialization.MapCodec;
 import com.tristankechlo.wool_collection.container.WeavingStationContainer;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.core.BlockPos;
@@ -35,7 +34,7 @@ public class WeavingStationBlock extends HorizontalDirectionalBlock {
     private static Component CONTAINER_NAME = null;
 
     public WeavingStationBlock() {
-        super(BlockBehaviour.Properties.ofFullCopy(Blocks.LOOM));
+        super(BlockBehaviour.Properties.copy(Blocks.LOOM));
         registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }
 
@@ -87,10 +86,4 @@ public class WeavingStationBlock extends HorizontalDirectionalBlock {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return null;
-    }
-
 }

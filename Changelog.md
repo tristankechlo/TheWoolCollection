@@ -1,10 +1,5 @@
 # Changelog
 
-### Version 1.20.4 - 1.1
-
-- port to 1.20.4
-- add neoforge support
-
 ### Version 1.20.1 - 1.1
 
 - fix fence_gates and buttons not making sounds sometimes

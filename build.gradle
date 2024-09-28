@@ -2,8 +2,10 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 
 plugins {
-    // Required for NeoGradle
-    id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.7"
+    id 'fabric-loom' version '1.6-SNAPSHOT' apply(false)
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)' apply(false)
+    id 'org.spongepowered.gradle.vanilla' version '0.2.1-SNAPSHOT' apply(false)
+    id("org.spongepowered.mixin") version "0.7-SNAPSHOT" apply(false)
 }
 
 subprojects {
@@ -51,6 +53,22 @@ subprojects {
 
     //minify json files
     processResources {
+        def expandProps = [
+                "version"                   : "${minecraft_version}-${mod_version}",
+                "version_range"             : version_range,
+                "minecraft_version"         : minecraft_version,
+                "java_version"              : java_version,
+                "fabric_loader_min"         : fabric_loader_min,
+                "fabric_range_min_inclusive": fabric_range_min_inclusive,
+                "fabric_range_max_exclusive": fabric_range_max_exclusive,
+                "forge_loader_range"        : forge_loader_range
+        ]
+
+        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', '*.mixins.json']) {
+            expand expandProps
+        }
+        inputs.properties(expandProps)
+
         doLast {
             fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
                 File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
