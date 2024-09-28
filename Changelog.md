@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.20.4 - 1.1.2
+
+- generate missing neoforge block/item tags
+
 ### Version 1.20.4 - 1.1.1
 
 - add simple modcommand `/wool_collection`
