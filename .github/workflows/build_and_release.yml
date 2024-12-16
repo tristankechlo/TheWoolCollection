@@ -20,7 +20,6 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
-      java-version: ${{ steps.properties.outputs.java_version }}
       mc-version: ${{ steps.properties.outputs.minecraft_version }}
       mod-version: ${{ steps.properties.outputs.mod_version }}
       version-range: ${{ steps.properties.outputs.version_range }}
@@ -33,7 +32,7 @@ jobs:
         uses: christian-draeger/read-properties@1.1.1
         with:
           path: 'gradle.properties'
-          properties: 'minecraft_version mod_version version_range java_version'
+          properties: 'minecraft_version mod_version version_range'
 
       - name: Changelog
         shell: bash
@@ -55,12 +54,14 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
-          java-version: ${{ needs.prepare.outputs.java-version }}
-          cache: "gradle"
-          cache-dependency-path: "gradle.properties"
+          java-version: |
+            16
+            17
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-disabled: true
 
       - uses: actions/setup-python@v5
         with:
