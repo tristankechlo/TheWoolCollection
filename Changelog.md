@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.17.1 - 1.1.4
+
+- same mod icon for forge and fabric
+
 ### Version 1.17.1 - 1.1.1
 
 - backport to 1.17.1
