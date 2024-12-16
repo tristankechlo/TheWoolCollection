@@ -21,6 +21,7 @@ build
 eclipse
 run
 runs
+neoforge
 *.pyc
 
 .idea

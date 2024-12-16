@@ -24,6 +24,7 @@ public class TheWoolCollectionForge {
         WoodType.register(TheWoolCollection.WOOD_TYPE_WOOL);
         ModRegistry.load();
 
+        @SuppressWarnings("removal") // ignore here, removed in 1.21.1+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onRegister);
         modEventBus.addListener(this::onCommonSetup);
