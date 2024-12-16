@@ -6,12 +6,14 @@ import com.tristankechlo.wool_collection.init.ModRegistry;
 import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
@@ -42,8 +44,18 @@ public class WeavingStationRecipeCategory implements IRecipeCategory<WeavingStat
     }
 
     @Override
-    public IDrawable getBackground() {
-        return this.background;
+    public void draw(WeavingStationRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        background.draw(guiGraphics);
+    }
+
+    @Override
+    public int getWidth() {
+        return 90;
+    }
+
+    @Override
+    public int getHeight() {
+        return 43;
     }
 
     @Override
