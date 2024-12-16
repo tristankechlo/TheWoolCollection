@@ -1,5 +1,10 @@
 # Changelog
 
+### Version 1.19.4 - 1.1.4
+
+- same mod icon for forge and fabric
+- fix fabric crashing on startup
+
 ### Version 1.19.4 - 1.1.1
 
 - add simple modcommand `/wool_collection`
