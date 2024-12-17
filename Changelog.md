@@ -1,5 +1,10 @@
 # Changelog
 
+### Version 1.20.4 - 1.1.4
+
+- same mod icon for forge and fabric
+- fix fabric crashing on startup
+
 ### Version 1.20.4 - 1.1.3
 
 - generate missing neoforge block/item tags
