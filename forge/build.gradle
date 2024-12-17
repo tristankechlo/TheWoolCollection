@@ -10,14 +10,14 @@ minecraft {
 
     runs {
         client {
-            workingDirectory file('runs/client')
+            workingDirectory file('run')
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Client'
             mods { modClientRun { source sourceSets.main } }
         }
 
         server {
-            workingDirectory file('runs/server')
+            workingDirectory file('run')
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Server'
             mods { modClientRun { source sourceSets.main } }

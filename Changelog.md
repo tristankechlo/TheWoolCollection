@@ -1,5 +1,10 @@
 # Changelog
 
+### Version 1.20.6 - 1.1.4
+
+- same mod icon for forge, fabric and neoforge
+- fix fabric crashing on startup
+
 ### Version 1.20.6 - 1.1.3
 
 - port to 1.20.6
