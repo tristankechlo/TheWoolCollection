@@ -2,7 +2,7 @@
 
 ### Version 1.20.4 - 1.1.4
 
-- same mod icon for forge and fabric
+- same mod icon for forge, fabric and neoforge
 - fix fabric crashing on startup
 
 ### Version 1.20.4 - 1.1.3
