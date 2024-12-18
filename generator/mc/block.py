@@ -12,7 +12,7 @@ class WoolBlock:
     path_blockstates = join(Globals.common_dir, "assets", Globals.modid, "blockstates") + os.sep
     path_block_models = join(Globals.common_dir, "assets", Globals.modid, "models", "block") + os.sep
     path_item_models = join(Globals.common_dir, "assets", Globals.modid, "models", "item") + os.sep
-    path_recipes = join(Globals.common_dir, "data", Globals.modid, "recipes") + os.sep
+    path_recipes = join(Globals.common_dir, "data", Globals.modid, "recipe") + os.sep
 
     def __init__(self, color: str, type: str):
         self.color = color

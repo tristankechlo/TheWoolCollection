@@ -26,7 +26,7 @@ import java.util.Objects;
 @JeiPlugin
 public class JustEnoughItemsPlugin implements IModPlugin {
 
-    private static final ResourceLocation UID = new ResourceLocation(TheWoolCollection.MOD_ID, "jei_plugin");
+    private static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TheWoolCollection.MOD_ID, "jei_plugin");
     public static final RecipeType<WeavingStationRecipe> RECIPE_TYPE = RecipeType.create(TheWoolCollection.MOD_ID, "weaving_station", WeavingStationRecipe.class);
     private IRecipeCategory<WeavingStationRecipe> recipeCategory;
 

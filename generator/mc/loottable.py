@@ -8,7 +8,7 @@ else:
 
 class LootTable():
 
-    path = join(Globals.common_dir, "data", Globals.modid, "loot_tables", "blocks")
+    path = join(Globals.common_dir, "data", Globals.modid, "loot_table", "blocks")
 
     def __init__(self, block_id: str, filename: str):
         self.block_id = block_id

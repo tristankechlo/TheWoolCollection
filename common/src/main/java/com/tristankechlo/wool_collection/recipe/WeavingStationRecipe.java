@@ -6,7 +6,6 @@ import com.tristankechlo.wool_collection.init.ModRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -16,31 +15,22 @@ import net.minecraft.world.level.Level;
 
 import java.util.Optional;
 
-public class WeavingStationRecipe implements Recipe<Container> {
-
-    private final Ingredient input_top;
-    private final Optional<Ingredient> input_bottom;
-    private final ItemStack result;
-
-    public WeavingStationRecipe(Ingredient input_top, Optional<Ingredient> input_bottom, ItemStack result) {
-        this.input_top = input_top;
-        this.input_bottom = input_bottom;
-        this.result = result;
-    }
+public record WeavingStationRecipe(Ingredient input_top, Optional<Ingredient> input_bottom, ItemStack result)
+        implements Recipe<WeavingStationRecipeInput> {
 
     @Override
-    public boolean matches(Container container, Level level) {
-        if (container.getContainerSize() < 2) {
+    public boolean matches(WeavingStationRecipeInput input, Level level) {
+        if (input.size() < 2) {
             return false;
         }
-        if (this.getInputBottom().isEmpty() && container.getItem(1).isEmpty()) {
-            return this.input_top.test(container.getItem(0));
+        if (this.getInputBottom().isEmpty() && input.getItem(1).isEmpty()) {
+            return this.input_top.test(input.getItem(0));
         }
-        return this.input_top.test(container.getItem(0)) && this.getInputBottom().test(container.getItem(1));
+        return this.input_top.test(input.getItem(0)) && this.getInputBottom().test(input.getItem(1));
     }
 
     @Override
-    public ItemStack assemble(Container container, HolderLookup.Provider provider) {
+    public ItemStack assemble(WeavingStationRecipeInput input, HolderLookup.Provider provider) {
         return this.result.copy();
     }
 
@@ -76,9 +66,9 @@ public class WeavingStationRecipe implements Recipe<Container> {
 
         public static final MapCodec<WeavingStationRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 builder -> builder.group(
-                        Ingredient.CODEC_NONEMPTY.fieldOf("input_top").forGetter(recipe -> recipe.input_top),
-                        Ingredient.CODEC.optionalFieldOf("input_bottom").forGetter(recipe -> recipe.input_bottom),
-                        ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
+                        Ingredient.CODEC_NONEMPTY.fieldOf("input_top").forGetter(WeavingStationRecipe::input_top),
+                        Ingredient.CODEC.optionalFieldOf("input_bottom").forGetter(WeavingStationRecipe::input_bottom),
+                        ItemStack.CODEC.fieldOf("result").forGetter(WeavingStationRecipe::result)
                 ).apply(builder, WeavingStationRecipe::new)
         );
         public static final StreamCodec<RegistryFriendlyByteBuf, WeavingStationRecipe> STREAM_CODEC = StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);

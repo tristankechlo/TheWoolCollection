@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class WeavingStationRecipeCategory implements IRecipeCategory<WeavingStationRecipe> {
 
-    private static final ResourceLocation LOCATION = new ResourceLocation(TheWoolCollection.MOD_ID, "textures/gui/weaving_station.png");
+    private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TheWoolCollection.MOD_ID, "textures/gui/weaving_station.png");
     private final IDrawable background;
     private final IDrawable icon;
     private final Component localizedName;

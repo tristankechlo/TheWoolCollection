@@ -17,7 +17,7 @@ import java.util.List;
 
 public class WeavingStationScreen extends AbstractContainerScreen<WeavingStationContainer> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheWoolCollection.MOD_ID, "textures/gui/weaving_station.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TheWoolCollection.MOD_ID, "textures/gui/weaving_station.png");
     private static final int SCROLLER_WIDTH = 12;
     private static final int SCROLLER_HEIGHT = 15;
     private static final int RECIPES_IMAGE_SIZE_WIDTH = 18;

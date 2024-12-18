@@ -45,7 +45,7 @@ public final class ModBlocks {
     }
 
     private static void register(String id, DyeColor color, Function<DyeColor, Block> blockCreator, Map<DyeColor, BlockItem> category) {
-        ResourceLocation rl = new ResourceLocation(TheWoolCollection.MOD_ID, id);
+        ResourceLocation rl = ResourceLocation.fromNamespaceAndPath(TheWoolCollection.MOD_ID, id);
         Block block = blockCreator.apply(color);
         BlockItem item = new BlockItem(block, ITEM_PROPERTIES);
         ALL_ITEMS.put(rl, item);

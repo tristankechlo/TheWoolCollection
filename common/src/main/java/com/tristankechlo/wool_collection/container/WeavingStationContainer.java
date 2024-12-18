@@ -3,6 +3,7 @@ package com.tristankechlo.wool_collection.container;
 import com.google.common.collect.Lists;
 import com.tristankechlo.wool_collection.init.ModRegistry;
 import com.tristankechlo.wool_collection.recipe.WeavingStationRecipe;
+import com.tristankechlo.wool_collection.recipe.WeavingStationRecipeInput;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -29,7 +30,7 @@ public class WeavingStationContainer extends AbstractContainerMenu {
     private final Slot resultSlot;
     public final Container container;
     private final ResultContainer resultContainer = new ResultContainer();
-    private NonNullList<ItemStack> inputs = NonNullList.withSize(2, ItemStack.EMPTY);
+    private final NonNullList<ItemStack> inputs = NonNullList.withSize(2, ItemStack.EMPTY);
 
     public WeavingStationContainer(int id, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(id, playerInventory, ContainerLevelAccess.NULL);
@@ -143,14 +144,16 @@ public class WeavingStationContainer extends AbstractContainerMenu {
         this.selectedRecipe.set(-1);
         this.resultSlot.set(ItemStack.EMPTY);
         if (!stack1.isEmpty() /*&& !stack2.isEmpty()*/) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get(), container, this.level);
+            WeavingStationRecipeInput input = createRecipeInput();
+            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRegistry.WEAVING_STATION_RECIPE_TYPE.get(), input, this.level);
         }
     }
 
     private void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipe.get())) {
             RecipeHolder<WeavingStationRecipe> recipe = this.recipes.get(this.selectedRecipe.get());
-            ItemStack $$1 = recipe.value().assemble(this.container, this.level.registryAccess());
+            WeavingStationRecipeInput input = createRecipeInput();
+            ItemStack $$1 = recipe.value().assemble(input, this.level.registryAccess());
             if ($$1.isItemEnabled(this.level.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed(recipe);
                 this.resultSlot.set($$1);
@@ -237,6 +240,10 @@ public class WeavingStationContainer extends AbstractContainerMenu {
         this.worldPos.execute((level, pos) -> {
             this.clearContainer(player, this.container);
         });
+    }
+
+    private WeavingStationRecipeInput createRecipeInput() {
+        return new WeavingStationRecipeInput(this.inputSlotTop.getItem(), this.inputSlotBottom.getItem());
     }
 
 }

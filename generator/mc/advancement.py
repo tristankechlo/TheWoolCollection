@@ -10,7 +10,7 @@ else:
 
 class Advancement():
 
-    path = join(Globals.common_dir, "data", Globals.modid, "advancements", "recipes")
+    path = join(Globals.common_dir, "data", Globals.modid, "advancement", "recipes")
 
     def __init__(self, recipe_id: str, color: str, filename: str):
         self.recipe_id = recipe_id

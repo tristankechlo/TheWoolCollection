@@ -1,5 +1,12 @@
 # Changelog
 
+### Version 1.21 - 1.1.5
+
+- port to 1.21
+- same mod icon for forge, fabric and neoforge
+- fix fabric crashing on startup
+- fix incorrect recipe unlocking for the weaving station
+
 ### Version 1.20.6 - 1.1.3
 
 - port to 1.20.6
