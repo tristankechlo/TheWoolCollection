@@ -25,6 +25,8 @@ class Globals():
             shutil.rmtree(Globals.forge_dir)
         if os.path.exists(Globals.fabric_dir):
             shutil.rmtree(Globals.fabric_dir)
+        if os.path.exists(Globals.neoforge_dir):
+            shutil.rmtree(Globals.neoforge_dir)
 
     def loadAsJson(path: str):
         import json
