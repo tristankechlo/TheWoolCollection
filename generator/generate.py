@@ -118,35 +118,41 @@ if __name__ == "__main__":
         saveAsJson(path.replace("%", "block"), ref)  # minecraft:fences => reference #wool_collection:fences
         saveAsJson(path.replace("%", "item"), ref)  # minecraft:fences => reference #wool_collection:fences
 
-        # save custom tags
+        # save wool_collection tags
         path = join(Globals.common_dir, "data", "wool_collection", "tags", "%", tag + ".json")
-        ref = {"replace": False, "values": ["#wool_collection:" + tag + "/wool"]}
-        saveAsJson(path.replace("%", "block"), ref)  # wool_collection:fences => reference #wool_collection:fences/wool
-        saveAsJson(path.replace("%", "item"), ref)  # wool_collection:fences => reference #wool_collection:fences/wool
-        path = join(Globals.common_dir, "data", "wool_collection", "tags", "%", tag, "wool.json")
-        saveAsJson(path.replace("%", "block"), tags[tag])  # wool_collection:fences/wool ====> all custom wool fences
-        saveAsJson(path.replace("%", "item"), tags[tag])  # wool_collection:fences/wool ====> all custom wool fences
+        saveAsJson(path.replace("%", "block"), tags[tag])  # wool_collection:fences ====> all custom wool fences
+        saveAsJson(path.replace("%", "item"), tags[tag])  # wool_collection:fences ====> all custom wool fences
 
-        # save forge tags
-        path = join(Globals.forge_dir, "data", "forge", "tags", "%", tag + ".json")
-        ref = {"replace": False, "values": ["#forge:" + tag + "/wool"]}
-        saveAsJson(path.replace("%", "block"), ref)  # forge:fences => reference #forge:fences/wool
-        saveAsJson(path.replace("%", "item"), ref)  # forge:fences => reference #forge:fences/wool
-        path = join(Globals.forge_dir, "data", "forge", "tags", "%", tag, "wool.json")
-        ref = {"replace": False, "values": ["#wool_collection:" + tag + "/wool"]}
-        saveAsJson(path.replace("%", "block"), ref)  # forge:fences/wool => reference #wool_collection:fences/wool
-        saveAsJson(path.replace("%", "item"), ref)  # forge:fences/wool => reference #wool_collection:fences/wool
+        nameSpaceMappings = [
+            ["forge", Globals.forge_dir],
+            ["c", Globals.common_dir] # fabric and neoforge
+        ]
 
-        # save fabric tags
-        path = join(Globals.fabric_dir, "data", "c", "tags", "%", tag + ".json")
-        ref = {"replace": False, "values": ["#wool_collection:" + tag]}
-        saveAsJson(path.replace("%", "block"), ref)  # c:fences => reference #wool_collection:fences
-        saveAsJson(path.replace("%", "item"), ref)  # c:fences => reference #wool_collection:fences
+        for entry in nameSpaceMappings:
+            namespace = entry[0]
+            folder = entry[1]
 
-        # save neoforge tags
-        path = join(Globals.neoforge_dir, "data", "c", "tags", "%", tag + ".json")
-        ref = {"replace": False, "values": ["#wool_collection:" + tag]}
-        saveAsJson(path.replace("%", "block"), ref)  # c:fences => reference #wool_collection:fences
-        saveAsJson(path.replace("%", "item"), ref)  # c:fences => reference #wool_collection:fences
+            path = join(folder, "data", namespace, "tags", "%", tag + ".json")
+            ref = {"replace": False, "values": ["#" + namespace + ":" + tag + "/wool"]}
+            saveAsJson(path.replace("%", "block"), ref)  # forge:fences => reference #forge:fences/wool
+            saveAsJson(path.replace("%", "item"), ref)  # forge:fences => reference #forge:fences/wool
+            path = join(folder, "data", namespace, "tags", "%", tag, "wool.json")
+            ref = {"replace": False, "values": ["#wool_collection:" + tag]}
+            saveAsJson(path.replace("%", "block"), ref)  # forge:fences/wool => reference #wool_collection:fences
+            saveAsJson(path.replace("%", "item"), ref)  # forge:fences/wool => reference #wool_collection:fences
+
+    # item/block tags for colors
+    for color in Globals.colors:
+        # prepare data
+        ref = {"replace": False, "values": []}
+        for tag in tags:
+            tmp = tag if tag == "stairs" else tag[:-1]
+            key = "wool_collection:" + color + "_wool_" + tmp
+            ref["values"].append(key)
+
+        # save for fabric and neoforge
+        path = join(Globals.common_dir, "data", "c", "tags", "%", "dyed/", color + ".json")
+        saveAsJson(path.replace("%", "block"), ref)  # c:dyed/red => all red items
+        saveAsJson(path.replace("%", "item"), ref)  # c:dyed/red => all red blocks
 
     print(f'generated {Globals.save_counter} files')

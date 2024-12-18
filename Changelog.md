@@ -6,6 +6,7 @@
 - same mod icon for forge, fabric and neoforge
 - fix fabric crashing on startup
 - fix incorrect recipe unlocking for the weaving station
+- rework block/item tags
 
 ### Version 1.20.6 - 1.1.3
 
