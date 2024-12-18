@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.20.4 - 1.1.5
+
+- rework block/item tags
+
 ### Version 1.20.4 - 1.1.4
 
 - same mod icon for forge, fabric and neoforge
