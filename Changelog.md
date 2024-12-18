@@ -3,6 +3,7 @@
 ### Version 1.20.6 - 1.1.5
 
 - fix incorrect recipe unlocking for the weaving station
+- rework block/item tags
 
 ### Version 1.20.6 - 1.1.4
 
