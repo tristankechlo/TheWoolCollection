@@ -28,6 +28,7 @@
     },
     "mixins": [
     ],
+    "accessWidener" : "wool_collection.accesswidener",
     "depends": {
         "fabricloader": ">=${fabric_loader_min}",
         "fabric-api": "*",
