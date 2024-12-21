@@ -3,7 +3,7 @@
     "group": "wool_%type%",
     "ingredients": [
         {
-            "tag": "wool_collection:%type%s/wool"
+            "tag": "wool_collection:%type%s"
         },
         {
             "item": "minecraft:%color%_dye"
