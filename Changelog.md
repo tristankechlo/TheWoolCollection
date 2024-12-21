@@ -1,5 +1,10 @@
 # Changelog
 
+### Version 1.21.1 - 1.1.5
+
+- port to 1.21.1
+- fix incompatibilities with latest versions of Just Enough Resources
+
 ### Version 1.21 - 1.1.5
 
 - port to 1.21
